@@ -64,10 +64,10 @@
         <!-- CTA Buttons Group -->
         <div class="flex flex-col sm:flex-row gap-4 mb-12 w-full sm:w-auto px-4">
             <!-- Instagram Button -->
-            <a href="https://instagram.com/majdur24x7" target="_blank" rel="noopener noreferrer" 
+            <a href="https://instagram.com/YOUR_INSTAGRAM_USERNAME" target="_blank" rel="noopener noreferrer" 
                class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:opacity-95 text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-pink-500/10 transform hover:-translate-y-0.5 transition duration-200">
                 <i class="fab fa-instagram text-xl"></i>
-                <span>Join our community</span>
+                <span>Follow Instagram Page</span>
             </a>
 
             <!-- Share Story Button -->
@@ -142,36 +142,42 @@
 
     <!-- JavaScript Database Connection Logic -->
     <script>
+        // ⚠️ YAHA APNA DEPLOYED GOOGLE SCRIPT URL PASTE KAREIN
+        const SCRIPT_URL = "https://script.google.com/macros/library/d/1lDwYRQcLK2fPpZzZtN7BdRc9fD_TVSRAzeoPvEPnjae0DkTj3kHr9b6o/1";
 
-function toggleModal(show) {
-    document.getElementById('story-modal').style.display = show ? 'flex' : 'none';
-}
-
-// Google Sheet se purani saari stories fetch karne ke liye
-async function fetchStories() {
-    const grid = document.getElementById('stories-grid');
-
-    try {
-        const response = await fetch(https://script.google.com/macros/library/d/1lDwYRQcLK2fPpZzZtN7BdRc9fD_TVSRAzeoPvEPnjae0DkTj3kHr9b6o/1);
-        const data = await response.json();
-
-        document.getElementById('loading-text')?.remove();
-
-        if(data.length === 0) {
-            grid.innerHTML = '<p class="col-span-full text-center text-slate-500 text-sm py-6">Abhi tak koi dastaan nahi hai. Pehli story aap likho!</p>';
-            return;
+        function toggleModal(show) {
+            document.getElementById('story-modal').style.display = show ? 'flex' : 'none';
         }
 
-        grid.innerHTML = ''; // Clear loading/old data
+        // Google Sheet se purani saari stories fetch karne ke liye
+        async function fetchStories() {
+            const grid = document.getElementById('stories-grid');
+            if(SCRIPT_URL === "https://script.google.com/macros/library/d/1lDwYRQcLK2fPpZzZtN7BdRc9fD_TVSRAzeoPvEPnjae0DkTj3kHr9b6o/1") {
+                grid.innerHTML = '<p class="col-span-full text-center text-amber-400 text-sm">Database URL configure nahi hai. Please add Script URL.</p>';
+                return;
+            }
 
-        data.forEach(story => {
-            renderCard(story.author, story.tag, story.content);
-        });
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        grid.innerHTML = '<p class="col-span-full text-center text-red-400 text-sm">Database se data load karne me dikkat aayi.</p>';
-    }
-}
+            try {
+                const response = await fetch(SCRIPT_URL);
+                const data = await response.json();
+                
+                document.getElementById('loading-text')?.remove();
+                
+                if(data.length === 0) {
+                    grid.innerHTML = '<p class="col-span-full text-center text-slate-500 text-sm py-6">Abhi tak koi dastaan nahi hai. Pehli story aap likho!</p>';
+                    return;
+                }
+
+                grid.innerHTML = ''; // Clear loading/old data
+                
+                data.forEach(story => {
+                    renderCard(story.author, story.tag, story.content);
+                });
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                grid.innerHTML = '<p class="col-span-full text-center text-red-400 text-sm">Database se data load karne me dikkat aayi.</p>';
+            }
+        }
 
         // HTML Card structure banane ke liye
         function renderCard(author, tag, content) {
