@@ -142,19 +142,21 @@
 
     <!-- JavaScript Database Connection Logic -->
     <script>
-        // ⚠️ YAHA APNA DEPLOYED GOOGLE SCRIPT URL PASTE KAREIN
-        const SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE";
+       // 1. Apne URL ko quotes (" ") ke andar yahan daaliye
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsctgD85Hf66TsJIZt0CzS7W--08L91a_s9jfQx2fqpCBMqKvIgsjTmlgMfxeXFJBs/exec";
 
-        function toggleModal(show) {
-            document.getElementById('story-modal').style.display = show ? 'flex' : 'none';
-        }
+function toggleModal(show) {
+    document.getElementById('story-modal').style.display = show ? 'flex' : 'none';
+}
 
-        // Google Sheet se purani saari stories fetch karne ke liye
-        async function fetchStories() {
-            const grid = document.getElementById('stories-grid');
-            if(SCRIPT_URL === https://script.google.com/macros/s/AKfycbxsctgD85Hf66TsJIZt0CzS7W--08L9la_s9jfQx2fqpCBMqKvIgsjTmlgMfxeXFJBs/exec) {
-                grid.innerHTML = '<p class="col-span-full text-center text-amber-400 text-sm">Database URL configure nahi hai. Please add Script URL.</p>';
-                return;
+// Google Sheet se purani saari stories fetch karne ke liye
+async function fetchStories() {
+    const grid = document.getElementById('stories-grid');
+    
+    // 2. Is if condition ko bilkul aisa hi rehne dein (isme URL nahi badalna hai!)
+    if(SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE") {
+        grid.innerHTML = '<p class="col-span-full text-center text-amber-400 text-sm">Database URL configure nahi hai. Please add Script URL.</p>';
+        return;
             }
 
             try {
