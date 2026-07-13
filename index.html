@@ -150,34 +150,28 @@ function toggleModal(show) {
 // Google Sheet se purani saari stories fetch karne ke liye
 async function fetchStories() {
     const grid = document.getElementById('stories-grid');
-    
-    // 2. Is if condition ko bilkul aisa hi rehne dein (isme URL nahi badalna hai!)
-    if(SCRIPT_URL === "https://script.google.com/macros/s/AKfycbxsctgD85Hf66TsJIZt0CzS7W--08L91a_s9jfQx2fqpCBMqKvIgsjTmlgMfxeXFJBs/exec") {
-        grid.innerHTML = '<p class="col-span-full text-center text-amber-400 text-sm">Database URL configure nahi hai. Please add Script URL.</p>';
-        return;
-            }
 
-            try {
-                const response = await fetch(SCRIPT_URL);
-                const data = await response.json();
-                
-                document.getElementById('loading-text')?.remove();
-                
-                if(data.length === 0) {
-                    grid.innerHTML = '<p class="col-span-full text-center text-slate-500 text-sm py-6">Abhi tak koi dastaan nahi hai. Pehli story aap likho!</p>';
-                    return;
-                }
+    try {
+        const response = await fetch(https://script.google.com/macros/s/AKfycbxsctgD85Hf66TsJIZt0CzS7W--08L9la_s9jfQx2fqpCBMqKvIgsjTmlgMfxeXFJBs/exec);
+        const data = await response.json();
 
-                grid.innerHTML = ''; // Clear loading/old data
-                
-                data.forEach(story => {
-                    renderCard(story.author, story.tag, story.content);
-                });
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                grid.innerHTML = '<p class="col-span-full text-center text-red-400 text-sm">Database se data load karne me dikkat aayi.</p>';
-            }
+        document.getElementById('loading-text')?.remove();
+
+        if(data.length === 0) {
+            grid.innerHTML = '<p class="col-span-full text-center text-slate-500 text-sm py-6">Abhi tak koi dastaan nahi hai. Pehli story aap likho!</p>';
+            return;
         }
+
+        grid.innerHTML = ''; // Clear loading/old data
+
+        data.forEach(story => {
+            renderCard(story.author, story.tag, story.content);
+        });
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        grid.innerHTML = '<p class="col-span-full text-center text-red-400 text-sm">Database se data load karne me dikkat aayi.</p>';
+    }
+}
 
         // HTML Card structure banane ke liye
         function renderCard(author, tag, content) {
