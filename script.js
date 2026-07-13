@@ -1,1 +1,1 @@
-console.log("Corporate Majdur Loaded");
+console.log("Corporate Majdur Loaded 🚀");
