@@ -140,44 +140,157 @@
         <p>© 2026 Corporate Majdur • Powered by Coffee & Corporate Tears</p>
     </footer>
 
-    <!-- JavaScript Database Connection Logic -->
-    <script>
-        // ⚠️ YAHA APNA DEPLOYED GOOGLE SCRIPT URL PASTE KAREIN
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsctgD85Hf66TsJIZt0CzS7W--08L9la_s9jfQx2fqpCBMqKvIgsjTmlgMfxeXFJBs/exec";
+<!-- ======================================
+       JAVASCRIPT DATABASE CONNECTION LOGIC
+       ====================================== -->
+  <script>
+    // 🔴 ⬇️ IMPORTANT: अपना SCRIPT_URL यहाँ paste करें ⬇️ 🔴
+    // Google Apps Script deployment से copy करके यहाँ paste करो
+    const SCRIPT_URL = 'https://script.google.com/macros/d/AKfycbxa0hcYJtqpr_lZwNGo6-qYale7W4Z9cYlTtGXk7P-4FD1BxBC1tFOm6WbFDiK6ndaT/usercallback';
+    // 🔴 ⬇️ Example: https://script.google.com/macros/d/AKfycbxsctgD85Hf66Ts... ⬇️ 🔴
 
-        function toggleModal(show) {
-            document.getElementById('story-modal').style.display = show ? 'flex' : 'none';
+    // ✅ Modal toggle करने के लिए
+    function toggleModal(show) {
+      const modal = document.getElementById('story-modal');
+      if (show) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      } else {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        document.getElementById('storyForm').reset();
+      }
+    }
+
+    // Modal को close करने के लिए background पर click करें
+    document.addEventListener('click', function(event) {
+      const modal = document.getElementById('story-modal');
+      if (event.target === modal) {
+        toggleModal(false);
+      }
+    });
+
+    // ✅ Google Sheet से stories fetch करें
+    async function fetchStories() {
+      const grid = document.getElementById('stories-grid');
+      const loadingText = document.getElementById('loading-text');
+      const errorText = document.getElementById('error-text');
+
+      grid.innerHTML = '';
+      loadingText.style.display = 'block';
+      errorText.style.display = 'none';
+
+      // Check करो SCRIPT_URL set है या नहीं
+      if (SCRIPT_URL.includes('YOUR_DEPLOYMENT_ID')) {
+        loadingText.style.display = 'none';
+        errorText.style.display = 'block';
+        errorText.innerHTML = `
+          <strong>❌ SCRIPT_URL configure नहीं है!</strong><br>
+          <small>
+            1. Google Apps Script में Deploy करो<br>
+            2. Deployment URL copy करो<br>
+            3. यहाँ paste करो: <code style="background: rgba(0,0,0,0.3); padding: 5px;">const SCRIPT_URL = '...'</code>
+          </small>
+        `;
+        return;
+      }
+
+      try {
+        // ✅ सही तरीका - बस SCRIPT_URL से fetch करो
+        const response = await fetch(SCRIPT_URL);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        // Google Sheet se purani saari stories fetch karne ke liye
-        async function fetchStories() {
-            const grid = document.getElementById('stories-grid');
-            if(SCRIPT_URL === "https://script.google.com/macros/s/AKfycbxsctgD85Hf66TsJIZt0CzS7W--08L9la_s9jfQx2fqpCBMqKvIgsjTmlgMfxeXFJBs/exec") {
-                grid.innerHTML = '<p class="col-span-full text-center text-amber-400 text-sm">Database URL configure nahi hai. Please add Script URL.</p>';
-                return;
-            }
+        const data = await response.json();
+        loadingText.style.display = 'none';
 
-            try {
-                const response = await fetch(SCRIPT_URL);
-                const data = await response.json();
-                
-                document.getElementById('loading-text')?.remove();
-                
-                if(data.length === 0) {
-                    grid.innerHTML = '<p class="col-span-full text-center text-slate-500 text-sm py-6">Abhi tak koi dastaan nahi hai. Pehli story aap likho!</p>';
-                    return;
-                }
-
-                grid.innerHTML = ''; // Clear loading/old data
-                
-                data.forEach(story => {
-                    renderCard(story.author, story.tag, story.content);
-                });
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                grid.innerHTML = '<p class="col-span-full text-center text-red-400 text-sm">Database se data load karne me dikkat aayi.</p>';
-            }
+        // अगर data empty है
+        if (!data || data.length === 0) {
+          grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">अभी कोई stories नहीं हैं। पहली story आप लिखें! 🚀</div>';
+          return;
         }
+
+        // सभी stories को display करें
+        data.forEach((story) => {
+          renderCard(story);
+        });
+
+      } catch (error) {
+        console.error('Error:', error);
+        loadingText.style.display = 'none';
+        errorText.style.display = 'block';
+        errorText.innerHTML = `
+          <strong>❌ Error:</strong> ${error.message}<br>
+          <small>
+            ⚠️ Check करो:<br>
+            • SCRIPT_URL सही है?<br>
+            • Google Apps Script deployed है?<br>
+            • Sheet को "Anyone can edit" permission है?
+          </small>
+        `;
+      }
+    }
+
+
+// Individual story card बनाने का function
+function renderCard(story) {
+  const grid = document.getElementById('stories-grid');
+  
+  const card = document.createElement('div');
+  card.className = 'story-card';
+  
+  card.innerHTML = `
+    <div class="story-author">✍️ ${story.author}</div>
+    <div class="story-tag">#${story.tag}</div>
+    <div class="story-content">${story.content}</div>
+  `;
+  
+  grid.appendChild(card);
+}
+
+// नई story submit करें
+async function submitStory(event) {
+  event.preventDefault();
+
+  const author = document.getElementById('author').value.trim();
+  const tag = document.getElementById('tag').value.trim();
+  const content = document.getElementById('content').value.trim();
+
+  if (content.length < 20) {
+    alert('कम से कम 20 characters लिखें!');
+    return;
+  }
+
+  try {
+    const response = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        author: author,
+        tag: tag,
+        content: content
+      })
+    });
+
+    const result = await response.json();
+
+    if (result.status === 'success') {
+      alert('✅ Story successfully posted!');
+      document.getElementById('author').value = '';
+      document.getElementById('tag').value = '';
+      document.getElementById('content').value = '';
+      toggleModal(false);
+      
+      // 1 second बाद refresh करो
+      setTimeout(fetchStories, 1000);
+    } else {
+      alert('❌ Error: ' + result.message);
+    }
+  } catch (error) {
+    alert('❌ Error: ' + error.message);
+  }
+}
 
         // HTML Card structure banane ke liye
         function renderCard(author, tag, content) {
