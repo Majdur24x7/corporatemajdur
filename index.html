@@ -64,10 +64,10 @@
         <!-- CTA Buttons Group -->
         <div class="flex flex-col sm:flex-row gap-4 mb-12 w-full sm:w-auto px-4">
             <!-- Instagram Button -->
-            <a href="https://instagram.com/YOUR_INSTAGRAM_USERNAME" target="_blank" rel="noopener noreferrer" 
+            <a href="https://instagram.com/majdur24x7" target="_blank" rel="noopener noreferrer" 
                class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:opacity-95 text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-pink-500/10 transform hover:-translate-y-0.5 transition duration-200">
                 <i class="fab fa-instagram text-xl"></i>
-                <span>Follow Instagram Page</span>
+                <span>Join Our Community</span>
             </a>
 
             <!-- Share Story Button -->
@@ -143,7 +143,7 @@
     <!-- JavaScript Database Connection Logic -->
     <script>
         // ⚠️ YAHA APNA DEPLOYED GOOGLE SCRIPT URL PASTE KAREIN
-        const SCRIPT_URL = "https://script.google.com/macros/library/d/1lDwYRQcLK2fPpZzZtN7BdRc9fD_TVSRAzeoPvEPnjae0DkTj3kHr9b6o/1";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsctgD85Hf66TsJIZt0CzS7W--08L9la_s9jfQx2fqpCBMqKvIgsjTmlgMfxeXFJBs/exec";
 
         function toggleModal(show) {
             document.getElementById('story-modal').style.display = show ? 'flex' : 'none';
@@ -152,7 +152,7 @@
         // Google Sheet se purani saari stories fetch karne ke liye
         async function fetchStories() {
             const grid = document.getElementById('stories-grid');
-            if(SCRIPT_URL === "https://script.google.com/macros/library/d/1lDwYRQcLK2fPpZzZtN7BdRc9fD_TVSRAzeoPvEPnjae0DkTj3kHr9b6o/1") {
+            if(SCRIPT_URL === "https://script.google.com/macros/s/AKfycbxsctgD85Hf66TsJIZt0CzS7W--08L9la_s9jfQx2fqpCBMqKvIgsjTmlgMfxeXFJBs/exec") {
                 grid.innerHTML = '<p class="col-span-full text-center text-amber-400 text-sm">Database URL configure nahi hai. Please add Script URL.</p>';
                 return;
             }
