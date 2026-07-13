@@ -99,10 +99,11 @@
 
         <!-- Grid for Blog Posts -->
         <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Stories will load here automatically from Google Sheets -->
             <div id="loading-text" class="col-span-full text-center text-slate-500 py-8 animate-pulse">
                 <i class="fa-solid fa-spinner animate-spin mr-2"></i> Loading recent rants from database...
             </div>
+            <!-- Error message container -->
+            <div id="error-text" class="col-span-full text-center text-red-400 py-8 hidden"></div>
         </div>
     </section>
 
@@ -140,161 +141,90 @@
         <p>© 2026 Corporate Majdur • Powered by Coffee & Corporate Tears</p>
     </footer>
 
-<!-- ======================================
-       JAVASCRIPT DATABASE CONNECTION LOGIC
-       ====================================== -->
-  <script>
-    // 🔴 ⬇️ IMPORTANT: अपना SCRIPT_URL यहाँ paste करें ⬇️ 🔴
-    // Google Apps Script deployment से copy करके यहाँ paste करो
-    const SCRIPT_URL = 'https://script.google.com/macros/d/AKfycbxa0hcYJtqpr_lZwNGo6-qYale7W4Z9cYlTtGXk7P-4FD1BxBC1tFOm6WbFDiK6ndaT/usercallback';
-    // 🔴 ⬇️ Example: https://script.google.com/macros/d/AKfycbxsctgD85Hf66Ts... ⬇️ 🔴
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 🔴 ⬇️ IMPORTANT: अपना SCRIPT_URL यहाँ paste करें ⬇️ 🔴
+        const SCRIPT_URL = 'https://script.google.com/macros/d/AKfycbxa0hcYJtqpr_lZwNGo6-qYale7W4Z9cYlTtGXk7P-4FD1BxBC1tFOm6WbFDiK6ndaT/usercallback';
 
-    // ✅ Modal toggle करने के लिए
-    function toggleModal(show) {
-      const modal = document.getElementById('story-modal');
-      if (show) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      } else {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        document.getElementById('storyForm').reset();
-      }
-    }
-
-    // Modal को close करने के लिए background पर click करें
-    document.addEventListener('click', function(event) {
-      const modal = document.getElementById('story-modal');
-      if (event.target === modal) {
-        toggleModal(false);
-      }
-    });
-
-    // ✅ Google Sheet से stories fetch करें
-    async function fetchStories() {
-      const grid = document.getElementById('stories-grid');
-      const loadingText = document.getElementById('loading-text');
-      const errorText = document.getElementById('error-text');
-
-      grid.innerHTML = '';
-      loadingText.style.display = 'block';
-      errorText.style.display = 'none';
-
-      // Check करो SCRIPT_URL set है या नहीं
-      if (SCRIPT_URL.includes('YOUR_DEPLOYMENT_ID')) {
-        loadingText.style.display = 'none';
-        errorText.style.display = 'block';
-        errorText.innerHTML = `
-          <strong>❌ SCRIPT_URL configure नहीं है!</strong><br>
-          <small>
-            1. Google Apps Script में Deploy करो<br>
-            2. Deployment URL copy करो<br>
-            3. यहाँ paste करो: <code style="background: rgba(0,0,0,0.3); padding: 5px;">const SCRIPT_URL = '...'</code>
-          </small>
-        `;
-        return;
-      }
-
-      try {
-        // ✅ सही तरीका - बस SCRIPT_URL से fetch करो
-        const response = await fetch(SCRIPT_URL);
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        // ✅ Modal toggle karne ke liye (Fixed Tailwind Classes)
+        function toggleModal(show) {
+            const modal = document.getElementById('story-modal');
+            if (show) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                document.getElementById('story-form').reset();
+            }
         }
 
-        const data = await response.json();
-        loadingText.style.display = 'none';
-
-        // अगर data empty है
-        if (!data || data.length === 0) {
-          grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">अभी कोई stories नहीं हैं। पहली story आप लिखें! 🚀</div>';
-          return;
-        }
-
-        // सभी stories को display करें
-        data.forEach((story) => {
-          renderCard(story);
+        // Modal ke background par click karke close karne ke liye
+        document.getElementById('story-modal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                toggleModal(false);
+            }
         });
 
-      } catch (error) {
-        console.error('Error:', error);
-        loadingText.style.display = 'none';
-        errorText.style.display = 'block';
-        errorText.innerHTML = `
-          <strong>❌ Error:</strong> ${error.message}<br>
-          <small>
-            ⚠️ Check करो:<br>
-            • SCRIPT_URL सही है?<br>
-            • Google Apps Script deployed है?<br>
-            • Sheet को "Anyone can edit" permission है?
-          </small>
-        `;
-      }
-    }
+        // ✅ Google Sheet se stories fetch karein
+        async function fetchStories() {
+            const grid = document.getElementById('stories-grid');
+            const loadingText = document.getElementById('loading-text');
+            const errorText = document.getElementById('error-text');
 
+            // Reset UI
+            if(loadingText) loadingText.style.display = 'block';
+            errorText.style.display = 'none';
+            
+            // Purani cards remove karein except loading spinner
+            const cards = grid.querySelectorAll('.bg-slate-900\\/60');
+            cards.forEach(card => card.remove());
 
-// Individual story card बनाने का function
-function renderCard(story) {
-  const grid = document.getElementById('stories-grid');
-  
-  const card = document.createElement('div');
-  card.className = 'story-card';
-  
-  card.innerHTML = `
-    <div class="story-author">✍️ ${story.author}</div>
-    <div class="story-tag">#${story.tag}</div>
-    <div class="story-content">${story.content}</div>
-  `;
-  
-  grid.appendChild(card);
-}
+            if (SCRIPT_URL.includes('YOUR_DEPLOYMENT_ID')) {
+                if(loadingText) loadingText.style.display = 'none';
+                errorText.style.display = 'block';
+                errorText.innerHTML = `
+                    <strong>❌ SCRIPT_URL configure nahi hai!</strong><br>
+                    <small>Google Apps Script URL ko script tag me add karein.</small>
+                `;
+                return;
+            }
 
-// नई story submit करें
-async function submitStory(event) {
-  event.preventDefault();
+            try {
+                const response = await fetch(SCRIPT_URL);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-  const author = document.getElementById('author').value.trim();
-  const tag = document.getElementById('tag').value.trim();
-  const content = document.getElementById('content').value.trim();
+                const data = await response.json();
+                if(loadingText) loadingText.style.display = 'none';
 
-  if (content.length < 20) {
-    alert('कम से कम 20 characters लिखें!');
-    return;
-  }
+                if (!data || data.length === 0) {
+                    grid.insertAdjacentHTML('beforeend', '<div id="no-stories" class="col-span-full text-center padding-40 text-slate-400">Abhi koi stories nahi hain. Pehli story aap likhein! 🚀</div>');
+                    return;
+                }
 
-  try {
-    const response = await fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({
-        author: author,
-        tag: tag,
-        content: content
-      })
-    });
+                // Cards render karein
+                data.forEach((story) => {
+                    renderCard(story.author, story.tag, story.content);
+                });
 
-    const result = await response.json();
+            } catch (error) {
+                console.error('Error:', error);
+                if(loadingText) loadingText.style.display = 'none';
+                errorText.style.display = 'block';
+                errorText.innerHTML = `<strong>❌ Error:</strong> ${error.message}`;
+            }
+        }
 
-    if (result.status === 'success') {
-      alert('✅ Story successfully posted!');
-      document.getElementById('author').value = '';
-      document.getElementById('tag').value = '';
-      document.getElementById('content').value = '';
-      toggleModal(false);
-      
-      // 1 second बाद refresh करो
-      setTimeout(fetchStories, 1000);
-    } else {
-      alert('❌ Error: ' + result.message);
-    }
-  } catch (error) {
-    alert('❌ Error: ' + error.message);
-  }
-}
-
-        // HTML Card structure banane ke liye
+        // HTML Card banane ka fixed single function
         function renderCard(author, tag, content) {
             const grid = document.getElementById('stories-grid');
+            
+            // Remove "No stories" text if exists
+            const noStoriesEl = document.getElementById('no-stories');
+            if(noStoriesEl) noStoriesEl.remove();
+
             const gradients = [
                 'from-blue-600/20 to-cyan-600/30 text-cyan-400',
                 'from-red-600/20 to-orange-600/30 text-orange-400',
@@ -313,7 +243,7 @@ async function submitStory(event) {
                     <p class="text-sm text-slate-300 font-light mt-4 leading-relaxed break-words">${content}</p>
                 </div>
                 <div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800/60 text-xs text-slate-500 flex justify-between">
-                    <span>By: ${author}</span>
+                    <span>By: ${author || 'Anonymous Majdur'}</span>
                     <span>Verified Majdur</span>
                 </div>
             `;
@@ -325,32 +255,30 @@ async function submitStory(event) {
             event.preventDefault();
             const btn = document.getElementById('submit-btn');
             
-            const author = document.getElementById('story-author').value || 'Anonymous Majdur';
-            const tag = document.getElementById('story-tag').value.startsWith('#') ? document.getElementById('story-tag').value : '#' + document.getElementById('story-tag').value;
-            const content = document.getElementById('story-content').value;
+            const author = document.getElementById('story-author').value.trim() || 'Anonymous Majdur';
+            let tag = document.getElementById('story-tag').value.trim();
+            if (!tag.startsWith('#')) tag = '#' + tag;
+            const content = document.getElementById('story-content').value.trim();
+
+            if (content.length < 20) {
+                alert('Kam se kam 20 characters likhein!');
+                return;
+            }
 
             btn.innerText = "Saving Dukh...";
             btn.disabled = true;
 
             try {
-                // Sending data to Google Sheets
                 await fetch(SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // Github pages compatibility ke liye no-cors zaroori hai
+                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ author, tag, content })
                 });
 
-                // UI reset aur reload
-                document.getElementById('story-form').reset();
                 toggleModal(false);
                 
-                // Nayi card temporary direct top par add karne ke liye taaki response instant dikhe
-                const grid = document.getElementById('stories-grid');
-                const loadingText = document.getElementById('loading-text');
-                if(loadingText) loadingText.remove();
-                
-                // Reload complete database stories to get updated list
+                // Refresh data after 1 second
                 setTimeout(() => {
                     fetchStories();
                     document.getElementById('stories-section').scrollIntoView({ behavior: 'smooth' });
