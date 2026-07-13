@@ -6,69 +6,228 @@
     <title>Corporate Majdur | India's Employee Community</title>
     <!-- Tailwind CSS for modern styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Instagram Icon -->
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
         .gradient-text {
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(135deg, #a855f7, #10b981);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .gradient-btn-story {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+        }
     </style>
 </head>
-<body class="bg-slate-900 text-white min-h-screen flex flex-col justify-between selection:bg-teal-500 selection:text-slate-900">
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-slate-900 overflow-x-hidden">
 
-    <!-- Top Glow Effect -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[300px] bg-gradient-to-b from-teal-500/10 to-transparent blur-3xl pointer-events-none"></div>
+    <!-- Top Glow Effects -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- Header Navigation -->
+    <header class="w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative z-20">
+        <!-- Brand Logo Image (Replaced Text) -->
+        <a href="#" class="flex items-center">
+            <!-- Ensure your image file is named logo.png and placed in the same repository folder -->
+            <img src="logo.png" alt="Corporate Majdur Logo" class="h-8 md:h-10 w-auto object-contain" onerror="this.onerror=null; this.insertAdjacentHTML('afterend', '<span class=\'text-xl font-bold tracking-wider text-white\'>CORPORATE MAJDUR</span>'); this.remove();">
+        </a>
+        
+        <a href="#stories-section" class="px-5 py-2 text-sm font-semibold bg-slate-800/80 border border-slate-700/60 hover:border-emerald-500/50 text-slate-200 hover:text-emerald-400 rounded-xl transition duration-300 backdrop-blur-sm">
+            <i class="fa-solid fa-book-open mr-2"></i>See Stories
+        </a>
+    </header>
 
     <!-- Main Content -->
     <main class="flex-grow flex flex-col items-center justify-center px-6 py-12 text-center relative z-10">
         
         <!-- Tagline / Badge -->
-        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-slate-800 border border-slate-700 text-teal-400 rounded-full mb-6 uppercase tracking-wider animate-pulse">
-            <span class="w-2 h-2 rounded-full bg-teal-400"></span> 9 to 5 Survivors Club
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-slate-950/60 border border-slate-800 text-emerald-400 rounded-full mb-6 uppercase tracking-wider animate-pulse backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span> 9 to 5 Survivors Club
         </span>
 
         <!-- Main Heading -->
-        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4">
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 max-w-4xl leading-[1.15]">
             Welcome to India's Ultimate <br>
-            <span class="gradient-text">Corporate Majdur</span> Community!
+            <span class="gradient-text font-black">Corporate Majdur</span> Community!
         </h1>
 
         <!-- Subheading -->
-        <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-8 font-light">
-           High CTC ke sapne se lekar, appraisal ke dukh aur HR ke 'We will get back to you' tak... Yeh hum sabhi corporate ke majduro ka apna safe space hai. Kyunki dukh baantne se kam hota hai (aur boss ki burai karne se sukoon milta hai).
+        <p class="text-slate-400 text-base md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+            High CTC ke sapne se lekar, appraisal ke dukh aur micromanagement tak... <br class="hidden md:inline">
+            You are not alone in this cubicle. Let's unite!
         </p>
 
-        <!-- Instagram Call to Action Button -->
-        <div class="mb-12">
-            <a href="https://instagram.com/YOUR_INSTAGRAM_USERNAME_HERE" target="_blank" rel="noopener noreferrer" 
-               class="inline-flex items-center gap-3 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:from-pink-600 hover:to-yellow-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-pink-500/20 transform hover:-translate-y-1 transition duration-300 ease-in-out group">
-                <i class="fab fa-instagram text-2xl group-hover:scale-110 transition duration-200"></i>
+        <!-- CTA Buttons Group -->
+        <div class="flex flex-col sm:flex-row gap-4 mb-12 w-full sm:w-auto px-4">
+            <!-- Instagram Button -->
+            <!-- IDHAR APNA USERNAME DALNA: jahan 'majdur24x7' likha hai -->
+            <a href="https://instagram.com/majdur24x7" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:opacity-95 text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-pink-500/10 transform hover:-translate-y-0.5 transition duration-200">
+                <i class="fab fa-instagram text-xl"></i>
                 <span>Join Our Community</span>
             </a>
+
+            <!-- Share Story Button (Triggers Popup) -->
+            <button onclick="toggleModal(true)" 
+               class="inline-flex items-center justify-center gap-3 gradient-btn-story hover:opacity-95 text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-cyan-500/10 transform hover:-translate-y-0.5 transition duration-200 cursor-pointer">
+                <i class="fa-solid fa-pen-to-square text-xl"></i>
+                <span>Share Your Story</span>
+            </button>
         </div>
 
         <!-- Coming Soon Teaser Box -->
-        <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 max-w-md w-full backdrop-blur-sm">
-            <h3 class="text-teal-400 font-semibold mb-2 flex items-center justify-center gap-2">
-                <i class="fas fa-rocket"></i> Something Exciting is Brewing!
+        <div class="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-6 max-w-md w-full backdrop-blur-sm shadow-xl">
+            <h3 class="text-emerald-400 font-semibold mb-2 flex items-center justify-center gap-2 text-sm uppercase tracking-wider">
+                <i class="fas fa-rocket animate-bounce"></i> Something Exciting is Brewing!
             </h3>
-            <p class="text-sm text-slate-400 leading-relaxed">
-                We are building something big for the community right here on this landing page. Tools, templates, and tech to escape the matrix. Stay tuned!
+            <p class="text-xs text-slate-400 leading-relaxed">
+                We are building tools, meme generators, and corporate survival guides right here. Stay tuned, majduro!
             </p>
         </div>
 
     </main>
 
+    <!-- BLOG / STORIES DISPLAY SECTION -->
+    <section id="stories-section" class="w-full max-w-6xl mx-auto px-6 py-16 border-t border-slate-900 relative z-10">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-2">Majduro Ki Dastaan <span class="text-emerald-400">(Stories)</span></h2>
+            <p class="text-sm text-slate-400">Read what your fellow corporate mates are going through</p>
+        </div>
+
+        <!-- Grid for Blog Posts -->
+        <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Story Card 1 -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-purple-500/40 transition duration-300 flex flex-col justify-between">
+                <div class="p-6">
+                    <div class="w-full h-40 bg-gradient-to-br from-purple-600/20 to-indigo-600/30 rounded-xl mb-4 flex items-center justify-center border border-purple-500/10">
+                        <i class="fa-solid fa-laptop-code text-4xl text-purple-400"></i>
+                    </div>
+                    <span class="text-xs font-semibold bg-purple-500/10 text-purple-400 px-2.5 py-1 rounded-md">#AppraisalDukh</span>
+                    <h3 class="text-lg font-bold mt-3 mb-2 text-slate-200">"Meeting to discuss the meeting..."</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">Mere manager ne aaj 1 ghante ki meeting rakhi sirf yeh discuss karne ke liye ki kal ki 30 mins ki meeting ka agenda kya hoga. I'm crying inside.</p>
+                </div>
+                <div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800/60 text-xs text-slate-500 flex justify-between">
+                    <span>By: Anonymous Dev</span>
+                    <span>Just Now</span>
+                </div>
+            </div>
+
+            <!-- Story Card 2 -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
+                <div class="p-6">
+                    <div class="w-full h-40 bg-gradient-to-br from-emerald-600/20 to-teal-600/30 rounded-xl mb-4 flex items-center justify-center border border-emerald-500/10">
+                        <i class="fa-solid fa-mug-hot text-4xl text-emerald-400"></i>
+                    </div>
+                    <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md">#WeekendSpoiled</span>
+                    <h3 class="text-lg font-bold mt-3 mb-2 text-slate-200">"Friday Evening 6:59 PM Email"</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">Pure hafte koi kaam nahi tha, aur Friday ko jaise hi laptop band karne laga, HR ka mail aaya: 'Urgent task, need by Monday EOD'. Zindagi barbad.</p>
+                </div>
+                <div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800/60 text-xs text-slate-500 flex justify-between">
+                    <span>By: Tester Bhai</span>
+                    <span>2 Hours Ago</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- POPUP MODAL FOR SUBMITTING STORY -->
+    <div id="story-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden z-50 items-center justify-center p-4">
+        <div class="bg-[#0f1626] border border-slate-800 w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl transform transition-all">
+            <!-- Modal Header -->
+            <div class="px-6 py-4 bg-slate-900/60 border-b border-slate-800 flex justify-between items-center">
+                <h3 class="font-bold text-lg text-emerald-400"><i class="fa-solid fa-feather mr-2"></i>Apna Dukh Likho</h3>
+                <button onclick="toggleModal(false)" class="text-slate-400 hover:text-white cursor-pointer text-xl">&times;</button>
+            </div>
+            <!-- Modal Body / Form -->
+            <form id="story-form" onsubmit="handleStorySubmit(event)" class="p-6 flex flex-col gap-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Aapka Nickname (Optional)</label>
+                    <input type="text" id="story-author" placeholder="e.g., Silent Majdur, Techie Bro" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-500 text-slate-100">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Topic / Hashtag</label>
+                    <input type="text" id="story-tag" placeholder="e.g., #Micromanagement, #Salary" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-500 text-slate-100">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Kya Kahani Hai? (Pura Bhadaas Nikalo)</label>
+                    <textarea id="story-content" rows="4" placeholder="Manager ne kya kiya? Client ne kya bola? Sab likh do..." required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-500 text-slate-100 resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-95 text-white font-bold py-3 rounded-xl transition mt-2 cursor-pointer shadow-lg shadow-emerald-950">
+                    Submit Story (Live on Blog)
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="w-full text-center py-6 border-t border-slate-800/60 text-xs text-slate-500 relative z-10">
-        <p>© 2026 Corporate Majdur. Made with ☕ and office frustration.</p>
+    <footer class="w-full text-center py-6 border-t border-slate-950 text-xs text-slate-600 relative z-10">
+        <p>© 2026 Corporate Majdur • Powered by Coffee & Corporate Tears</p>
     </footer>
 
+    <!-- JavaScript Logic for Popup and Blog Injection -->
+    <script>
+        function toggleModal(show) {
+            const modal = document.getElementById('story-modal');
+            if (show) {
+                modal.style.display = 'flex';
+            } else {
+                modal.style.display = 'none';
+            }
+        }
+
+        function handleStorySubmit(event) {
+            event.preventDefault();
+            
+            const author = document.getElementById('story-author').value || 'Anonymous Majdur';
+            const tag = document.getElementById('story-tag').value.startsWith('#') ? document.getElementById('story-tag').value : '#' + document.getElementById('story-tag').value;
+            const content = document.getElementById('story-content').value;
+            
+            // Generate Random Color Theme for the Card Graphic
+            const gradients = [
+                'from-blue-600/20 to-cyan-600/30 text-cyan-400 icon-fa-laptop',
+                'from-red-600/20 to-orange-600/30 text-orange-400 icon-fa-fire',
+                'from-purple-600/20 to-pink-600/30 text-pink-400 icon-fa-skull-crossbones'
+            ];
+            const randomGlow = gradients[Math.floor(Math.random() * gradients.length)];
+            const iconClass = randomGlow.split(' ')[2] === 'icon-fa-fire' ? 'fa-fire' : (randomGlow.split(' ')[2] === 'icon-fa-laptop' ? 'fa-keyboard' : 'fa-skull-crossbones');
+
+            // Create New Story Card HTML
+            const newCard = document.createElement('div');
+            newCard.className = "bg-slate-900/60 border border-emerald-500/30 rounded-2xl overflow-hidden hover:border-emerald-500 transition duration-300 flex flex-col justify-between animate-fade-in";
+            newCard.innerHTML = `
+                <div class="p-6">
+                    <div class="w-full h-40 bg-gradient-to-br ${randomGlow.split(' ')[0]} ${randomGlow.split(' ')[1]} rounded-xl mb-4 flex items-center justify-center border border-slate-800">
+                        <i class="fa-solid ${iconClass} text-4xl ${randomGlow.split(' ')[2]}"></i>
+                    </div>
+                    <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md">${tag}</span>
+                    <h3 class="text-lg font-bold mt-3 mb-2 text-slate-200">"Nayi Dastaan Added!"</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">${content}</p>
+                </div>
+                <div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800/60 text-xs text-slate-500 flex justify-between">
+                    <span>By: ${author}</span>
+                    <span>Just Now</span>
+                </div>
+            `;
+
+            // Insert new card at the beginning of the grid
+            const grid = document.getElementById('stories-grid');
+            grid.insertBefore(newCard, grid.firstChild);
+
+            // Reset Form and Close Modal
+            document.getElementById('story-form').reset();
+            toggleModal(false);
+
+            // Smooth Scroll to Stories Section to see the update
+            document.getElementById('stories-section').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
