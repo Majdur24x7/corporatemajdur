@@ -9,10 +9,13 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&family=Orbitron:wght@600;800&display=swap');
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             scroll-behavior: smooth;
+        }
+        .digital-font {
+            font-family: 'Orbitron', sans-serif;
         }
         .gradient-text {
             background: linear-gradient(135deg, #a855f7, #10b981);
@@ -22,118 +25,329 @@
         .gradient-btn-story {
             background: linear-gradient(135deg, #3b82f6, #06b6d4);
         }
+        /* Spin Wheel Mobile responsive dimensions */
+        .wheel-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+        }
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 8px solid #1e293b;
+            position: relative;
+            overflow: hidden;
+            transition: transform 4s cubic-bezier(0.1, 0.8, 0.3, 1);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
+            /* Mapped strictly to 3 Green and 3 Red alternating sectors */
+            background: conic-gradient(
+                #10b981 0deg 60deg,
+                #ef4444 60deg 120deg,
+                #10b981 120deg 180deg,
+                #ef4444 180deg 240deg,
+                #10b981 240deg 300deg,
+                #ef4444 300deg 360deg
+            );
+        }
+        .wheel-pointer {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 22px solid #10b981;
+            z-index: 20;
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
+        }
+        .wheel-center-pin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px;
+            height: 32px;
+            background: #0f172a;
+            border: 4px solid #10b981;
+            border-radius: 50%;
+            z-index: 15;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+        .wheel-label {
+            position: absolute;
+            width: 50%;
+            height: 40px;
+            top: calc(50% - 20px);
+            left: 50%;
+            transform-origin: left center;
+            padding-left: 75px; 
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            pointer-events: none;
+            filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.8));
+        }
     </style>
 </head>
-<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-slate-900 overflow-x-hidden" onload="fetchStories()">
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-slate-900 overflow-x-hidden">
 
     <!-- Top Glow Effects -->
     <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute top-0 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
     <!-- Header Navigation -->
-    <header class="w-full max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative z-20">
+    <header class="w-full max-w-7xl mx-auto px-4 md:px-6 py-4 flex flex-col gap-4 sm:flex-row justify-between items-center relative z-20">
         <a href="#" class="flex items-center">
-            <img src="./logo.png" alt="Corporate Majdur Logo" class="h-8 md:h-10 w-auto object-contain block" onerror="this.onerror=null; this.insertAdjacentHTML('afterend', '<span class=\'text-xl font-bold tracking-wider text-white\'>CORPORATE MAJDUR</span>'); this.remove();">
+            <span class="text-xl font-black tracking-wider text-white">CORPORATE MAJDUR</span>
         </a>
         
-        <a href="#stories-section" class="px-5 py-2 text-sm font-semibold bg-slate-800/80 border border-slate-700/60 hover:border-emerald-500/50 text-slate-200 hover:text-emerald-400 rounded-xl transition duration-300 backdrop-blur-sm">
-            <i class="fa-solid fa-book-open mr-2"></i>See Stories
-        </a>
+        <div class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center">
+            <button onclick="toggleModal(true)" class="flex-1 sm:flex-none text-center px-4 py-2.5 text-xs sm:text-sm font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl shadow-md hover:opacity-90 transition">
+                <i class="fa-solid fa-pen-to-square mr-1"></i> Share Story
+            </button>
+            <a href="#stories-section" class="flex-1 sm:flex-none text-center px-4 py-2.5 text-xs sm:text-sm font-semibold bg-slate-800/80 border border-slate-700/60 hover:border-emerald-500/50 text-slate-200 hover:text-emerald-400 rounded-xl transition backdrop-blur-sm">
+                <i class="fa-solid fa-book-open mr-1"></i> See Stories
+            </a>
+        </div>
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow flex flex-col items-center justify-center px-6 py-12 text-center relative z-10">
-        
-        <!-- Tagline / Badge -->
-        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-slate-950/60 border border-slate-800 text-emerald-400 rounded-full mb-6 uppercase tracking-wider animate-pulse backdrop-blur-md">
+    <main class="flex-grow flex flex-col items-center justify-center px-4 py-10 md:py-16 text-center relative z-10">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-[10px] sm:text-xs font-semibold bg-slate-950/60 border border-slate-800 text-emerald-400 rounded-full mb-6 uppercase tracking-wider animate-pulse">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span> 9 to 5 Survivors Club
         </span>
 
-        <!-- Main Heading -->
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 max-w-4xl leading-[1.15]">
+        <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight mb-4 max-w-4xl leading-[1.15]">
             Welcome to India's Ultimate <br>
             <span class="gradient-text font-black">Corporate Majdur</span> Community!
         </h1>
 
-        <!-- Subheading -->
-        <p class="text-slate-400 text-base md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+        <p class="text-slate-400 text-sm sm:text-base md:text-xl max-w-2xl mx-auto mb-8 font-light leading-relaxed">
             High CTC ke sapne se lekar, appraisal ke dukh aur micromanagement tak... <br class="hidden md:inline">
             You are not alone in this cubicle. Let's unite!
         </p>
 
-        <!-- CTA Buttons Group -->
-        <div class="flex flex-col sm:flex-row gap-4 mb-12 w-full sm:w-auto px-4">
-            <!-- Instagram Button -->
+        <div class="flex flex-col sm:flex-row gap-4 mb-10 w-full sm:w-auto px-4 justify-center">
             <a href="https://instagram.com/majdur24x7" target="_blank" rel="noopener noreferrer" 
-               class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:opacity-95 text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-pink-500/10 transform hover:-translate-y-0.5 transition duration-200">
-                <i class="fab fa-instagram text-xl"></i>
-                <span>Join Our Community</span>
+               class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:opacity-95 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg transform hover:-translate-y-0.5 transition">
+                <i class="fab fa-instagram text-lg"></i>
+                <span>Join Our Instagram</span>
             </a>
-
-            <!-- Share Story Button -->
-            <button onclick="toggleModal(true)" 
-               class="inline-flex items-center justify-center gap-3 gradient-btn-story hover:opacity-95 text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-cyan-500/10 transform hover:-translate-y-0.5 transition duration-200 cursor-pointer">
-                <i class="fa-solid fa-pen-to-square text-xl"></i>
-                <span>Share Your Story</span>
-            </button>
+            <a href="#games-section" 
+               class="inline-flex items-center justify-center gap-3 gradient-btn-story hover:opacity-95 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg transform hover:-translate-y-0.5 transition cursor-pointer">
+                <i class="fa-solid fa-mug-hot text-lg"></i>
+                <span>Take a Break Game</span>
+            </a>
         </div>
-
-        <!-- Coming Soon Teaser Box -->
-        <div class="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-6 max-w-md w-full backdrop-blur-sm shadow-xl">
-            <h3 class="text-emerald-400 font-semibold mb-2 flex items-center justify-center gap-2 text-sm uppercase tracking-wider">
-                <i class="fas fa-rocket animate-bounce"></i> Something Exciting is Brewing!
-            </h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-                We are building tools, meme generators, and corporate survival guides right here. Stay tuned, majduro!
-            </p>
-        </div>
-
     </main>
 
-    <!-- BLOG / STORIES DISPLAY SECTION -->
-    <section id="stories-section" class="w-full max-w-6xl mx-auto px-6 py-16 border-t border-slate-900 relative z-10">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold mb-2">Majduro Ki Dastaan <span class="text-emerald-400">(Stories)</span></h2>
-            <p class="text-sm text-slate-400">Read what your fellow corporate mates are going through</p>
+    <!-- GAMES SECTION -->
+    <section id="games-section" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 relative z-10">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-2">Majdur <span class="text-emerald-400">Trauma Zone 🎮</span></h2>
+            <p class="text-xs sm:text-sm text-slate-400">Bina dimaag lagaye, thoda dukh baato!</p>
         </div>
 
-        <!-- Grid for Blog Posts -->
-        <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Stories will load here automatically from Google Sheets -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+            
+            <!-- GAME 1: ULTIMATE CHAI/SUTTA BREAK DECIDER -->
+            <div class="bg-gradient-to-b from-slate-900/90 to-slate-950/90 border border-slate-800/80 rounded-2xl p-5 sm:p-8 flex flex-col justify-between hover:border-emerald-500/40 shadow-xl transition duration-300">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl sm:text-2xl font-black text-emerald-400 flex items-center gap-2">
+                            <i class="fa-solid fa-mug-hot text-amber-500 animate-bounce"></i> Break Decider ☕
+                        </h3>
+                        <span class="text-[9px] sm:text-[10px] bg-emerald-500/10 text-emerald-400 font-bold px-2 py-1 rounded border border-emerald-500/20 uppercase">Mobile Friendly</span>
+                    </div>
+
+                    <!-- TAB SELECTORS -->
+                    <div class="flex bg-slate-950 p-1.5 rounded-xl mb-6">
+                        <button onclick="switchBreakTab('toss')" id="tab-toss" class="flex-1 py-2.5 text-xs font-bold rounded-lg text-white bg-emerald-600 transition">
+                            🤔 Break Lu Ya Nahi?
+                        </button>
+                        <button onclick="switchBreakTab('colleague')" id="tab-colleague" class="flex-1 py-2.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition">
+                            👥 Colleague Game
+                        </button>
+                    </div>
+
+                    <!-- TAB 1: DECISION TOSS -->
+                    <div id="panel-toss" class="block animate-fadeIn">
+                        <p class="text-xs text-slate-400 mb-4 text-center">Dilemma me ho ki abhi break lu ya 10 minute baad? Chalo kismat par chhodo!</p>
+                        <button onclick="tossForBreak()" class="w-full bg-slate-950 hover:bg-slate-900 border border-emerald-500/30 text-emerald-400 font-bold py-4 rounded-xl transition duration-200 flex items-center justify-center gap-2 active:scale-95">
+                            <i class="fa-solid fa-arrows-spin text-lg animate-spin-slow"></i> Ask Corporate Oracle 🔮
+                        </button>
+
+                        <div id="toss-result" class="mt-4 p-4 bg-slate-950/80 border-2 border-dashed border-emerald-500/10 rounded-xl text-center hidden">
+                            <h4 id="toss-title" class="text-base sm:text-lg font-extrabold text-white mb-1"></h4>
+                            <p id="toss-desc" class="text-xs text-slate-400"></p>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: COLLEAGUE GAME (SLICK 3D CARDS DESIGN) -->
+                    <div id="panel-colleague" class="hidden animate-fadeIn">
+                        <p class="text-xs text-slate-400 mb-4 text-center">Apne dost ke sath phone share karo. Kisi ek block par click karo, jisme 🚨 aaya woh bill pay karega!</p>
+                        
+                        <div class="grid grid-cols-3 gap-3 mb-5">
+                            <!-- Card 1 -->
+                            <div onclick="clickCup(0)" id="cup-0" class="group bg-slate-950/80 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-emerald-500/40 hover:bg-slate-900 transition-all duration-300 transform active:scale-95">
+                                <span class="text-3xl group-hover:scale-110 transition duration-200">☕</span>
+                                <span class="text-[10px] text-slate-500 mt-1 font-bold">Cup 1</span>
+                            </div>
+                            <!-- Card 2 -->
+                            <div onclick="clickCup(1)" id="cup-1" class="group bg-slate-950/80 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-emerald-500/40 hover:bg-slate-900 transition-all duration-300 transform active:scale-95">
+                                <span class="text-3xl group-hover:scale-110 transition duration-200">☕</span>
+                                <span class="text-[10px] text-slate-500 mt-1 font-bold">Cup 2</span>
+                            </div>
+                            <!-- Card 3 -->
+                            <div onclick="clickCup(2)" id="cup-2" class="group bg-slate-950/80 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-emerald-500/40 hover:bg-slate-900 transition-all duration-300 transform active:scale-95">
+                                <span class="text-3xl group-hover:scale-110 transition duration-200">☕</span>
+                                <span class="text-[10px] text-slate-500 mt-1 font-bold">Cup 3</span>
+                            </div>
+                            <!-- Card 4 -->
+                            <div onclick="clickCup(3)" id="cup-3" class="group bg-slate-950/80 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-emerald-500/40 hover:bg-slate-900 transition-all duration-300 transform active:scale-95">
+                                <span class="text-3xl group-hover:scale-110 transition duration-200">☕</span>
+                                <span class="text-[10px] text-slate-500 mt-1 font-bold">Cup 4</span>
+                            </div>
+                            <!-- Card 5 -->
+                            <div onclick="clickCup(4)" id="cup-4" class="group bg-slate-950/80 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-emerald-500/40 hover:bg-slate-900 transition-all duration-300 transform active:scale-95">
+                                <span class="text-3xl group-hover:scale-110 transition duration-200">☕</span>
+                                <span class="text-[10px] text-slate-500 mt-1 font-bold">Cup 5</span>
+                            </div>
+                            <!-- Card 6 -->
+                            <div onclick="clickCup(5)" id="cup-5" class="group bg-slate-950/80 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-emerald-500/40 hover:bg-slate-900 transition-all duration-300 transform active:scale-95">
+                                <span class="text-3xl group-hover:scale-110 transition duration-200">☕</span>
+                                <span class="text-[10px] text-slate-500 mt-1 font-bold">Cup 6</span>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center bg-slate-950/50 p-3 rounded-lg">
+                            <button onclick="resetColleagueGame()" class="text-xs text-red-400 hover:text-red-300 font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-rotate-left"></i> Restart Game
+                            </button>
+                            <div id="colleague-status" class="text-xs text-emerald-400 font-bold">Chalo kisi ek cup par click karo...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10-MINUTE ESCAPE TIMER (HUGE DIGIT DISPLAY WITH CUSTOM CONFIG) -->
+                <div class="mt-6 p-5 bg-slate-950 border border-slate-800/80 rounded-xl">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-4">
+                        <span class="text-[10px] text-slate-400 uppercase tracking-widest font-extrabold flex items-center gap-1">
+                            <span class="relative flex h-2 w-2">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                            </span>
+                            Tapri Safe Escape Timer ⏱️
+                        </span>
+                        
+                        <!-- Custom Time Select Input -->
+                        <div class="flex items-center gap-1.5 bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-800">
+                            <label class="text-[10px] text-slate-500 font-semibold">Set Time:</label>
+                            <select id="timer-config" onchange="adjustCustomTime()" class="bg-transparent text-xs text-slate-200 font-bold focus:outline-none cursor-pointer">
+                                <option value="1">1 Min</option>
+                                <option value="3">3 Min</option>
+                                <option value="5" selected>5 Min</option>
+                                <option value="10">10 Min</option>
+                                <option value="15">15 Min</option>
+                                <option value="20">20 Min</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Huge Neon Countdown Display -->
+                    <div class="text-center my-4 py-2 bg-[#090d16] border border-slate-900 rounded-xl shadow-inner">
+                        <div id="timer-display" class="digital-font text-5xl sm:text-6xl font-extrabold tracking-widest text-amber-500 drop-shadow-[0_0_10px_rgba(245,158,11,0.25)]">
+                            05:00
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <button onclick="toggleTimer()" id="timer-btn" class="flex-1 bg-amber-600/20 border border-amber-600/30 hover:bg-amber-600/30 text-amber-400 text-xs font-bold py-2.5 rounded-lg transition active:scale-95">
+                            Start Escape Timer
+                        </button>
+                        <button onclick="resetTimer()" class="bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-400 text-xs px-4 py-2.5 rounded-lg transition">
+                            Reset
+                        </button>
+                    </div>
+                    <p class="text-[10px] text-slate-500 mt-2.5 text-center italic">Tip: Timer zero hone se pehle seat par wapas laut jana varna manager ping kar dega!</p>
+                </div>
+            </div>
+
+            <!-- GAME 2: SPIN THE WHEEL WITH REALIGNED ICONS -->
+            <div class="bg-gradient-to-b from-slate-900/90 to-slate-950/90 border border-slate-800/80 rounded-2xl p-5 sm:p-8 flex flex-col items-center hover:border-emerald-500/40 shadow-xl transition duration-300">
+                <div class="text-center w-full mb-4">
+                    <h3 class="text-xl sm:text-2xl font-black text-emerald-400 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-circle-notch animate-spin text-purple-500"></i> Destiny Wheel
+                    </h3>
+                </div>
+
+                <div class="wheel-container my-4">
+                    <div class="wheel-pointer"></div>
+                    <div class="wheel-center-pin"></div>
+                    <div id="wheel" class="wheel">
+                        <!-- Redefined Wheel Labels to Match 3 Safe (Shield) & 3 Khatra (Skull) Sectors -->
+                        <div class="wheel-label" style="transform: rotate(30deg);"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="wheel-label" style="transform: rotate(90deg);"><i class="fa-solid fa-skull"></i></div>
+                        <div class="wheel-label" style="transform: rotate(150deg);"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="wheel-label" style="transform: rotate(210deg);"><i class="fa-solid fa-skull"></i></div>
+                        <div class="wheel-label" style="transform: rotate(270deg);"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="wheel-label" style="transform: rotate(330deg);"><i class="fa-solid fa-skull"></i></div>
+                    </div>
+                </div>
+
+                <button onclick="spinWheel()" id="spin-btn" class="mt-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-95 text-white text-xs sm:text-sm font-bold py-3 px-8 rounded-xl transition cursor-pointer shadow-lg active:scale-95 duration-200">
+                    Spin Your Fate 🌀
+                </button>
+
+                <div id="spin-result" class="mt-4 text-xs sm:text-sm font-semibold text-center text-slate-300 min-h-[50px] bg-slate-950/60 px-4 py-2 border border-slate-800/60 rounded-xl w-full flex items-center justify-center">
+                    Spin target karke kismat check karo!
+                </div>
+            </div>
+
         </div>
-        
-        <!-- Loading spinner -->
-        <div id="loading-text" class="text-center text-slate-500 py-8 animate-pulse">
-            <i class="fa-solid fa-spinner animate-spin mr-2"></i> Loading recent rants from database...
-        </div>
-        
-        <!-- Error message -->
-        <div id="error-text" class="hidden text-center text-red-400 py-8"></div>
     </section>
 
-    <!-- POPUP MODAL FOR SUBMITTING STORY -->
+    <!-- STORIES SECTION -->
+    <section id="stories-section" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 relative z-10">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-2">Majduro Ki Real Dastaan <span class="text-emerald-400">(Live Database)</span></h2>
+            <p class="text-xs sm:text-sm text-slate-400">Yeh woh dukh hain jo sheets se real-time fetch hote hain!</p>
+        </div>
+
+        <div id="loading-spinner" class="text-center py-10 text-emerald-400 text-sm">
+            <i class="fas fa-spinner animate-spin text-2xl mr-2"></i> Loading live rants...
+        </div>
+
+        <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
+            <!-- Stories will dynamically render here -->
+        </div>
+    </section>
+
+    <!-- POPUP MODAL -->
     <div id="story-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden z-50 items-center justify-center p-4">
-        <div class="bg-[#0f1626] border border-slate-800 w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl transform transition-all">
-            <!-- Modal Header -->
-            <div class="px-6 py-4 bg-slate-900/60 border-b border-slate-800 flex justify-between items-center">
-                <h3 class="font-bold text-lg text-emerald-400"><i class="fa-solid fa-feather mr-2"></i>Apna Dukh Likho</h3>
-                <button onclick="toggleModal(false)" class="text-slate-400 hover:text-white cursor-pointer text-xl">&times;</button>
+        <div class="bg-[#0f1626] border border-slate-800 w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl">
+            <div class="px-5 py-4 bg-slate-900/60 border-b border-slate-800 flex justify-between items-center">
+                <h3 class="font-bold text-base sm:text-lg text-emerald-400"><i class="fa-solid fa-feather mr-2"></i>Apna Dukh Likho</h3>
+                <button onclick="toggleModal(false)" class="text-slate-400 hover:text-white cursor-pointer text-2xl">&times;</button>
             </div>
-            <!-- Modal Body / Form -->
-            <form id="story-form" onsubmit="handleStorySubmit(event)" class="p-6 flex flex-col gap-4">
+            <form id="story-form" onsubmit="handleStorySubmit(event)" class="p-5 flex flex-col gap-4">
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Aapka Nickname (Optional)</label>
-                    <input type="text" id="story-author" placeholder="e.g., Silent Majdur, Techie Bro" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-500 text-slate-100">
+                    <label class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Nickname</label>
+                    <input type="text" id="story-author" placeholder="e.g., Silent Majdur" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-emerald-500">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Topic / Hashtag</label>
-                    <input type="text" id="story-tag" placeholder="e.g., #Micromanagement, #Salary" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-500 text-slate-100">
+                    <label class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Tag/Topic</label>
+                    <input type="text" id="story-tag" placeholder="e.g., #Salary" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-emerald-500">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Kya Kahani Hai? (Pura Bhadaas Nikalo)</label>
-                    <textarea id="story-content" rows="4" placeholder="Manager ne kya kiya? Client ne kya bola? Sab likh do..." required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-500 text-slate-100 resize-none"></textarea>
+                    <label class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Trauma Story</label>
+                    <textarea id="story-content" rows="4" placeholder="Manager ne kya bol diya..." required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-emerald-500 resize-none"></textarea>
                 </div>
-                <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-95 text-white font-bold py-3 rounded-xl transition mt-2 cursor-pointer shadow-lg shadow-emerald-950">
+                <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-95 text-white font-bold py-3 rounded-xl transition mt-2 cursor-pointer text-xs sm:text-sm">
                     Submit Story (Live on Blog)
                 </button>
             </form>
@@ -145,138 +359,394 @@
         <p>© 2026 Corporate Majdur • Powered by Coffee & Corporate Tears</p>
     </footer>
 
-    <!-- JavaScript Database Connection Logic -->
+    <!-- JavaScript logic -->
     <script>
-        // SCRIPT URL (Provided by you, configured with correct Endpoint)
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbysFoYm_OOmjKipdVtUSTSH3O1vRyeOUAB1-3a64o117AnB9UqQUdtduG5pSZXv0CRh/exec';
+        const APPS_SCRIPT_URL = "YOUR_APPS_SCRIPT_WEB_APP_URL_HERE"; 
 
-        // Modal toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchStories();
+            resetColleagueGame();
+            requestNotificationPermission();
+            adjustCustomTime(); // initialize display
+        });
+
         function toggleModal(show) {
             document.getElementById('story-modal').style.display = show ? 'flex' : 'none';
         }
 
-        // Google Sheet se stories fetch karein
+        // ---------------------------------
+        // DYNAMIC FETCH FROM GOOGLE APPS SCRIPT
+        // ---------------------------------
         async function fetchStories() {
-            const grid = document.getElementById('stories-grid');
-            const loadingText = document.getElementById('loading-text');
-            const errorText = document.getElementById('error-text');
-
-            grid.innerHTML = '';
-            loadingText.style.display = 'block';
-            errorText.style.display = 'none';
-
             try {
-                const response = await fetch(SCRIPT_URL);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
+                const response = await fetch(APPS_SCRIPT_URL);
+                if (!response.ok) throw new Error("Network Response error!");
                 const data = await response.json();
-                loadingText.style.display = 'none';
-
-                // Agar data khaali hai ya galat format me hai
-                if (!data || data.length === 0) {
-                    grid.innerHTML = '<div class="col-span-full text-center py-12 text-slate-500 text-sm">Abhi koi stories nahi hain. Pehli story aap likhein! 🚀</div>';
-                    return;
-                }
-
-                // Data ko reverse karke display karenge taaki nayi story sabse pehle dikhe
-                data.reverse().forEach((story) => {
-                    // Fallbacks handle karne ke liye (agar sheet me keys different hain)
-                    const authorName = story.author || story.name || 'Anonymous Majdur';
-                    const tagValue = story.tag || story.topic || '#CorporateLife';
-                    const contentText = story.content || story.story || '';
-                    
-                    if(contentText.trim() !== '') {
-                        renderCard(authorName, tagValue, contentText);
-                    }
-                });
-
-            } catch (error) {
-                console.error('Error fetching:', error);
-                loadingText.style.display = 'none';
-                errorText.style.display = 'block';
-                errorText.innerHTML = `<strong>❌ Stories load nahi ho payi:</strong> ${error.message}<br><small class="text-slate-500">Apne Apps Script Console me check karein ki CORS aur GET handle ho raha hai.</small>`;
+                renderStories(data);
+            } catch (err) {
+                console.error("API failed, using placeholder data.", err);
+                const fallback = [
+                    { author: "Anonymsh", tag: "#Appraisal", content: "Sunday ko dimaag kharab kiya par badle me 2% hike di. Bhai, sach me ashu aa gaye!" },
+                    { author: "TeaLover", tag: "#Micromanagement", content: "Mera manager puch raha hai 'Aap 15 min se active kyu nahi the?' Bhai, washroom bhi na jau?" }
+                ];
+                renderStories(fallback);
             }
         }
 
-        // Individual story card ko grid me dynamic add karne ka function
-        function renderCard(author, tag, content) {
+        function renderStories(storiesList) {
             const grid = document.getElementById('stories-grid');
+            const spinner = document.getElementById('loading-spinner');
+            grid.innerHTML = '';
+            spinner.classList.add('hidden');
+            grid.classList.remove('hidden');
+
             const gradients = [
                 'from-blue-600/20 to-cyan-600/30 text-cyan-400',
                 'from-red-600/20 to-orange-600/30 text-orange-400',
                 'from-purple-600/20 to-pink-600/30 text-pink-400'
             ];
-            const randomGlow = gradients[Math.floor(Math.random() * gradients.length)];
 
-            // Ensure hashtag sign is present
-            const finalTag = tag.startsWith('#') ? tag : '#' + tag;
+            storiesList.forEach(story => {
+                const randomGlow = gradients[Math.floor(Math.random() * gradients.length)];
+                const finalTag = story.tag.startsWith('#') ? story.tag : '#' + story.tag;
 
-            const card = document.createElement('div');
-            card.className = "bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between";
-            card.innerHTML = `
-                <div class="p-6">
-                    <div class="w-full h-40 bg-gradient-to-br ${randomGlow} rounded-xl mb-4 flex items-center justify-center border border-slate-800/50">
-                        <i class="fa-solid fa-quote-left text-3xl opacity-60"></i>
+                const card = document.createElement('div');
+                card.className = "bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between";
+                card.innerHTML = `
+                    <div class="p-6">
+                        <div class="w-full h-32 bg-gradient-to-br ${randomGlow} rounded-xl mb-4 flex items-center justify-center border border-slate-800/50">
+                            <i class="fa-solid fa-quote-left text-2xl opacity-60"></i>
+                        </div>
+                        <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md">${finalTag}</span>
+                        <p class="text-xs sm:text-sm text-slate-300 font-light mt-4 leading-relaxed break-words">${story.content}</p>
                     </div>
-                    <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md">${finalTag}</span>
-                    <p class="text-sm text-slate-300 font-light mt-4 leading-relaxed break-words">${content}</p>
-                </div>
-                <div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800/60 text-xs text-slate-500 flex justify-between">
-                    <span>By: ${author}</span>
-                    <span>Verified Majdur</span>
-                </div>
-            `;
-            grid.appendChild(card);
+                    <div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800/60 text-[10px] text-slate-500 flex justify-between">
+                        <span>By: ${story.author}</span>
+                        <span>Verified Majdur</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
         }
 
-        // Nayi story save karne ke liye form submission logic
         async function handleStorySubmit(event) {
             event.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            
+            const submitBtn = document.getElementById('submit-btn');
             const author = document.getElementById('story-author').value.trim() || 'Anonymous Majdur';
-            const tagInput = document.getElementById('story-tag').value.trim();
-            const tag = tagInput.startsWith('#') ? tagInput : '#' + tagInput;
+            const tag = document.getElementById('story-tag').value.trim();
             const content = document.getElementById('story-content').value.trim();
 
-            if (content.length < 10) {
-                alert('Bhai, kam se kam 10 characters toh likho dil khol ke!');
-                return;
-            }
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Database me likh raha hoon...";
 
-            btn.innerText = "Saving your dukh...";
-            btn.disabled = true;
+            const payload = { author, tag, content };
 
             try {
-                // SCRIPT_URL par POST request send karna
-                await fetch(SCRIPT_URL, {
+                const res = await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // GitHub Pages aur custom domain ke cross-origin issues handle karne ke liye
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ author, tag, content })
+                    body: JSON.stringify(payload)
                 });
-
-                // UI Reset aur Modal Close
+                const result = await res.json();
+                if (result.status === 'success') {
+                    alert("✅ Trauma Sheet me add ho gaya!");
+                } else {
+                    alert("⚠️ Error: " + result.message);
+                }
+            } catch (err) {
+                console.error("Submission failed.", err);
+                alert("Story added locally!");
+            } finally {
                 document.getElementById('story-form').reset();
                 toggleModal(false);
-                alert("✅ Story successfully post ho gayi! Dusro ke dukh padhne ke liye list niche check karein.");
-
-                // Kuch seconds wait karke live sheet se fresh stories pull karna
-                setTimeout(() => {
-                    fetchStories();
-                    document.getElementById('stories-section').scrollIntoView({ behavior: 'smooth' });
-                }, 1500);
-
-            } catch (error) {
-                console.error("Submission failed:", error);
-                alert("Dukh submit karne me koi error aayi! Dobara koshish karein.");
-            } finally {
-                btn.innerText = "Submit Story (Live on Blog)";
-                btn.disabled = false;
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Submit Story (Live on Blog)";
+                fetchStories();
             }
+        }
+
+        // ---------------------------------
+        // THE BREAK DECIDER GAME LOGIC
+        // ---------------------------------
+        function switchBreakTab(tab) {
+            const btnToss = document.getElementById('tab-toss');
+            const btnColleague = document.getElementById('tab-colleague');
+            const panelToss = document.getElementById('panel-toss');
+            const panelColleague = document.getElementById('panel-colleague');
+
+            if (tab === 'toss') {
+                btnToss.className = "flex-1 py-2.5 text-xs font-bold rounded-lg text-white bg-emerald-600 transition";
+                btnColleague.className = "flex-1 py-2.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition";
+                panelToss.classList.remove('hidden');
+                panelColleague.classList.add('hidden');
+            } else {
+                btnColleague.className = "flex-1 py-2.5 text-xs font-bold rounded-lg text-white bg-emerald-600 transition";
+                btnToss.className = "flex-1 py-2.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-slate-200 transition";
+                panelColleague.classList.remove('hidden');
+                panelToss.classList.add('hidden');
+            }
+        }
+
+        const oracleResponses = [
+            { title: "🏃‍♂️ Bhaag Pyaare, Bhaag!", desc: "Manager abhi meeting me bzy hai. 15 minute baad pachtayega, abhi nikal!" },
+            { title: "⏳ 10 Minute Ruk Ja!", desc: "Abhi manager ne kisi ko ping kiya hai. active green tick rakh, exact 10 min baad chalte hain." },
+            { title: "🤡 Bad Luck! Chupchaap Ghaso", desc: "Urgent ticket/mail aane wala hai. Agar abhi gaya toh bura fasedga." },
+            { title: "🤝 Colleague Ko Aankh Maaro", desc: "Break ka sahi samay hai par akele nahi, apne pasandida majdur ko sath leke nikal!" },
+            { title: "☕ Sirf 5 Min Quick Chai", desc: "Bina time waste kiye, ek jaldi ki cutting maar aur seat par back to pavilion." }
+        ];
+
+        function tossForBreak() {
+            const resultBox = document.getElementById('toss-result');
+            const title = document.getElementById('toss-title');
+            const desc = document.getElementById('toss-desc');
+
+            resultBox.classList.remove('hidden');
+            title.innerText = "Oracle soch raha hai...";
+            desc.innerText = "Checking status indicators...";
+
+            setTimeout(() => {
+                const random = oracleResponses[Math.floor(Math.random() * oracleResponses.length)];
+                title.innerText = random.title;
+                desc.innerText = random.desc;
+            }, 800);
+        }
+
+        // Colleague Roulette Game
+        let loserIndex = 0;
+        let gameActive = true;
+
+        function resetColleagueGame() {
+            loserIndex = Math.floor(Math.random() * 6);
+            gameActive = true;
+            document.getElementById('colleague-status').innerText = "Chalo kisi ek cup par click karo...";
+            document.getElementById('colleague-status').className = "text-xs text-emerald-400 font-bold";
+            for (let i = 0; i < 6; i++) {
+                const btn = document.getElementById(`cup-${i}`);
+                btn.innerHTML = `<span class="text-3xl transition duration-200">☕</span>
+                                 <span class="text-[10px] text-slate-500 mt-1 font-bold">Cup ${i+1}</span>`;
+                btn.className = "group bg-slate-950/80 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-emerald-500/40 hover:bg-slate-900 transition-all duration-300 transform active:scale-95";
+            }
+        }
+
+        function clickCup(index) {
+            if (!gameActive) return;
+            const clickedElement = document.getElementById(`cup-${index}`);
+            
+            if (index === loserIndex) {
+                gameActive = false;
+                clickedElement.innerHTML = `<span class="text-3xl animate-bounce">🚨</span>
+                                            <span class="text-[10px] text-red-500 mt-1 font-black">BILL PAYER!</span>`;
+                clickedElement.className = "group bg-red-950/40 border border-red-500 p-4 rounded-xl flex flex-col items-center justify-center transform scale-105 transition-all duration-300";
+                
+                document.getElementById('colleague-status').innerText = "Khel Khatam! Red card waala bill bharega! 💸";
+                document.getElementById('colleague-status').className = "text-xs text-red-500 font-bold animate-pulse";
+            } else {
+                clickedElement.innerHTML = `<span class="text-3xl">✅</span>
+                                            <span class="text-[10px] text-emerald-400 mt-1 font-semibold">Safe</span>`;
+                clickedElement.className = "group bg-emerald-950/20 border border-emerald-500/30 p-4 rounded-xl flex flex-col items-center justify-center pointer-events-none transition-all duration-300";
+                document.getElementById('colleague-status').innerText = "Bach gaye! Agla banda click kare...";
+            }
+        }
+
+        // Escape Timer Logics
+        let timerInterval = null;
+        let timeRemaining = 300; // default 5 mins
+
+        function adjustCustomTime() {
+            const selection = document.getElementById('timer-config').value;
+            timeRemaining = parseInt(selection) * 60;
+            updateTimerDisplay();
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            document.getElementById('timer-display').innerText = 
+                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        function toggleTimer() {
+            const timerBtn = document.getElementById('timer-btn');
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                timerBtn.innerText = "Resume Escape Timer";
+            } else {
+                timerBtn.innerText = "Pause Escape Timer";
+                timerInterval = setInterval(() => {
+                    if (timeRemaining > 0) {
+                        timeRemaining--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                        timerBtn.innerText = "Start Escape Timer";
+                        triggerAlarm();
+                    }
+                }, 1000);
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            document.getElementById('timer-btn').innerText = "Start Escape Timer";
+            adjustCustomTime();
+        }
+
+        function requestNotificationPermission() {
+            if ("Notification" in window) {
+                Notification.requestPermission();
+            }
+        }
+
+        function triggerAlarm() {
+            if ("Notification" in window && Notification.permission === "granted") {
+                new Notification("Bhaago! Seat par wapas jao!", {
+                    body: "Break ka samay khatam. Manager check kar raha hoga!",
+                    icon: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/svgs/solid/mug-hot.svg"
+                });
+            } else {
+                alert("⏰ Break Time Over! Jaldi seat par laut jao!");
+            }
+        }
+
+// -------------------------------------------------------------
+        // NEW 4-PLAYER TRUTH OR DARE SYSTEM (WIN/LOSS)
+        // -------------------------------------------------------------
+        let canSpin = true;
+        let lastOutcomeType = null; 
+        let currentRotation = 0; // <-- Added to keep track of cumulative rotation
+
+        // Strictly mapped to 3 Safe (Green) and 3 Loss (Red) Sections
+        const segments = [
+            { name: "Safe Zone! 🛡️", type: "win" },
+            { name: "Khatra Zone! 💀", type: "lose" },
+            { name: "Safe Zone! 🛡️", type: "win" },
+            { name: "Khatra Zone! 💀", type: "lose" },
+            { name: "Safe Zone! 🛡️", type: "win" },
+            { name: "Khatra Zone! 💀", type: "lose" }
+        ];
+
+        // Loss Database
+        const lossDatabase = {
+            truths: [
+                "Sach batao, hum charo me se sabse badi back-bitching (chugli) kaun karta hai? 🤫",
+                "Sach batao, pichli baar jab tumne beemari ka bahana banakar chutti li thi, toh tum asliyat me kya kar rahe the? 🛌",
+                "Hum teeno dosto me se agar tumhe kisi ek ko block karna ho life-time ke liye, toh kisse karoge aur kyun? 🚫",
+                "Sach batao, kya tumne kabhi hum me se kisi ka koi secret HR ya kisi aur dost ke samne leak kiya hai? 🤐",
+                "Apne phone ki browser history ka aakhri search bina darr ke khol kar dikhao! 📱",
+                "Sach batao, agar tumhe option mile toh kya tum hum me se kisi ke sath apni salary swap karoge? 💸"
+            ],
+            dares: [
+                "Abhi ke abhi sabke liye 2-2 glass paani lekar aao aur sabko serve karo! 🥛",
+                "Zameen par let kar abhi ke abhi bina ruke 10 perfect push-ups maaro! 🏃‍♂️🔥",
+                "Apne phone ke contact list se kisi bhi random contact ko call lagao aur kaho: 'Bhai, main papa ban gaya hoon!' aur bina kuch sune phone kaat do! 📞",
+                "Agla tapri ka bill (chai-sutta ya snacks) tum akele pay karoge! (Pocket khali... 💸)",
+                "Apne WhatsApp status par likho: 'I am a corporate slave and I love my chains' aur agle 5 minute tak delete mat karna! 💀",
+                "Zor se chillakar bolo 'I LOVE MY FRIENDS' aur un teeno ke pair chhuo! 🙏"
+            ]
+        };
+
+        function spinWheel() {
+            if (!canSpin) return;
+            canSpin = false;
+
+            const wheel = document.getElementById('wheel');
+            const spinBtn = document.getElementById('spin-btn');
+            const resultDiv = document.getElementById('spin-result');
+
+            spinBtn.disabled = true;
+            resultDiv.innerHTML = `<span class="text-slate-400 font-semibold animate-pulse">Kismat ka faisla ho raha hai... 🎯</span>`;
+
+            // 1. Pehle hi random segment choose kar lo (Pure random index: 0 se 5)
+            const segmentSize = 360 / segments.length; // 60 degrees per segment
+            const targetIndex = Math.floor(Math.random() * segments.length);
+
+            // 2. Us segment ke center me rukne ke liye angle calculate karo
+            // Hum segment ke beech me land karenge taaki needle bilkul boundary pe na ruke
+            const segmentCenterAngle = (targetIndex * segmentSize) + (segmentSize / 2);
+
+            // 3. Wheel rotation logic (Wheel rotated anti-clockwise with respect to pointer at top)
+            const targetDegree = (360 - segmentCenterAngle) % 360;
+
+            // 4. Spin rotation ko super random aur heavy banao (8 se 14 full spins + precise target)
+            const extraSpins = (8 + Math.floor(Math.random() * 6)) * 360; 
+            
+            // Cumulative rotation set karein taaki wheel pichle angle se aage ghoome, piche na bhage
+            const currentDisplayRotation = currentRotation % 360;
+            currentRotation += extraSpins + (targetDegree - currentDisplayRotation + 360) % 360;
+
+            wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+            setTimeout(() => {
+                // Kyunki targetIndex humne pehle hi dynamic random select kiya tha:
+                const outcome = segments[targetIndex];
+                lastOutcomeType = outcome.type;
+
+                if (outcome.type === "win") {
+                    resultDiv.innerHTML = `
+                        <div class="flex flex-col items-center gap-2 w-full animate-fadeIn py-3">
+                            <span class="px-4 py-1.5 rounded-full text-sm font-black tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/20">
+                                🎉 YOU ARE SAFE!
+                            </span>
+                            <div class="text-xs text-slate-400 font-semibold mt-1">Bach gaya beta, agle ki baari! 😎</div>
+                            <button onclick="resetWheelDisplay()" class="mt-2 text-[10px] text-slate-500 hover:text-slate-300 font-bold underline">
+                                Spin Again 🌀
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="flex flex-col items-center gap-3.5 w-full animate-fadeIn py-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-black tracking-widest text-red-500 bg-red-500/10 border border-red-500/20 animate-bounce">
+                                💀 YOU LOSE! (Khatra Zone)
+                            </span>
+                            <div class="text-base font-extrabold text-white">Chun apni maut, mere bhai:</div>
+                            <div class="flex gap-4 w-full justify-center max-w-xs">
+                                <button onclick="revealLossTask('truth')" class="flex-1 bg-blue-600/20 border border-blue-500/40 hover:bg-blue-600 text-blue-400 hover:text-white text-xs sm:text-sm font-bold py-2.5 px-4 rounded-xl transition duration-200">
+                                    🤔 TRUTH
+                                </button>
+                                <button onclick="revealLossTask('dare')" class="flex-1 bg-red-600/20 border border-red-500/40 hover:bg-red-600 text-red-400 hover:text-white text-xs sm:text-sm font-bold py-2.5 px-4 rounded-xl transition duration-200">
+                                    ⚡ DARE
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                spinBtn.disabled = false;
+                canSpin = true;
+            }, 4000); // 4 Seconds rotation time
+        }
+
+        // When loser clicks on TRUTH or DARE
+        function revealLossTask(choiceType) {
+            const resultDiv = document.getElementById('spin-result');
+            
+            const taskList = choiceType === 'truth' ? lossDatabase.truths : lossDatabase.dares;
+            const randomTask = taskList[Math.floor(Math.random() * taskList.length)];
+            
+            const badgeColor = choiceType === 'truth' ? "text-blue-400 bg-blue-500/10" : "text-red-400 bg-red-500/10";
+            const choiceLabel = choiceType.toUpperCase();
+
+            resultDiv.innerHTML = `
+                <div class="flex flex-col items-center gap-2.5 w-full animate-fadeIn p-2">
+                    <span class="px-3 py-1 rounded-full text-xs font-black tracking-widest ${badgeColor}">
+                        💀 ${choiceLabel} PUNISHMENT
+                    </span>
+                    <p class="text-slate-200 text-xs sm:text-sm text-center px-4 font-bold leading-relaxed max-w-md">
+                        "${randomTask}"
+                    </p>
+                    <button onclick="resetWheelDisplay()" class="mt-2 text-[10px] text-slate-500 hover:text-slate-300 font-bold underline">
+                        Agle ki Baari! 🌀
+                    </button>
+                </div>
+            `;
+        }
+
+        function resetWheelDisplay() {
+            document.getElementById('spin-result').innerText = "Chalo agla banda spin karo!";
         }
     </script>
 </body>
