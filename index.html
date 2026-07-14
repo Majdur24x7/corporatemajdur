@@ -670,52 +670,90 @@ grid.appendChild(card);
 let spinHistory = []; 
 
 function spinWheel() {
-    if (!canSpin) return;
-    canSpin = false;
+            if (!canSpin) return;
+            canSpin = false;
 
-    const wheel = document.getElementById('wheel');
-    const spinBtn = document.getElementById('spin-btn');
-    const resultDiv = document.getElementById('spin-result');
+            const wheel = document.getElementById('wheel');
+            const spinBtn = document.getElementById('spin-btn');
+            const resultDiv = document.getElementById('spin-result');
 
-    spinBtn.disabled = true;
-    resultDiv.innerHTML = `<span class="text-slate-400 font-semibold animate-pulse">Kismat ka faisla ho raha hai... 🎯</span>`;
+            spinBtn.disabled = true;
+            resultDiv.innerHTML = `<span class="text-slate-400 font-semibold animate-pulse">Kismat ka faisla ho raha hai... 🎯</span>`;
 
-    // --- FIX START: Pattern Breaker Logic ---
+            // 1. Pehle hi random segment choose kar lo (Pure random index: 0 se 5)
+            const segmentSize = 360 / segments.length;
     let targetIndex;
-    let attempts = 0;
-    do {
+
+    // Pattern Breaker Logic
+    if (spinHistory.length >= 2 && 
+        segments[spinHistory[spinHistory.length - 1]].type === segments[spinHistory[spinHistory.length - 2]].type) {
+        
+        const lastType = segments[spinHistory[spinHistory.length - 1]].type;
+        const candidates = segments.map((s, i) => s.type !== lastType ? i : null).filter(i => i !== null);
+        targetIndex = candidates[Math.floor(Math.random() * candidates.length)];
+    } else {
         targetIndex = Math.floor(Math.random() * segments.length);
-        attempts++;
-        // Agar last 2 results same hain, to naya random try karo (max 3 baar)
-    } while (spinHistory.length >= 2 && 
-             spinHistory[spinHistory.length - 1] === targetIndex && 
-             spinHistory[spinHistory.length - 2] === targetIndex && 
-             attempts < 3);
-
-    // History update
-    spinHistory.push(targetIndex);
-    if (spinHistory.length > 3) spinHistory.shift();
-    // --- FIX END ---
-
-    const segmentSize = 360 / segments.length;
-    const segmentCenterAngle = (targetIndex * segmentSize) + (segmentSize / 2);
-    const targetDegree = (360 - segmentCenterAngle) % 360;
-
-    const extraSpins = (8 + Math.floor(Math.random() * 6)) * 360; 
+    }
     
-    const currentDisplayRotation = currentRotation % 360;
-    currentRotation += extraSpins + (targetDegree - currentDisplayRotation + 360) % 360;
+    spinHistory.push(targetIndex);
+    if (spinHistory.length > 5) spinHistory.shift();
 
-    wheel.style.transform = `rotate(${currentRotation}deg)`;
+            // 2. Us segment ke center me rukne ke liye angle calculate karo
+            // Hum segment ke beech me land karenge taaki needle bilkul boundary pe na ruke
+            const segmentCenterAngle = (targetIndex * segmentSize) + (segmentSize / 2);
 
-    // Baaki ka code waisa hi rahega...
-    setTimeout(() => {
-        const outcome = segments[targetIndex];
-        // ... (aapka original result logic)
-        spinBtn.disabled = false;
-        canSpin = true;
-    }, 4000);
-}
+            // 3. Wheel rotation logic (Wheel rotated anti-clockwise with respect to pointer at top)
+            const targetDegree = (360 - segmentCenterAngle) % 360;
+
+            // 4. Spin rotation ko super random aur heavy banao (8 se 14 full spins + precise target)
+            const extraSpins = (8 + Math.floor(Math.random() * 6)) * 360; 
+            
+            // Cumulative rotation set karein taaki wheel pichle angle se aage ghoome, piche na bhage
+            const currentDisplayRotation = currentRotation % 360;
+            currentRotation += extraSpins + (targetDegree - currentDisplayRotation + 360) % 360;
+
+            wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+            setTimeout(() => {
+                // Kyunki targetIndex humne pehle hi dynamic random select kiya tha:
+                const outcome = segments[targetIndex];
+                lastOutcomeType = outcome.type;
+
+                if (outcome.type === "win") {
+                    resultDiv.innerHTML = `
+                        <div class="flex flex-col items-center gap-2 w-full animate-fadeIn py-3">
+                            <span class="px-4 py-1.5 rounded-full text-sm font-black tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/20">
+                                🎉 YOU ARE SAFE!
+                            </span>
+                            <div class="text-xs text-slate-400 font-semibold mt-1">Bach gaya beta, agle ki baari! 😎</div>
+                            <button onclick="resetWheelDisplay()" class="mt-2 text-[10px] text-slate-500 hover:text-slate-300 font-bold underline">
+                                Spin Again 🌀
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="flex flex-col items-center gap-3.5 w-full animate-fadeIn py-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-black tracking-widest text-red-500 bg-red-500/10 border border-red-500/20 animate-bounce">
+                                💀 YOU LOSE! (Khatra Zone)
+                            </span>
+                            <div class="text-base font-extrabold text-white">Chun apni maut, mere bhai:</div>
+                            <div class="flex gap-4 w-full justify-center max-w-xs">
+                                <button onclick="revealLossTask('truth')" class="flex-1 bg-blue-600/20 border border-blue-500/40 hover:bg-blue-600 text-blue-400 hover:text-white text-xs sm:text-sm font-bold py-2.5 px-4 rounded-xl transition duration-200">
+                                    🤔 TRUTH
+                                </button>
+                                <button onclick="revealLossTask('dare')" class="flex-1 bg-red-600/20 border border-red-500/40 hover:bg-red-600 text-red-400 hover:text-white text-xs sm:text-sm font-bold py-2.5 px-4 rounded-xl transition duration-200">
+                                    ⚡ DARE
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                spinBtn.disabled = false;
+                canSpin = true;
+            }, 4000); // 4 Seconds rotation time
+        }
 
         // When loser clicks on TRUTH or DARE
         function revealLossTask(choiceType) {
