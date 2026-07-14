@@ -100,20 +100,32 @@
     <div class="absolute top-0 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
     <!-- Header Navigation -->
-    <header class="w-full max-w-7xl mx-auto px-4 md:px-6 py-4 flex flex-col gap-4 sm:flex-row justify-between items-center relative z-20">
-        <a href="#" class="flex items-center">
-            <span class="text-xl font-black tracking-wider text-white">CORPORATE MAJDUR</span>
-        </a>
-        
-        <div class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center">
-            <button onclick="toggleModal(true)" class="flex-1 sm:flex-none text-center px-4 py-2.5 text-xs sm:text-sm font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl shadow-md hover:opacity-90 transition">
-                <i class="fa-solid fa-pen-to-square mr-1"></i> Share Story
-            </button>
-            <a href="#stories-section" class="flex-1 sm:flex-none text-center px-4 py-2.5 text-xs sm:text-sm font-semibold bg-slate-800/80 border border-slate-700/60 hover:border-emerald-500/50 text-slate-200 hover:text-emerald-400 rounded-xl transition backdrop-blur-sm">
-                <i class="fa-solid fa-book-open mr-1"></i> See Stories
-            </a>
+    <!-- Updated Header Navigation with Image Logo -->
+<header class="w-full max-w-7xl mx-auto px-4 md:px-6 py-4 flex flex-col gap-4 sm:flex-row justify-between items-center relative z-20">
+    
+    <a href="#" class="flex items-center gap-3 group">
+        <!-- Logo Image Implementation -->
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center overflow-hidden bg-transparent">
+            <img src="logo.png" alt="Corporate Majdur Logo" class="w-full h-full object-contain">
         </div>
-    </header>
+        
+        <!-- Text beside logo (Optional: agar aap text nahi chahte toh niche wala div hata dein) -->
+        <div class="flex flex-col justify-center">
+            <span class="text-xl font-black tracking-wider text-white leading-tight">
+                CORPORATE <span class="text-emerald-500">MAJDUR</span>
+            </span>
+        </div>
+    </a>
+
+    <div class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center">
+        <button onclick="toggleModal(true)" class="flex-1 sm:flex-none text-center px-4 py-2.5 text-xs sm:text-sm font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl shadow-md hover:opacity-90 transition">
+            <i class="fa-solid fa-pen-to-square mr-1"></i> Share Story
+        </button>
+        <a href="#stories-section" class="flex-1 sm:flex-none text-center px-4 py-2.5 text-xs sm:text-sm font-semibold bg-slate-800/80 border border-slate-700/60 hover:border-emerald-500/50 text-slate-200 hover:text-emerald-400 rounded-xl transition backdrop-blur-sm">
+            <i class="fa-solid fa-book-open mr-1"></i> See Stories
+        </a>
+    </div>
+</header>
 
     <!-- Main Content -->
     <main class="flex-grow flex flex-col items-center justify-center px-4 py-10 md:py-16 text-center relative z-10">
