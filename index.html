@@ -377,7 +377,7 @@
     <script>
         // ⭐ CHANGE THIS URL - Replace with your Google Apps Script Web App URL
         // Example: https://script.google.com/macros/d/AKfycbXXXXXXXXXX/userweb
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/d/YOUR_SCRIPT_ID_HERE/userweb"; 
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwS14rRPTQSt20CVM7rR3OICafAJpvVz1FhdYohuMBhQGY-0q0SAcTZFJY480poDy6WAA/exec"; 
 
         document.addEventListener('DOMContentLoaded', () => {
             fetchStories();
@@ -400,7 +400,7 @@
                 const data = await response.json();
                 renderStories(data);
             } catch (err) {
-                console.error("API failed, using placeholder data.", err);
+                console.error("API failed, using fallback.", err);
                 const fallback = [
                     { author: "Anonymsh", tag: "#Appraisal", content: "Sunday ko dimaag kharab kiya par badle me 2% hike di. Bhai, sach me ashu aa gaye!" },
                     { author: "TeaLover", tag: "#Micromanagement", content: "Mera manager puch raha hai 'Aap 15 min se active kyu nahi the?' Bhai, washroom bhi na jau?" },
@@ -448,41 +448,37 @@
             });
         }
 
-        async function handleStorySubmit(event) {
-            event.preventDefault();
-            const submitBtn = document.getElementById('submit-btn');
-            const author = document.getElementById('story-author').value.trim() || 'Anonymous Majdur';
-            const tag = document.getElementById('story-tag').value.trim();
-            const content = document.getElementById('story-content').value.trim();
+       async function handleStorySubmit(event) {
+    event.preventDefault();
+    const submitBtn = document.getElementById('submit-btn');
+    const payload = {
+        author: document.getElementById('story-author').value.trim() || 'Anonymous Majdur',
+        tag: document.getElementById('story-tag').value.trim(),
+        content: document.getElementById('story-content').value.trim()
+    };
 
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Database me likh raha hoon...";
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Bhej raha hoon...";
 
-            const payload = { author, tag, content };
-
-            try {
-                const res = await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const result = await res.json();
-                if (result.status === 'success') {
-                    alert("✅ Trauma Sheet me add ho gaya!");
-                } else {
-                    alert("⚠️ Error: " + result.message);
-                }
-            } catch (err) {
-                console.error("Submission failed.", err);
-                alert("Story added locally!");
-            } finally {
-                document.getElementById('story-form').reset();
-                toggleModal(false);
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Submit Story (Live on Blog)";
-                fetchStories();
-            }
-        }
+    try {
+        await fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        
+        // Kyunki no-cors hai, hum sirf success message dikhayenge
+        alert("✅ Trauma Sheet mein update ho gaya! Page reload karein.");
+        document.getElementById('story-form').reset();
+        toggleModal(false);
+    } catch (err) {
+        alert("Error aaya, check console.");
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Submit Story";
+    }
+}
 
         // ---------------------------------
         // THE BREAK DECIDER GAME LOGIC
