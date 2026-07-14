@@ -9,7 +9,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&display=swap');
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             scroll-behavior: smooth;
@@ -100,10 +100,15 @@
         <!-- Grid for Blog Posts -->
         <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Stories will load here automatically from Google Sheets -->
-            <div id="loading-text" class="col-span-full text-center text-slate-500 py-8 animate-pulse">
-                <i class="fa-solid fa-spinner animate-spin mr-2"></i> Loading recent rants from database...
-            </div>
         </div>
+        
+        <!-- Loading spinner -->
+        <div id="loading-text" class="text-center text-slate-500 py-8 animate-pulse">
+            <i class="fa-solid fa-spinner animate-spin mr-2"></i> Loading recent rants from database...
+        </div>
+        
+        <!-- Error message -->
+        <div id="error-text" class="hidden text-center text-red-400 py-8"></div>
     </section>
 
     <!-- POPUP MODAL FOR SUBMITTING STORY -->
@@ -142,113 +147,61 @@
 
     <!-- JavaScript Database Connection Logic -->
     <script>
+        // SCRIPT URL (Provided by you, configured with correct Endpoint)
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbysFoYm_OOmjKipdVtUSTSH3O1vRyeOUAB1-3a64o117AnB9UqQUdtduG5pSZXv0CRh/exec';
 
-       // const SCRIPT_URL = 'https://script.google.com/macros/d/AKfycbysFoYm_OOmjKipdVtUSTSH3O1vRyeOUAB1-3a64o117AnB9UqQUdtduG5pSZXv0CRh/usercallback';
+        // Modal toggle
+        function toggleModal(show) {
+            document.getElementById('story-modal').style.display = show ? 'flex' : 'none';
+        }
 
-       // Modal toggle
-function toggleModal(show) {
-  document.getElementById('story-modal').style.display = show ? 'flex' : 'none';
-}
+        // Google Sheet se stories fetch karein
+        async function fetchStories() {
+            const grid = document.getElementById('stories-grid');
+            const loadingText = document.getElementById('loading-text');
+            const errorText = document.getElementById('error-text');
 
-// Google Sheet से stories fetch करें
-async function fetchStories() {
-  const grid = document.getElementById('stories-grid');
-  const loadingText = document.getElementById('loading-text');
-  const errorText = document.getElementById('error-text');
+            grid.innerHTML = '';
+            loadingText.style.display = 'block';
+            errorText.style.display = 'none';
 
-  grid.innerHTML = '';
-  loadingText.style.display = 'block';
-  errorText.style.display = 'none';
+            try {
+                const response = await fetch(SCRIPT_URL);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
 
-  try {
-    // ✅ सही तरीका - बस SCRIPT_URL से fetch करो
-    const response = await fetch(SCRIPT_URL);
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+                const data = await response.json();
+                loadingText.style.display = 'none';
 
-    const data = await response.json();
-    loadingText.style.display = 'none';
+                // Agar data khaali hai ya galat format me hai
+                if (!data || data.length === 0) {
+                    grid.innerHTML = '<div class="col-span-full text-center py-12 text-slate-500 text-sm">Abhi koi stories nahi hain. Pehli story aap likhein! 🚀</div>';
+                    return;
+                }
 
-    // अगर data empty है
-    if (!data || data.length === 0) {
-      grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">अभी कोई stories नहीं हैं। पहली story आप लिखें! 🚀</div>';
-      return;
-    }
+                // Data ko reverse karke display karenge taaki nayi story sabse pehle dikhe
+                data.reverse().forEach((story) => {
+                    // Fallbacks handle karne ke liye (agar sheet me keys different hain)
+                    const authorName = story.author || story.name || 'Anonymous Majdur';
+                    const tagValue = story.tag || story.topic || '#CorporateLife';
+                    const contentText = story.content || story.story || '';
+                    
+                    if(contentText.trim() !== '') {
+                        renderCard(authorName, tagValue, contentText);
+                    }
+                });
 
-    // सभी stories को display करें
-    data.forEach((story) => {
-      renderCard(story);
-    });
+            } catch (error) {
+                console.error('Error fetching:', error);
+                loadingText.style.display = 'none';
+                errorText.style.display = 'block';
+                errorText.innerHTML = `<strong>❌ Stories load nahi ho payi:</strong> ${error.message}<br><small class="text-slate-500">Apne Apps Script Console me check karein ki CORS aur GET handle ho raha hai.</small>`;
+            }
+        }
 
-  } catch (error) {
-    console.error('Error:', error);
-    loadingText.style.display = 'none';
-    errorText.style.display = 'block';
-    errorText.innerHTML = `<strong>❌ Error:</strong> ${error.message}<br><small>⚠️ SCRIPT_URL सही है? Deploy ID check करो!</small>`;
-  }
-}
-
-// Individual story card बनाने का function
-function renderCard(story) {
-  const grid = document.getElementById('stories-grid');
-  
-  const card = document.createElement('div');
-  card.className = 'story-card';
-  
-  card.innerHTML = `
-    <div class="story-author">✍️ ${story.author}</div>
-    <div class="story-tag">#${story.tag}</div>
-    <div class="story-content">${story.content}</div>
-  `;
-  
-  grid.appendChild(card);
-}
-
-// नई story submit करें
-async function submitStory(event) {
-  event.preventDefault();
-
-  const author = document.getElementById('author').value.trim();
-  const tag = document.getElementById('tag').value.trim();
-  const content = document.getElementById('content').value.trim();
-
-  if (content.length < 20) {
-    alert('कम से कम 20 characters लिखें!');
-    return;
-  }
-
-  try {
-    const response = await fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({
-        author: author,
-        tag: tag,
-        content: content
-      })
-    });
-
-    const result = await response.json();
-
-    if (result.status === 'success') {
-      alert('✅ Story successfully posted!');
-      document.getElementById('author').value = '';
-      document.getElementById('tag').value = '';
-      document.getElementById('content').value = '';
-      toggleModal(false);
-      
-      // 1 second बाद refresh करो
-      setTimeout(fetchStories, 1000);
-    } else {
-      alert('❌ Error: ' + result.message);
-    }
-  } catch (error) {
-    alert('❌ Error: ' + error.message);
-  }
-}
-
-        // HTML Card structure banane ke liye
+        // Individual story card ko grid me dynamic add karne ka function
         function renderCard(author, tag, content) {
             const grid = document.getElementById('stories-grid');
             const gradients = [
@@ -258,6 +211,9 @@ async function submitStory(event) {
             ];
             const randomGlow = gradients[Math.floor(Math.random() * gradients.length)];
 
+            // Ensure hashtag sign is present
+            const finalTag = tag.startsWith('#') ? tag : '#' + tag;
+
             const card = document.createElement('div');
             card.className = "bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between";
             card.innerHTML = `
@@ -265,7 +221,7 @@ async function submitStory(event) {
                     <div class="w-full h-40 bg-gradient-to-br ${randomGlow} rounded-xl mb-4 flex items-center justify-center border border-slate-800/50">
                         <i class="fa-solid fa-quote-left text-3xl opacity-60"></i>
                     </div>
-                    <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md">${tag}</span>
+                    <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md">${finalTag}</span>
                     <p class="text-sm text-slate-300 font-light mt-4 leading-relaxed break-words">${content}</p>
                 </div>
                 <div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800/60 text-xs text-slate-500 flex justify-between">
@@ -276,45 +232,47 @@ async function submitStory(event) {
             grid.appendChild(card);
         }
 
-        // Nayi story save karne ke liye
+        // Nayi story save karne ke liye form submission logic
         async function handleStorySubmit(event) {
             event.preventDefault();
             const btn = document.getElementById('submit-btn');
             
-            const author = document.getElementById('story-author').value || 'Anonymous Majdur';
-            const tag = document.getElementById('story-tag').value.startsWith('#') ? document.getElementById('story-tag').value : '#' + document.getElementById('story-tag').value;
-            const content = document.getElementById('story-content').value;
+            const author = document.getElementById('story-author').value.trim() || 'Anonymous Majdur';
+            const tagInput = document.getElementById('story-tag').value.trim();
+            const tag = tagInput.startsWith('#') ? tagInput : '#' + tagInput;
+            const content = document.getElementById('story-content').value.trim();
 
-            btn.innerText = "Saving Dukh...";
+            if (content.length < 10) {
+                alert('Bhai, kam se kam 10 characters toh likho dil khol ke!');
+                return;
+            }
+
+            btn.innerText = "Saving your dukh...";
             btn.disabled = true;
 
             try {
-                // Sending data to Google Sheets
+                // SCRIPT_URL par POST request send karna
                 await fetch(SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // Github pages compatibility ke liye no-cors zaroori hai
+                    mode: 'no-cors', // GitHub Pages aur custom domain ke cross-origin issues handle karne ke liye
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ author, tag, content })
                 });
 
-                // UI reset aur reload
+                // UI Reset aur Modal Close
                 document.getElementById('story-form').reset();
                 toggleModal(false);
-                
-                // Nayi card temporary direct top par add karne ke liye taaki response instant dikhe
-                const grid = document.getElementById('stories-grid');
-                const loadingText = document.getElementById('loading-text');
-                if(loadingText) loadingText.remove();
-                
-                // Reload complete database stories to get updated list
+                alert("✅ Story successfully post ho gayi! Dusro ke dukh padhne ke liye list niche check karein.");
+
+                // Kuch seconds wait karke live sheet se fresh stories pull karna
                 setTimeout(() => {
                     fetchStories();
                     document.getElementById('stories-section').scrollIntoView({ behavior: 'smooth' });
-                }, 1000);
+                }, 1500);
 
             } catch (error) {
                 console.error("Submission failed:", error);
-                alert("Story submit karne me koi error aayi!");
+                alert("Dukh submit karne me koi error aayi! Dobara koshish karein.");
             } finally {
                 btn.innerText = "Submit Story (Live on Blog)";
                 btn.disabled = false;
