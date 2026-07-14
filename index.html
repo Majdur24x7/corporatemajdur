@@ -767,15 +767,6 @@
   <p>Story Content Yahan</p>
   <span><i class="fa fa-eye"></i> <span id="view-count">0</span></span>
 </div>
-
-<script>
-  // Jab user story dekhe, ye function call karein
-  function viewStory(row) {
-    google.script.run.incrementViewCount(row);
-    // UI update karein
-    document.getElementById('view-count').innerText = parseInt(document.getElementById('view-count').innerText) + 1;
-  }
-</script>
     </script>
 </body>
 </html>
