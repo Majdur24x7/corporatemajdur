@@ -367,7 +367,7 @@
             </form>
         </div>
     </div>
-
+    
     <!-- Footer -->
     <footer class="w-full text-center py-6 border-t border-slate-950 text-xs text-slate-600 relative z-10">
         <p>© 2026 Corporate Majdur • Powered by Coffee & Corporate Tears</p>
@@ -375,13 +375,15 @@
 
     <!-- JavaScript logic -->
     <script>
-        const APPS_SCRIPT_URL = "YOUR_APPS_SCRIPT_WEB_APP_URL_HERE"; 
+        // ⭐ CHANGE THIS URL - Replace with your Google Apps Script Web App URL
+        // Example: https://script.google.com/macros/d/AKfycbXXXXXXXXXX/userweb
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/d/YOUR_SCRIPT_ID_HERE/userweb"; 
 
         document.addEventListener('DOMContentLoaded', () => {
             fetchStories();
             resetColleagueGame();
             requestNotificationPermission();
-            adjustCustomTime(); // initialize display
+            adjustCustomTime();
         });
 
         function toggleModal(show) {
@@ -401,7 +403,10 @@
                 console.error("API failed, using placeholder data.", err);
                 const fallback = [
                     { author: "Anonymsh", tag: "#Appraisal", content: "Sunday ko dimaag kharab kiya par badle me 2% hike di. Bhai, sach me ashu aa gaye!" },
-                    { author: "TeaLover", tag: "#Micromanagement", content: "Mera manager puch raha hai 'Aap 15 min se active kyu nahi the?' Bhai, washroom bhi na jau?" }
+                    { author: "TeaLover", tag: "#Micromanagement", content: "Mera manager puch raha hai 'Aap 15 min se active kyu nahi the?' Bhai, washroom bhi na jau?" },
+                    { author: "SilentMajdur", tag: "#Salary", content: "10 hours office + 2 hours on-call = 60 lakhs pa. Shukriya boss!" },
+                    { author: "CoffeeAddict", tag: "#Promotion", content: "5 saal se promotion ka wait kar raha hoon. HR ne kaha 'Performance dekh rahe hain'. Bhai kab dekh rhe ho?" },
+                    { author: "DeskJockey", tag: "#WFH", content: "WFH policy hatao aur core office hours daal do. Phir sab ghar se 'busy' dikhenge!" }
                 ];
                 renderStories(fallback);
             }
