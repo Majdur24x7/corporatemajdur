@@ -429,22 +429,26 @@
                 const randomGlow = gradients[Math.floor(Math.random() * gradients.length)];
                 const finalTag = story.tag.startsWith('#') ? story.tag : '#' + story.tag;
 
-                const card = document.createElement('div');
-                card.className = "bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between";
-                card.innerHTML = `
-                    <div class="p-6">
-                        <div class="w-full h-32 bg-gradient-to-br ${randomGlow} rounded-xl mb-4 flex items-center justify-center border border-slate-800/50">
-                            <i class="fa-solid fa-quote-left text-2xl opacity-60"></i>
-                        </div>
-                        <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md">${finalTag}</span>
-                        <p class="text-xs sm:text-sm text-slate-300 font-light mt-4 leading-relaxed break-words">${story.content}</p>
-                    </div>
-                    <div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800/60 text-[10px] text-slate-500 flex justify-between">
-                        <span>By: ${story.author}</span>
-                        <span>Verified Majdur</span>
-                    </div>
-                `;
-                grid.appendChild(card);
+            
+const card = document.createElement('div');
+card.className = "bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between";
+
+// Yahan card.innerHTML mein date/time ki line ko hata dein
+card.innerHTML = `
+    <div class="p-6">
+        <div class="w-full h-32 bg-gradient-to-br ${randomGlow} rounded-xl mb-4 flex items-center justify-center border border-slate-800/50">
+            <i class="fa-solid fa-quote-left text-2xl opacity-60"></i>
+        </div>
+        <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md">${finalTag}</span>
+        <p class="text-xs sm:text-sm text-slate-300 font-light mt-4 leading-relaxed break-words">${story.content}</p>
+    </div>
+    <div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800/60 text-[10px] text-slate-500 flex justify-between">
+        <span>By: ${story.author}</span>
+        <span>Verified Majdur</span>
+    </div>
+`; 
+// Date/Time ki line yahan nahi honi chahiye
+grid.appendChild(card);
             });
         }
 
