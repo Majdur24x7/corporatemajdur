@@ -234,13 +234,10 @@
                             </div>
                         </div>
 
-                        <div class="flex justify-between items-center bg-slate-950/100 p-3 rounded-lg">
-    <button 
-        onclick="resetColleagueGame()" 
-        class="text-sm px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-md shadow-lg transition-all duration-200 flex items-center gap-2">
-        <i class="fa-solid fa-rotate-left"></i> 
-        Restart Game
-    </button>
+                        <div class="flex justify-between items-center bg-slate-950/50 p-3 rounded-lg">
+                            <button onclick="resetColleagueGame()" class="text-xs text-red-400 hover:text-red-300 font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-rotate-left"></i> Restart Game
+                            </button>
                             <div id="colleague-status" class="text-xs text-emerald-400 font-bold">Chalo kisi ek cup par click karo...</div>
                         </div>
                     </div>
@@ -325,8 +322,7 @@
     </section>
 
     <!-- STORIES SECTION -->
-    <section id="stories-section"
-class="w-full max-w-7xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 relative z-10">
+    <section id="stories-section" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 relative z-10">
         <div class="text-center mb-10">
             <h2 class="text-2xl sm:text-3xl font-bold mb-2">Majduro Ki Real Dastaan <span class="text-emerald-400">(Live Database)</span></h2>
             <p class="text-xs sm:text-sm text-slate-400">Office ki asli kahaniyan! Real-time.📢</p>
@@ -336,7 +332,7 @@ class="w-full max-w-7xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 rel
             <i class="fas fa-spinner animate-spin text-2xl mr-2"></i> Loading live rants...
         </div>
 
-        <div id="stories-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div id="stories-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
             <!-- Stories will dynamically render here -->
         </div>
     </section>
@@ -377,7 +373,8 @@ class="w-full max-w-7xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 rel
     <script>
         // ⭐ CHANGE THIS URL - Replace with your Google Apps Script Web App URL
         // Example: https://script.google.com/macros/d/AKfycbXXXXXXXXXX/userweb
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz7ynY1aylIpN5HS1_EMpzpCFp8TFoY6JYWa8P7uXMv_ShjtCW3QgeHAL8GkUHu6OXQOA/exec"; 
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz7ynY1aylIpN5HS1_EMpzpCFp8TFoY6JYWa8P7uXMv_ShjtCW3QgeHAL8GkUHu6OXQOA/exec";
+let allStories=[];let visibleStories=4;const STORIES_PER_LOAD=4;
 
         document.addEventListener('DOMContentLoaded', () => {
             fetchStories();
@@ -398,7 +395,7 @@ class="w-full max-w-7xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 rel
                 const response = await fetch(APPS_SCRIPT_URL);
                 if (!response.ok) throw new Error("Network Response error!");
                 const data = await response.json();
-                renderStories(data);
+                allStories=data;visibleStories=STORIES_PER_LOAD;renderStories();
             } catch (err) {
                 console.error("API failed, using fallback.", err);
                 const fallback = [
@@ -408,51 +405,15 @@ class="w-full max-w-7xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 rel
                     { author: "CoffeeAddict", tag: "#Promotion", content: "5 saal se promotion ka wait kar raha hoon. HR ne kaha 'Performance dekh rahe hain'. Bhai kab dekh rhe ho?" },
                     { author: "DeskJockey", tag: "#WFH", content: "WFH policy hatao aur core office hours daal do. Phir sab ghar se 'busy' dikhenge!" }
                 ];
-                renderStories(fallback);
+                allStories=fallback;visibleStories=STORIES_PER_LOAD;renderStories();
             }
         }
 
-        function renderStories(storiesList) {
-            const grid = document.getElementById('stories-grid');
-            const spinner = document.getElementById('loading-spinner');
-            grid.innerHTML = '';
-            spinner.classList.add('hidden');
-            grid.classList.remove('hidden');
+        function renderStories() {
+ const grid=document.getElementById("stories-grid");const spinner=document.getElementById("loading-spinner");const btn=document.getElementById("load-more-btn");grid.innerHTML="";spinner.classList.add("hidden");grid.classList.remove("hidden");const gradients=['from-blue-600/20 to-cyan-600/30 text-cyan-400','from-red-600/20 to-orange-600/30 text-orange-400','from-purple-600/20 to-pink-600/30 text-pink-400'];allStories.slice(0,visibleStories).forEach(story=>{const randomGlow=gradients[Math.floor(Math.random()*gradients.length)];const finalTag=story.tag.startsWith('#')?story.tag:'#'+story.tag;const card=document.createElement('div');card.className="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between";card.innerHTML=`<div class="p-6"><div class="w-full h-32 bg-gradient-to-br ${randomGlow} rounded-xl mb-4 flex items-center justify-center border border-slate-800/50"><i class="fa-solid fa-quote-left text-2xl opacity-60"></i></div><span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md">${finalTag}</span><p class="text-xs sm:text-sm text-slate-300 font-light mt-4 leading-relaxed break-words">${story.content}</p></div><div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800/60 text-[10px] text-slate-500 flex justify-between"><span>By: ${story.author}</span><span>Verified Majdur</span></div>`;grid.appendChild(card);});if(btn){btn.classList.toggle('hidden',visibleStories>=allStories.length);}}
+function loadMoreStories(){visibleStories+=STORIES_PER_LOAD;renderStories();}
 
-            const gradients = [
-                'from-blue-600/20 to-cyan-600/30 text-cyan-400',
-                'from-red-600/20 to-orange-600/30 text-orange-400',
-                'from-purple-600/20 to-pink-600/30 text-pink-400'
-            ];
-
-            storiesList.forEach(story => {
-                const randomGlow = gradients[Math.floor(Math.random() * gradients.length)];
-                const finalTag = story.tag.startsWith('#') ? story.tag : '#' + story.tag;
-
-            
-const card = document.createElement('div');
-card.className = "bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between";
-
-// Yahan card.innerHTML mein date/time ki line ko hata dein
-card.innerHTML = `
-    <div class="p-6">
-        <div class="w-full h-32 bg-gradient-to-br ${randomGlow} rounded-xl mb-4 flex items-center justify-center border border-slate-800/50">
-            <i class="fa-solid fa-quote-left text-2xl opacity-60"></i>
-        </div>
-        <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md">${finalTag}</span>
-        <p class="text-xs sm:text-sm text-slate-300 font-light mt-4 leading-relaxed break-words">${story.content}</p>
-    </div>
-    <div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800/60 text-[10px] text-slate-500 flex justify-between">
-        <span>By: ${story.author}</span>
-        <span>Verified Majdur</span>
-    </div>
-`; 
-// Date/Time ki line yahan nahi honi chahiye
-grid.appendChild(card);
-            });
-        }
-
-       async function handleStorySubmit(event) {
+async function handleStorySubmit(event) {
     event.preventDefault();
     const submitBtn = document.getElementById('submit-btn');
     const payload = {
@@ -626,7 +587,7 @@ grid.appendChild(card);
                     icon: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/svgs/solid/mug-hot.svg"
                 });
             } else {
-                alert("⏰ Bhag Bh****k time khatam hogay hai, Manager G**d faad dega!");
+                alert("⏰ Break Time Over! Jaldi seat par laut jao!");
             }
         }
 
@@ -658,7 +619,7 @@ grid.appendChild(card);
                 "Sach batao, agar tumhe option mile toh kya tum hum me se kisi ke sath apni salary swap karoge? 💸"
             ],
             dares: [
-                 "Agla tapri ka bill (chai-sutta ya snacks) tum akele pay karoge! (Pocket khali... 💸)",
+                "Agla tapri ka bill (chai-sutta ya snacks) tum akele pay karoge! (Pocket khali... 💸)",
                 "Apne WhatsApp status par likho: 'mere manager m****c**** hai' aur agle 5 minute tak delete mat karna! 💀",
                 "Zor se chillakar bolo 'I LOVE MY HR Madam' aur un teeno ke pair chhuo! 🙏",
                 "Hr ko I LOVE YOU bolke aoo..! 🙏",
