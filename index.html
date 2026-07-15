@@ -235,9 +235,11 @@
                         </div>
 
                         <div class="flex justify-between items-center bg-slate-950/50 p-3 rounded-lg">
-                            <button onclick="resetColleagueGame()" class="text-xs text-red-400 hover:text-red-300 font-semibold flex items-center gap-1">
-                                <i class="fa-solid fa-rotate-left"></i> Restart Game
-                            </button>
+                            <button onclick="resetColleagueGame()"
+class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-all duration-300 flex items-center gap-2 shadow-lg shadow-red-500/20">
+    <i class="fa-solid fa-rotate-left"></i>
+    Play Again
+</button>
                             <div id="colleague-status" class="text-xs text-emerald-400 font-bold">Chalo kisi ek cup par click karo...</div>
                         </div>
                     </div>
@@ -335,6 +337,15 @@
         <div id="stories-grid" class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 hidden">
             <!-- Stories will dynamically render here -->
         </div>
+        
+        <div class="text-center mt-8">
+    <button
+        id="load-more-btn"
+        onclick="loadMoreStories()"
+        class="hidden bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3 rounded-xl transition-all duration-300">
+        Load More Stories
+    </button>
+</div>
     </section>
 
     <!-- POPUP MODAL -->
