@@ -468,8 +468,6 @@ font-size:30px;
 
 }
 
-}
-
 @media (min-width: 1024px) {
     #grid {
         grid-template-columns: repeat(4, 1fr); /* Desktop par 4 */
