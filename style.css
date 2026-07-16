@@ -331,11 +331,10 @@ font-size:30px;
 }
 
 .category-img{
-    width:70px;
-    height:70px;
+    width:55px;
+    height:55px;
     object-fit:contain;
     display:block;
-    margin:0 auto 18px;
 }
 
 .icon{
@@ -349,17 +348,15 @@ font-size:30px;
     display:flex;
     align-items:center;
     justify-content:center;
-}
 
-.icon img{
-    width:50px;
-    height:50px;
-    object-fit:contain;
+    overflow:hidden;
 }
 
 .icon img{
     width:55px;
     height:55px;
+    object-fit:contain;
+    display:block;
 }
 @media (min-width: 1024px) {
     #grid {
