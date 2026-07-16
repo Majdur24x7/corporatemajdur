@@ -7,161 +7,6 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:#08111f;
-color:#fff;
-}
-
-.container{
-max-width:1300px;
-margin:auto;
-padding:40px 20px;
-}
-
-.heading{
-text-align:center;
-margin-bottom:40px;
-}
-
-.heading h1{
-font-size:40px;
-margin-bottom:10px;
-}
-
-.heading p{
-color:#94a3b8;
-}
-
-.grid{
-
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:20px;
-
-}
-
-.card{
-
-background:#111c2e;
-border:1px solid #20314d;
-border-radius:18px;
-padding:25px 20px;
-cursor:pointer;
-transition:.3s;
-text-align:center;
-
-}
-
-.card:hover{
-
-transform:translateY(-8px);
-border-color:#10b981;
-box-shadow:0 10px 30px rgba(16,185,129,.35);
-
-}
-
-.icon{
-
-width:70px;
-height:70px;
-margin:auto;
-margin-bottom:20px;
-background:linear-gradient(135deg,#10b981,#06b6d4);
-border-radius:18px;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-font-size:30px;
-
-}
-
-.card h3{
-
-margin-bottom:8px;
-
-}
-
-.card span{
-
-color:#94a3b8;
-font-size:14px;
-
-}
-
-
-@media(max-width:900px){
-
-.grid{
-
-grid-template-columns:repeat(3,1fr);
-
-}
-
-}
-
-
-@media(max-width:600px){
-
-.container{
-
-padding:20px 15px;
-
-}
-
-.heading h1{
-
-font-size:28px;
-
-}
-
-.grid{
-
-grid-template-columns:repeat(3,1fr);
-gap:12px;
-
-}
-
-.card{
-
-padding:15px 8px;
-
-}
-
-.icon{
-
-width:55px;
-height:55px;
-font-size:22px;
-
-}
-
-.card h3{
-
-font-size:13px;
-
-}
-
-.card span{
-
-display:none;
-
-}
-
-}
-
-</style>
-
 </head>
 
 <body>
@@ -179,12 +24,7 @@ display:none;
 <div class="grid">
 
 <div class="card" onclick="openPopup('Office Memes')">
-    <div class="icon">
-        <img src="images/office-memes.png"
-             alt="Office Memes" 
-            width="50"
-            height="50">
-    </div>
+    <div class="icon">🏢</div>
     <h3>Office Memes</h3>
     <span>145 Memes</span>
 </div>
@@ -195,8 +35,8 @@ display:none;
 <span>61 Memes</span>
 </div>
 
-<div class="card" onclick="openPopup('Office Politics')">
-<div class="icon">🏢</div>
+<div class="card" onclick="openPopup('Politics')">
+<div class="icon">🏛️</div>
 <h3>Politics</h3>
 <span>72 Memes</span>
 </div>
@@ -237,7 +77,7 @@ display:none;
 <span>47 Memes</span>
 </div>
 
-<div class="card" onclick="openPopup('Work From Home')">
+<div class="card" onclick="openPopup('WFH')">
 <div class="icon">🏠</div>
 <h3>WFH</h3>
 <span>57 Memes</span>
@@ -260,7 +100,7 @@ display:none;
 </div>
 <!-- ================= MEME POPUP ================= -->
 
-<div id="memePopup" class="popup-overlay">
+<div id="memePopup" class="popup-overlay hidden">
 
     <div class="popup-box">
 
@@ -281,9 +121,7 @@ display:none;
         <div class="load-btn-area">
 
             <button id="loadMoreBtn" onclick="loadMore()">
-
                 Load More
-
             </button>
 
         </div>
@@ -291,36 +129,88 @@ display:none;
     </div>
 
 </div>
+
 <script>
 
 // ==============================
-// Meme Popup Data (Dummy)
-// Baad me Apps Script se replace hoga
+// Meme Data (Excel/Google Sheets se baad mein)
 // ==============================
 
 const memeData = {
 
     "HR": [
-        "HR Meme 1",
-        "HR Meme 2",
-        "HR Meme 3",
-        "HR Meme 4",
-        "HR Meme 5",
-        "HR Meme 6",
-        "HR Meme 7",
-        "HR Meme 8",
-        "HR Meme 9",
-        "HR Meme 10"
+        "HR Meme 1 - Boss ne dekha nahi, bonus double 😂",
+        "HR Meme 2 - Resignation letter likha to HR ne employment contract update kar diya",
+        "HR Meme 3 - Increment package dekh ke samajh gaya sab",
+        "HR Meme 4 - HR meeting = jaan mat lo matlab kya tha",
+        "HR Meme 5 - Benefits dekhne gya, benefits dekhe humein",
+        "HR Meme 6 - HR ko trust karna = apne aap se trust karna",
+        "HR Meme 7 - Policy implement = asli entertainment",
+        "HR Meme 8 - PTO approve = HR manager ke mood par depend",
+        "HR Meme 9 - Attendance check = science nahi, art hai",
+        "HR Meme 10 - HR training = mandatory nind"
     ],
 
     "Office Memes": [
-        "Office Meme 1",
-        "Office Meme 2",
-        "Office Meme 3",
-        "Office Meme 4",
-        "Office Meme 5",
-        "Office Meme 6",
-        "Office Meme 7"
+        "Office Meme 1 - 9-5 job = halaat ka mazak",
+        "Office Meme 2 - Monday morning energy vs Friday energy",
+        "Office Meme 3 - Coffee without office purpose nahi rakha",
+        "Office Meme 4 - Meeting dekh kar pata chale: work mein time waste",
+        "Office Meme 5 - Email forward = signature of lazy boss",
+        "Office Meme 6 - Office politics > office work (har jagah)",
+        "Office Meme 7 - Cubicle life = golden cage"
+    ],
+
+    "Toxic Boss": [
+        "Boss Meme 1 - Deadline ko flexible samajhna: fatal galti",
+        "Boss Meme 2 - Boss: 'Ye aasan kaam hai' = Himalayas climb karne jaisa",
+        "Boss Meme 3 - Mic mute bhool gaye, sab suna",
+        "Boss Meme 4 - Email 11 PM mein aaye: utne din baad deadline",
+        "Boss Meme 5 - Idea diya to apna claim"
+    ],
+
+    "Salary": [
+        "Salary Meme 1 - Salary day: 2 din khushi, 28 din reality",
+        "Salary Meme 2 - Increment dekh ke: matlab nahi rakha",
+        "Salary Meme 3 - EMI dekh ke pata chale: slave hoon",
+        "Salary Meme 4 - Payday vs reality"
+    ],
+
+    "Appraisal": [
+        "Appraisal Meme 1 - Performance meeting = apna drama dekhna",
+        "Appraisal Meme 2 - Appraisal rating: unfair, biased, painful",
+        "Appraisal Meme 3 - Feedback = script padna"
+    ],
+
+    "Promotion": [
+        "Promotion Meme 1 - Promotion = title badla, work 10x",
+        "Promotion Meme 2 - Senior engineer bana to senior problems aaye"
+    ],
+
+    "Politics": [
+        "Politics Meme 1 - Office politics > actual politics",
+        "Politics Meme 2 - Chai corner = real decision-making"
+    ],
+
+    "Meetings": [
+        "Meeting Meme 1 - Meeting: time waste ka shrine",
+        "Meeting Meme 2 - 'Ye meeting record kar do'",
+        "Meeting Meme 3 - Last 5 min: key points"
+    ],
+
+    "WFH": [
+        "WFH Meme 1 - Work from home = bedroom se office",
+        "WFH Meme 2 - Camera off = pajama time"
+    ],
+
+    "Layoffs": [
+        "Layoff Meme 1 - 'Restructuring' = code for layoffs",
+        "Layoff Meme 2 - Severance package dekh ke"
+    ],
+
+    "Resignation": [
+        "Resignation Meme 1 - Letter likha to apna legacy bacha",
+        "Resignation Meme 2 - Notice period = torture ka naya naam"
     ]
 
 };
@@ -332,14 +222,13 @@ const perPage = 5;
 function openPopup(category){
 
     currentCategory = category;
-
     currentIndex = 0;
 
     document.getElementById("popupTitle").innerText = category;
-
     document.getElementById("memeContainer").innerHTML = "";
 
-    document.getElementById("memePopup").style.display = "flex";
+    // Class remove karo hidden ka
+    document.getElementById("memePopup").classList.remove("hidden");
 
     loadMore();
 
@@ -348,40 +237,38 @@ function openPopup(category){
 function loadMore(){
 
     const container = document.getElementById("memeContainer");
-
     const list = memeData[currentCategory] || [];
 
     const end = Math.min(currentIndex + perPage, list.length);
 
-    for(let i=currentIndex;i<end;i++){
-
-        container.innerHTML += `
-            <div class="meme-card">
-                ${list[i]}
-            </div>
-        `;
-
+    for(let i = currentIndex; i < end; i++){
+        const memeDiv = document.createElement("div");
+        memeDiv.className = "meme-card";
+        memeDiv.textContent = list[i];
+        container.appendChild(memeDiv);
     }
 
     currentIndex = end;
 
+    // Load More button hide/show
     if(currentIndex >= list.length){
-
-        document.getElementById("loadMoreBtn").style.display="none";
-
-    }else{
-
-        document.getElementById("loadMoreBtn").style.display="inline-block";
-
+        document.getElementById("loadMoreBtn").style.display = "none";
+    } else {
+        document.getElementById("loadMoreBtn").style.display = "inline-block";
     }
 
 }
 
 function closePopup(){
-
-    document.getElementById("memePopup").style.display="none";
-
+    document.getElementById("memePopup").classList.add("hidden");
 }
+
+// Outside click par close
+document.getElementById("memePopup").addEventListener("click", function(e){
+    if(e.target === this) {
+        closePopup();
+    }
+});
 
 </script>
 
