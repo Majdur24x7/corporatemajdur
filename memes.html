@@ -286,33 +286,12 @@ display:none;
 
 <script>
 
-const memeData={
-
-"HR":[
-"HR: We're Family 😂",
-"Leave approve? Next Month.",
-"Increment? Budget nahi hai.",
-"Experience 5 Years Required.",
-"Notice Period 90 Days.",
-"Joining Bonus? 😂",
-"Annual Review Coming Soon.",
-"Salary Discussion Pending."
-],
-
-"Office Memes":[
-"Office Meme 1",
-"Office Meme 2",
-"Office Meme 3",
-"Office Meme 4",
-"Office Meme 5",
-"Office Meme 6",
-"Office Meme 7"
-]
-
-};
+const SCRIPT_URL = "YOUR_APPS_SCRIPT_WEB_APP_URL";
 
 let currentCategory="";
+let memeListData=[];
 let visible=5;
+
 
 function openPopup(category){
 
@@ -324,9 +303,46 @@ document.getElementById("popupTitle").innerText=category;
 
 document.getElementById("memePopup").style.display="flex";
 
-renderMemes();
+
+fetchMemes(category);
 
 }
+
+
+
+function fetchMemes(category){
+
+const box=document.getElementById("memeList");
+
+box.innerHTML="<p>Loading memes...</p>";
+
+
+fetch(SCRIPT_URL+"?category="+encodeURIComponent(category))
+
+.then(response=>response.json())
+
+.then(data=>{
+
+
+memeListData=data;
+
+renderMemes();
+
+
+})
+
+.catch(error=>{
+
+console.log(error);
+
+box.innerHTML="<p>Error loading memes</p>";
+
+});
+
+
+}
+
+
 
 function renderMemes(){
 
@@ -334,15 +350,15 @@ const box=document.getElementById("memeList");
 
 box.innerHTML="";
 
-const list=memeData[currentCategory] || [];
 
-for(let i=0;i<Math.min(visible,list.length);i++){
+for(let i=0;i<Math.min(visible,memeListData.length);i++){
+
 
 box.innerHTML+=`
 
 <div class="meme-card">
 
-${list[i]}
+${memeListData[i].meme}
 
 </div>
 
@@ -350,7 +366,22 @@ ${list[i]}
 
 }
 
+
+if(visible >= memeListData.length){
+
+document.getElementById("loadMoreBtn").style.display="none";
+
+}else{
+
+document.getElementById("loadMoreBtn").style.display="inline-block";
+
 }
+
+
+}
+
+
+
 
 function loadMoreMemes(){
 
@@ -359,6 +390,9 @@ visible+=5;
 renderMemes();
 
 }
+
+
+
 
 function closePopup(){
 
