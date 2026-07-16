@@ -295,16 +295,15 @@ let visible=5;
 
 function openPopup(category){
 
-currentCategory=category;
+    currentCategory = category;
 
-visible=5;
+    visible = 5;
 
-document.getElementById("popupTitle").innerText=category;
+    document.getElementById("popupTitle").innerText = category;
 
-document.getElementById("memePopup").style.display="flex";
+    document.getElementById("memePopup").style.display = "flex";
 
-
-fetchMemes(category);
+    console.log("Popup Open:", category);
 
 }
 
