@@ -286,117 +286,26 @@ display:none;
 
 <script>
 
-const SCRIPT_URL = "YOUR_APPS_SCRIPT_WEB_APP_URL";
-
-let currentCategory="";
-let memeListData=[];
-let visible=5;
-
-
 function openPopup(category){
-
-    currentCategory = category;
-
-    visible = 5;
-
-    document.getElementById("popupTitle").innerText = category;
-
-    document.getElementById("memePopup").style.display = "flex";
-
-    console.log("Popup Open:", category);
-
+    document.getElementById("memeModal").style.display = "block";
+    document.getElementById("categoryTitle").innerText = category;
+    document.getElementById("memeContainer").innerHTML = "Loading...";
+    
+    // Google Apps Script trigger
+    google.script.run.withSuccessHandler(showMemes).getMemesByCategory(category);
 }
 
-
-
-function fetchMemes(category){
-
-const box=document.getElementById("memeList");
-
-box.innerHTML="<p>Loading memes...</p>";
-
-
-fetch(SCRIPT_URL+"?category="+encodeURIComponent(category))
-
-.then(response=>response.json())
-
-.then(data=>{
-
-
-memeListData=data;
-
-renderMemes();
-
-
-})
-
-.catch(error=>{
-
-console.log(error);
-
-box.innerHTML="<p>Error loading memes</p>";
-
-});
-
-
+function showMemes(memes) {
+    const container = document.getElementById('memeContainer');
+    if(memes.length === 0) {
+        container.innerHTML = "<p>No memes found in this category.</p>";
+        return;
+    }
+    container.innerHTML = memes.map(url => `<img src="${url}" loading="lazy">`).join('');
 }
-
-
-
-function renderMemes(){
-
-const box=document.getElementById("memeList");
-
-box.innerHTML="";
-
-
-for(let i=0;i<Math.min(visible,memeListData.length);i++){
-
-
-box.innerHTML+=`
-
-<div class="meme-card">
-
-${memeListData[i].meme}
-
-</div>
-
-`;
-
-}
-
-
-if(visible >= memeListData.length){
-
-document.getElementById("loadMoreBtn").style.display="none";
-
-}else{
-
-document.getElementById("loadMoreBtn").style.display="inline-block";
-
-}
-
-
-}
-
-
-
-
-function loadMoreMemes(){
-
-visible+=5;
-
-renderMemes();
-
-}
-
-
-
 
 function closePopup(){
-
-document.getElementById("memePopup").style.display="none";
-
+    document.getElementById("memeModal").style.display = "none";
 }
 
 </script>
