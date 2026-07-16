@@ -344,12 +344,15 @@ font-size:30px;
     margin-bottom:20px;
     background:linear-gradient(135deg,#10b981,#06b6d4);
     border-radius:18px;
-
     display:flex;
     align-items:center;
     justify-content:center;
+}
 
-    overflow:hidden;
+.card .icon img{
+    width:50px !important;
+    height:50px !important;
+    object-fit:contain;
 }
 
 .icon img{
