@@ -425,15 +425,30 @@ let memeData = {};
 
 const API_URL = "https://script.google.com/macros/s/AKfycbxQHbcHXwOdfrvtoD3I2xks_wPui1g8XhoT6G9GkuGpH6aSBpglb65FLnLoYr7sZ08l/exec";
 
-fetch(API_URL)
-  .then(response => response.json())
-  .then(data => {
-      memeData = data;
-      console.log("Loaded", memeData);
-  })
-  .catch(error => {
-      console.error(error);
-  });
+const API_URL = "https://script.google.com/macros/s/AKfycbwQYno8JZMTOV69rE58EiCie9E_XF4DtUelst4vDuf6J7gSfGPpAtFO-Vbk8BqF54rm/exec";
+
+
+function loadMemes(){
+
+    const script = document.createElement("script");
+
+    script.src = API_URL + "?callback=receiveMemes";
+
+    document.body.appendChild(script);
+
+}
+
+
+function receiveMemes(data){
+
+    memeData = data;
+
+    console.log("Loaded:", memeData);
+
+}
+
+
+loadMemes();
   
 let currentCategory = "";
 let currentIndex = 0;
