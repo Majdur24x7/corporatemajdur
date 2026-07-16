@@ -418,35 +418,40 @@ display:none;
 <script>
 
 // ==============================
-// Meme Data (Excel/Google Sheets se baad mein)
+// Google Apps Script API
 // ==============================
 
-✅ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwQYno8JZMTOV69rE58EiCie9E_XF4DtUelst4vDuf6J7gSfGPpAtFO-Vbk8BqF54rm/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwvTgXCbKi_gF1PMEEp--KK_gZH-R4r5y-BGcyqUCGhdcLIiXjYJfSCbnZPErOjICy0/exec";
 
-async function fetchMemeDataFromAppsScript() {
-    try {
-        const response = await fetch(APPS_SCRIPT_URL);
-
-        if (!response.ok) {
-            throw new Error("Network Error");
-        }
-
-        memeData = await response.json();
-
-        console.log(memeData);
-
-        generateCategoryGrid();
-
-    } catch (err) {
-        console.error("Fetch Error:", err);
-    }
-}
-
+let memeData = {};
 let currentCategory = "";
 let currentIndex = 0;
 const perPage = 5;
 
+// ==============================
+// Website Load hote hi Sheet se Data Fetch
+// ==============================
+
+fetch(API_URL)
+    .then(response => response.json())
+    .then(data => {
+        memeData = data;
+        console.log("Memes Loaded Successfully", memeData);
+    })
+    .catch(error => {
+        console.error("Error Loading Memes:", error);
+    });
+
+// ==============================
+// Popup Open
+// ==============================
+
 function openPopup(category){
+
+    if(Object.keys(memeData).length === 0){
+        alert("Memes are loading... Please try again.");
+        return;
+    }
 
     currentCategory = category;
     currentIndex = 0;
@@ -454,12 +459,15 @@ function openPopup(category){
     document.getElementById("popupTitle").innerText = category;
     document.getElementById("memeContainer").innerHTML = "";
 
-    // Class remove karo hidden ka
     document.getElementById("memePopup").classList.remove("hidden");
 
     loadMore();
 
 }
+
+// ==============================
+// Load More
+// ==============================
 
 function loadMore(){
 
@@ -469,32 +477,43 @@ function loadMore(){
     const end = Math.min(currentIndex + perPage, list.length);
 
     for(let i = currentIndex; i < end; i++){
+
         const memeDiv = document.createElement("div");
         memeDiv.className = "meme-card";
         memeDiv.textContent = list[i];
+
         container.appendChild(memeDiv);
+
     }
 
     currentIndex = end;
 
-    // Load More button hide/show
     if(currentIndex >= list.length){
         document.getElementById("loadMoreBtn").style.display = "none";
-    } else {
+    }else{
         document.getElementById("loadMoreBtn").style.display = "inline-block";
     }
 
 }
 
+// ==============================
+// Close Popup
+// ==============================
+
 function closePopup(){
     document.getElementById("memePopup").classList.add("hidden");
 }
 
-// Outside click par close
+// ==============================
+// Outside Click Close
+// ==============================
+
 document.getElementById("memePopup").addEventListener("click", function(e){
-    if(e.target === this) {
+
+    if(e.target === this){
         closePopup();
     }
+
 });
 
 </script>
