@@ -330,6 +330,13 @@ font-size:30px;
     gap: 20px;
 }
 
+.category-img{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 18px;
+}
 @media (min-width: 1024px) {
     #grid {
         grid-template-columns: repeat(4, 1fr); /* Desktop par 4 */
