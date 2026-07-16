@@ -421,12 +421,25 @@ display:none;
 // Meme Data (Excel/Google Sheets se baad mein)
 // ==============================
 
-✅ const APPS_SCRIPT_URL = ("https://script.google.com/macros/s/AKfycbxFDKH7C_bDs42_VrCoHWsZmB9uMsVH7trBC7eo2NFosC5RDifLA86_u2MrWL3NKEa3/exec");
+✅ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxFDKH7C_bDs42_VrCoHWsZmB9uMsVH7trBC7eo2NFosC5RDifLA86_u2MrWL3NKEa3/exec";
 
-✅ async function fetchMemeDataFromAppsScript() {
-    const response = await fetch(APPS_SCRIPT_URL);
-    memeData = await response.json();
-    generateCategoryGrid();
+async function fetchMemeDataFromAppsScript() {
+    try {
+        const response = await fetch(APPS_SCRIPT_URL);
+
+        if (!response.ok) {
+            throw new Error("Network Error");
+        }
+
+        memeData = await response.json();
+
+        console.log(memeData);
+
+        generateCategoryGrid();
+
+    } catch (err) {
+        console.error("Fetch Error:", err);
+    }
 }
 
 let currentCategory = "";
