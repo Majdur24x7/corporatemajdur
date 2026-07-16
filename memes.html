@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Browse Memes | Corporate Majdur</title>
@@ -157,22 +160,6 @@ display:none;
 
 }
 
-    /* Purana CSS waisa hi hai */
-    *{ margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif; }
-    body{ background:#08111f; color:#fff; }
-    .container{ max-width:1300px; margin:auto; padding:40px 20px; }
-    .heading{ text-align:center; margin-bottom:40px; }
-    .grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-    .card{ background:#111c2e; border:1px solid #20314d; border-radius:18px; padding:25px 20px; cursor:pointer; transition:.3s; text-align:center; }
-    .card:hover{ transform:translateY(-8px); border-color:#10b981; box-shadow:0 10px 30px rgba(16,185,129,.35); }
-    .icon{ width:70px; height:70px; margin:auto; margin-bottom:20px; background:linear-gradient(135deg,#10b981,#06b6d4); border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:30px; }
-    
-    /* Naya Text-Box Modal CSS */
-    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); overflow-y: auto; }
-    .modal-content { background: #08111f; border: 1px solid #20314d; margin: 5% auto; padding: 25px; width: 90%; max-width: 500px; border-radius: 15px; position: relative; }
-    .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #20314d; padding-bottom: 15px; margin-bottom: 20px; }
-    .close { cursor: pointer; font-size: 24px; color: #94a3b8; }
-    .meme-item { background: #111c2e; border: 1px solid #20314d; padding: 15px; margin-bottom: 15px; border-radius: 8px; font-family: monospace; }
 </style>
 
 </head>
@@ -197,10 +184,7 @@ display:none;
              alt="Office Memes" 
             width="50"
             height="50">
-    <div class="heading">
-        <h1>😂 Browse Memes</h1>
-        <p>Select any category to explore corporate memes.</p>
-</div>
+    </div>
     <h3>Office Memes</h3>
     <span>145 Memes</span>
 </div>
@@ -273,46 +257,16 @@ display:none;
 
 </div>
 
-    <div class="grid">
-        <!-- Cards -->
-        <div class="card" onclick="openPopup('HR')"><div class="icon">👨‍💼</div><h3>HR</h3></div>
-        <div class="card" onclick="openPopup('Manager')"><div class="icon">👔</div><h3>Manager</h3></div>
-        <div class="card" onclick="openPopup('Salary')"><div class="icon">💰</div><h3>Salary</h3></div>
-        <!-- Baaki cards bhi isi tarah rakhna -->
-    </div>
-</div>
-
-<!-- Modal -->
-<div id="memeModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2 id="categoryTitle">Category</h2>
-            <span class="close" onclick="closePopup()">&times;</span>
-        </div>
-        <div id="memeContainer">
-            <p>Loading memes...</p>
-        </div>
-        <button onclick="alert('Load More clicked')" style="width:100%; padding:10px; cursor:pointer;">Load More</button>
-    </div>
 </div>
 
 <script>
-    function openPopup(category){
-        document.getElementById("memeModal").style.display = "block";
-        document.getElementById("categoryTitle").innerText = category + " Memes";
-        
-        // Google Apps Script ko call karein
-        google.script.run
-            .withSuccessHandler(function(memes) {
-                const container = document.getElementById('memeContainer');
-                container.innerHTML = memes.map(text => `<div class="meme-item">${text}</div>`).join('');
-            })
-            .getMemesByCategory(category);
-    }
 
-    function closePopup(){
-        document.getElementById("memeModal").style.display = "none";
-    }
+function openPopup(category){
+
+alert(category+"\n\nApps Script popup yaha open hoga.");
+
+}
+
 </script>
 
 </body>
