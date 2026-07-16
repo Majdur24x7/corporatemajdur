@@ -421,84 +421,13 @@ display:none;
 // Meme Data (Excel/Google Sheets se baad mein)
 // ==============================
 
-const memeData = {
+✅ const APPS_SCRIPT_URL = "AKfycbxFDKH7C_bDs42_VrCoHWsZmB9uMsVH7trBC7eo2NFosC5RDifLA86_u2MrWL3NKEa3";
 
-    "HR": [
-        "HR Meme 1 - Boss ne dekha nahi, bonus double 😂",
-        "HR Meme 2 - Resignation letter likha to HR ne employment contract update kar diya",
-        "HR Meme 3 - Increment package dekh ke samajh gaya sab",
-        "HR Meme 4 - HR meeting = jaan mat lo matlab kya tha",
-        "HR Meme 5 - Benefits dekhne gya, benefits dekhe humein",
-        "HR Meme 6 - HR ko trust karna = apne aap se trust karna",
-        "HR Meme 7 - Policy implement = asli entertainment",
-        "HR Meme 8 - PTO approve = HR manager ke mood par depend",
-        "HR Meme 9 - Attendance check = science nahi, art hai",
-        "HR Meme 10 - HR training = mandatory nind"
-    ],
-
-    "Office Memes": [
-        "Office Meme 1 - 9-5 job = halaat ka mazak",
-        "Office Meme 2 - Monday morning energy vs Friday energy",
-        "Office Meme 3 - Coffee without office purpose nahi rakha",
-        "Office Meme 4 - Meeting dekh kar pata chale: work mein time waste",
-        "Office Meme 5 - Email forward = signature of lazy boss",
-        "Office Meme 6 - Office politics > office work (har jagah)",
-        "Office Meme 7 - Cubicle life = golden cage"
-    ],
-
-    "Toxic Boss": [
-        "Boss Meme 1 - Deadline ko flexible samajhna: fatal galti",
-        "Boss Meme 2 - Boss: 'Ye aasan kaam hai' = Himalayas climb karne jaisa",
-        "Boss Meme 3 - Mic mute bhool gaye, sab suna",
-        "Boss Meme 4 - Email 11 PM mein aaye: utne din baad deadline",
-        "Boss Meme 5 - Idea diya to apna claim"
-    ],
-
-    "Salary": [
-        "Salary Meme 1 - Salary day: 2 din khushi, 28 din reality",
-        "Salary Meme 2 - Increment dekh ke: matlab nahi rakha",
-        "Salary Meme 3 - EMI dekh ke pata chale: slave hoon",
-        "Salary Meme 4 - Payday vs reality"
-    ],
-
-    "Appraisal": [
-        "Appraisal Meme 1 - Performance meeting = apna drama dekhna",
-        "Appraisal Meme 2 - Appraisal rating: unfair, biased, painful",
-        "Appraisal Meme 3 - Feedback = script padna"
-    ],
-
-    "Promotion": [
-        "Promotion Meme 1 - Promotion = title badla, work 10x",
-        "Promotion Meme 2 - Senior engineer bana to senior problems aaye"
-    ],
-
-    "Politics": [
-        "Politics Meme 1 - Office politics > actual politics",
-        "Politics Meme 2 - Chai corner = real decision-making"
-    ],
-
-    "Meetings": [
-        "Meeting Meme 1 - Meeting: time waste ka shrine",
-        "Meeting Meme 2 - 'Ye meeting record kar do'",
-        "Meeting Meme 3 - Last 5 min: key points"
-    ],
-
-    "WFH": [
-        "WFH Meme 1 - Work from home = bedroom se office",
-        "WFH Meme 2 - Camera off = pajama time"
-    ],
-
-    "Layoffs": [
-        "Layoff Meme 1 - 'Restructuring' = code for layoffs",
-        "Layoff Meme 2 - Severance package dekh ke"
-    ],
-
-    "Resignation": [
-        "Resignation Meme 1 - Letter likha to apna legacy bacha",
-        "Resignation Meme 2 - Notice period = torture ka naya naam"
-    ]
-
-};
+✅ async function fetchMemeDataFromAppsScript() {
+    const response = await fetch(APPS_SCRIPT_URL);
+    memeData = await response.json();
+    generateCategoryGrid();
+}
 
 let currentCategory = "";
 let currentIndex = 0;
