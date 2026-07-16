@@ -353,8 +353,8 @@ font-size:30px;
 }
 
 .icon img{
-    width:55px;
-    height:55px;
+    width:50px !important;
+    height:50px !important;
     object-fit:contain;
     display:block;
 }
