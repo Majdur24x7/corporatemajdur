@@ -261,9 +261,83 @@ display:none;
 
 <script>
 
+const memeData={
+
+"HR":[
+"HR: We're Family 😂",
+"Leave approve? Next Month.",
+"Increment? Budget nahi hai.",
+"Experience 5 Years Required.",
+"Notice Period 90 Days.",
+"Joining Bonus? 😂",
+"Annual Review Coming Soon.",
+"Salary Discussion Pending."
+],
+
+"Office Memes":[
+"Office Meme 1",
+"Office Meme 2",
+"Office Meme 3",
+"Office Meme 4",
+"Office Meme 5",
+"Office Meme 6",
+"Office Meme 7"
+]
+
+};
+
+let currentCategory="";
+let visible=5;
+
 function openPopup(category){
 
-alert(category+"\n\nApps Script popup yaha open hoga.");
+currentCategory=category;
+
+visible=5;
+
+document.getElementById("popupTitle").innerText=category;
+
+document.getElementById("memePopup").style.display="flex";
+
+renderMemes();
+
+}
+
+function renderMemes(){
+
+const box=document.getElementById("memeList");
+
+box.innerHTML="";
+
+const list=memeData[currentCategory] || [];
+
+for(let i=0;i<Math.min(visible,list.length);i++){
+
+box.innerHTML+=`
+
+<div class="meme-card">
+
+${list[i]}
+
+</div>
+
+`;
+
+}
+
+}
+
+function loadMoreMemes(){
+
+visible+=5;
+
+renderMemes();
+
+}
+
+function closePopup(){
+
+document.getElementById("memePopup").style.display="none";
 
 }
 
