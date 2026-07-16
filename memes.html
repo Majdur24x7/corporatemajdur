@@ -258,12 +258,128 @@ display:none;
 </div>
 
 </div>
+<!-- ================= MEME POPUP ================= -->
 
+<div id="memePopup" class="popup-overlay">
+
+    <div class="popup-box">
+
+        <div class="popup-top">
+
+            <h2 id="popupTitle">Category</h2>
+
+            <button class="close-popup" onclick="closePopup()">
+                ✕
+            </button>
+
+        </div>
+
+        <div id="memeContainer">
+
+        </div>
+
+        <div class="load-btn-area">
+
+            <button id="loadMoreBtn" onclick="loadMore()">
+
+                Load More
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 <script>
+
+// ==============================
+// Meme Popup Data (Dummy)
+// Baad me Apps Script se replace hoga
+// ==============================
+
+const memeData = {
+
+    "HR": [
+        "HR Meme 1",
+        "HR Meme 2",
+        "HR Meme 3",
+        "HR Meme 4",
+        "HR Meme 5",
+        "HR Meme 6",
+        "HR Meme 7",
+        "HR Meme 8",
+        "HR Meme 9",
+        "HR Meme 10"
+    ],
+
+    "Office Memes": [
+        "Office Meme 1",
+        "Office Meme 2",
+        "Office Meme 3",
+        "Office Meme 4",
+        "Office Meme 5",
+        "Office Meme 6",
+        "Office Meme 7"
+    ]
+
+};
+
+let currentCategory = "";
+let currentIndex = 0;
+const perPage = 5;
 
 function openPopup(category){
 
-alert(category+"\n\nApps Script popup yaha open hoga.");
+    currentCategory = category;
+
+    currentIndex = 0;
+
+    document.getElementById("popupTitle").innerText = category;
+
+    document.getElementById("memeContainer").innerHTML = "";
+
+    document.getElementById("memePopup").style.display = "flex";
+
+    loadMore();
+
+}
+
+function loadMore(){
+
+    const container = document.getElementById("memeContainer");
+
+    const list = memeData[currentCategory] || [];
+
+    const end = Math.min(currentIndex + perPage, list.length);
+
+    for(let i=currentIndex;i<end;i++){
+
+        container.innerHTML += `
+            <div class="meme-card">
+                ${list[i]}
+            </div>
+        `;
+
+    }
+
+    currentIndex = end;
+
+    if(currentIndex >= list.length){
+
+        document.getElementById("loadMoreBtn").style.display="none";
+
+    }else{
+
+        document.getElementById("loadMoreBtn").style.display="inline-block";
+
+    }
+
+}
+
+function closePopup(){
+
+    document.getElementById("memePopup").style.display="none";
 
 }
 
