@@ -259,6 +259,31 @@ display:none;
 
 </div>
 
+<!-- Meme Popup -->
+<div id="memePopup" class="popup">
+
+    <div class="popup-content">
+
+        <div class="popup-header">
+
+            <h2 id="popupTitle">Category</h2>
+
+            <button class="close-btn" onclick="closePopup()">✖</button>
+
+        </div>
+
+        <div id="memeList" class="meme-list"></div>
+
+        <div class="load-more-wrap">
+            <button id="loadMoreBtn" onclick="loadMoreMemes()">
+                Load More
+            </button>
+        </div>
+
+    </div>
+
+</div>    
+
 <script>
 
 const memeData={
