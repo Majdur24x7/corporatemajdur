@@ -356,6 +356,11 @@ font-size:30px;
     height:50px;
     object-fit:contain;
 }
+
+.icon img{
+    width:55px;
+    height:55px;
+}
 @media (min-width: 1024px) {
     #grid {
         grid-template-columns: repeat(4, 1fr); /* Desktop par 4 */
