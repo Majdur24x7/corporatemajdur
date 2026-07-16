@@ -1,11 +1,162 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Browse Memes | Corporate Majdur</title>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#08111f;
+color:#fff;
+}
+
+.container{
+max-width:1300px;
+margin:auto;
+padding:40px 20px;
+}
+
+.heading{
+text-align:center;
+margin-bottom:40px;
+}
+
+.heading h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.heading p{
+color:#94a3b8;
+}
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+
+}
+
+.card{
+
+background:#111c2e;
+border:1px solid #20314d;
+border-radius:18px;
+padding:25px 20px;
+cursor:pointer;
+transition:.3s;
+text-align:center;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+border-color:#10b981;
+box-shadow:0 10px 30px rgba(16,185,129,.35);
+
+}
+
+.icon{
+
+width:70px;
+height:70px;
+margin:auto;
+margin-bottom:20px;
+background:linear-gradient(135deg,#10b981,#06b6d4);
+border-radius:18px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:30px;
+
+}
+
+.card h3{
+
+margin-bottom:8px;
+
+}
+
+.card span{
+
+color:#94a3b8;
+font-size:14px;
+
+}
+
+
+@media(max-width:900px){
+
+.grid{
+
+grid-template-columns:repeat(3,1fr);
+
+}
+
+}
+
+
+@media(max-width:600px){
+
+.container{
+
+padding:20px 15px;
+
+}
+
+.heading h1{
+
+font-size:28px;
+
+}
+
+.grid{
+
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+
+}
+
+.card{
+
+padding:15px 8px;
+
+}
+
+.icon{
+
+width:55px;
+height:55px;
+font-size:22px;
+
+}
+
+.card h3{
+
+font-size:13px;
+
+}
+
+.card span{
+
+display:none;
+
+}
+
+}
+
     /* Purana CSS waisa hi hai */
     *{ margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif; }
     body{ background:#08111f; color:#fff; }
@@ -23,14 +174,104 @@
     .close { cursor: pointer; font-size: 24px; color: #94a3b8; }
     .meme-item { background: #111c2e; border: 1px solid #20314d; padding: 15px; margin-bottom: 15px; border-radius: 8px; font-family: monospace; }
 </style>
+
 </head>
+
 <body>
 
 <div class="container">
+
+<div class="heading">
+
+<h1>😂 Browse Memes</h1>
+
+<p>Select any category to explore corporate memes.</p>
+
+</div>
+
+<div class="grid">
+
+<div class="card" onclick="openPopup('Office Memes')">
+    <div class="icon">
+        <img src="images/office-memes.png"
+             alt="Office Memes" 
+            width="50"
+            height="50">
     <div class="heading">
         <h1>😂 Browse Memes</h1>
         <p>Select any category to explore corporate memes.</p>
-    </div>
+</div>
+    <h3>Office Memes</h3>
+    <span>145 Memes</span>
+</div>
+    
+<div class="card" onclick="openPopup('Toxic Boss')">
+<div class="icon">😡</div>
+<h3>Toxic Boss</h3>
+<span>61 Memes</span>
+</div>
+
+<div class="card" onclick="openPopup('Office Politics')">
+<div class="icon">🏢</div>
+<h3>Politics</h3>
+<span>72 Memes</span>
+</div>
+
+<div class="card" onclick="openPopup('HR')">
+<div class="icon">👨‍💼</div>
+<h3>HR</h3>
+<span>45 Memes</span>
+</div>
+
+<div class="card" onclick="openPopup('Manager')">
+<div class="icon">👔</div>
+<h3>Manager</h3>
+<span>51 Memes</span>
+</div>
+
+<div class="card" onclick="openPopup('Salary')">
+<div class="icon">💰</div>
+<h3>Salary</h3>
+<span>66 Memes</span>
+</div>
+
+<div class="card" onclick="openPopup('Appraisal')">
+<div class="icon">📈</div>
+<h3>Appraisal</h3>
+<span>38 Memes</span>
+</div>
+
+<div class="card" onclick="openPopup('Promotion')">
+<div class="icon">🚀</div>
+<h3>Promotion</h3>
+<span>29 Memes</span>
+</div>
+
+<div class="card" onclick="openPopup('Layoffs')">
+<div class="icon">📉</div>
+<h3>Layoffs</h3>
+<span>47 Memes</span>
+</div>
+
+<div class="card" onclick="openPopup('Work From Home')">
+<div class="icon">🏠</div>
+<h3>WFH</h3>
+<span>57 Memes</span>
+</div>
+
+<div class="card" onclick="openPopup('Meetings')">
+<div class="icon">☕</div>
+<h3>Meetings</h3>
+<span>93 Memes</span>
+</div>
+
+<div class="card" onclick="openPopup('Resignation')">
+<div class="icon">👋</div>
+<h3>Resignation</h3>
+<span>22 Memes</span>
+</div>
+
+</div>
 
     <div class="grid">
         <!-- Cards -->
@@ -73,5 +314,6 @@
         document.getElementById("memeModal").style.display = "none";
     }
 </script>
+
 </body>
 </html>
