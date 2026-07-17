@@ -189,10 +189,10 @@ display:none;
 .popup-box{
     width: 90%;
     max-width: 850px;
-    height: 60vh;
+    height: 80vh;
     background: #111c2e;
-    border: 1px solid #FFFFFF;
-    border-radius: 20px;
+    border: 1px solid #223553;
+    border-radius: 18px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -305,81 +305,8 @@ display:none;
 <p>Select any category to explore corporate memes.</p>
 
 </div>
-
 <div class="grid">
-
-<div class="card" onclick="openPopup('Office Memes')">
-    <div class="icon">🏢</div>
-    <h3>Office Memes</h3>
-    <span>145 Memes</span>
-</div>
-    
-<div class="card" onclick="openPopup('Toxic Boss')">
-<div class="icon">😡</div>
-<h3>Toxic Boss</h3>
-<span>61 Memes</span>
-</div>
-
-<div class="card" onclick="openPopup('Politics')">
-<div class="icon">🏛️</div>
-<h3>Politics</h3>
-<span>72 Memes</span>
-</div>
-
-<div class="card" onclick="openPopup('HR')">
-<div class="icon">👨‍💼</div>
-<h3>HR</h3>
-<span>45 Memes</span>
-</div>
-
-<div class="card" onclick="openPopup('Manager')">
-<div class="icon">👔</div>
-<h3>Manager</h3>
-<span>51 Memes</span>
-</div>
-
-<div class="card" onclick="openPopup('Salary')">
-<div class="icon">💰</div>
-<h3>Salary</h3>
-<span>66 Memes</span>
-</div>
-
-<div class="card" onclick="openPopup('Appraisal')">
-<div class="icon">📈</div>
-<h3>Appraisal</h3>
-<span>38 Memes</span>
-</div>
-
-<div class="card" onclick="openPopup('Promotion')">
-<div class="icon">🚀</div>
-<h3>Promotion</h3>
-<span>29 Memes</span>
-</div>
-
-<div class="card" onclick="openPopup('Layoffs')">
-<div class="icon">📉</div>
-<h3>Layoffs</h3>
-<span>47 Memes</span>
-</div>
-
-<div class="card" onclick="openPopup('WFH')">
-<div class="icon">🏠</div>
-<h3>WFH</h3>
-<span>57 Memes</span>
-</div>
-
-<div class="card" onclick="openPopup('Meetings')">
-<div class="icon">☕</div>
-<h3>Meetings</h3>
-<span>93 Memes</span>
-</div>
-
-<div class="card" onclick="openPopup('Resignation')">
-<div class="icon">👋</div>
-<h3>Resignation</h3>
-<span>22 Memes</span>
-</div>
-
+    <!-- Categories automatically load honge -->
 </div>
 
 </div>
@@ -418,78 +345,106 @@ display:none;
 <script>
 
 // ==============================
-// Meme Data (Excel/Google Sheets se baad mein)
+// Meme Data (Excel/Google Sheets)
 // ==============================
 
 let memeData = {};
+let isDataLoaded = false; // ✅ ADD KARO YEH LINE
 
 const API_URL = "https://script.google.com/macros/s/AKfycbwuEZWvn8bRBC0nOY7ON1DcILqCmbm4m6--TqNhswplku9fjhJfcz_qSpHcRjOrWxFTnw/exec";
 
-fetch(API_URL)
-  .then(response => response.json())
-  .then(data => {
-      memeData = data;
-      console.log("Loaded", memeData);
-  })
-  .catch(error => {
-      console.error(error);
-  });
-  
+// ✅ CHANGE: Page load ke baad fetch karo
+window.addEventListener("DOMContentLoaded", function(){
+    console.log("⏳ Loading memes from Excel...");
+    
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(data => {
+          memeData = data;
+          isDataLoaded = true; // ✅ Mark as loaded
+          console.log("✅ Memes loaded!", memeData);
+          generateCategoryGrid(); // ✅ Categories generate karo
+      })
+      .catch(error => {
+          console.error("❌ Error:", error);
+      });
+});
+
+// ✅ ADD: Categories dynamically banao
+function generateCategoryGrid() {
+    const grid = document.querySelector(".grid");
+    
+    if (!grid) return;
+    
+    grid.innerHTML = "";
+    
+    const categories = Object.keys(memeData);
+    
+    categories.forEach(category => {
+        const memeCount = memeData[category].length;
+        
+        const card = document.createElement("div");
+        card.className = "card";
+        card.onclick = () => openPopup(category);
+        
+        card.innerHTML = `
+            <div class="icon">📝</div>
+            <h3>${category}</h3>
+            <span>${memeCount} Memes</span>
+        `;
+        
+        grid.appendChild(card);
+    });
+}
+
 let currentCategory = "";
 let currentIndex = 0;
 const perPage = 5;
 
 function openPopup(category){
-
+    if (!isDataLoaded) {
+        alert("Data loading, please wait...");
+        return;
+    }
+    
     currentCategory = category;
     currentIndex = 0;
-
     document.getElementById("popupTitle").innerText = category;
     document.getElementById("memeContainer").innerHTML = "";
-
-    // Class remove karo hidden ka
     document.getElementById("memePopup").classList.remove("hidden");
-
     loadMore();
-
 }
 
 function loadMore(){
-
     const container = document.getElementById("memeContainer");
     const list = memeData[currentCategory] || [];
-
     const end = Math.min(currentIndex + perPage, list.length);
-
+    
     for(let i = currentIndex; i < end; i++){
         const memeDiv = document.createElement("div");
         memeDiv.className = "meme-card";
         memeDiv.textContent = list[i];
         container.appendChild(memeDiv);
     }
-
+    
     currentIndex = end;
-
-    // Load More button hide/show
+    
     if(currentIndex >= list.length){
         document.getElementById("loadMoreBtn").style.display = "none";
     } else {
         document.getElementById("loadMoreBtn").style.display = "inline-block";
     }
-
 }
 
 function closePopup(){
     document.getElementById("memePopup").classList.add("hidden");
 }
 
-// Outside click par close
 document.getElementById("memePopup").addEventListener("click", function(e){
     if(e.target === this) {
         closePopup();
     }
 });
-
 </script>
 
 </body>
