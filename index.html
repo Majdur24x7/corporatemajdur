@@ -154,43 +154,82 @@ function closeStoryDetail() {
 }
 
 function showStoriesByTag(tag) {
-    const filtered = allStories.filter(s => {
-        const storyTag = s.tag.startsWith('#') ? s.tag : '#' + s.tag;
+
+    const grid = document.getElementById("stories-grid");
+
+    // First time click -> grid show
+    grid.classList.remove("hidden");
+
+    const filtered = allStories.filter(story => {
+        const storyTag = story.tag.startsWith("#")
+            ? story.tag
+            : "#" + story.tag;
+
         return storyTag.toLowerCase() === tag.toLowerCase();
     });
 
-    const grid = document.getElementById('stories-grid');
     grid.innerHTML = "";
 
     if (filtered.length === 0) {
-        grid.innerHTML = '<div class="col-span-full text-center text-slate-400 py-8">Iss tag par abhi koi story nahi hai!</div>';
+        grid.innerHTML = `
+            <div class="col-span-full text-center text-slate-400 py-8">
+                No stories found for ${tag}
+            </div>
+        `;
         return;
     }
 
-    const gradients = ['from-blue-600/20 to-cyan-600/30 text-cyan-400', 'from-red-600/20 to-orange-600/30 text-orange-400', 'from-purple-600/20 to-pink-600/30 text-pink-400'];
-    
+    const gradients = [
+        "from-blue-600/20 to-cyan-600/30 text-cyan-400",
+        "from-red-600/20 to-orange-600/30 text-orange-400",
+        "from-purple-600/20 to-pink-600/30 text-pink-400"
+    ];
+
     filtered.forEach(story => {
-        const randomGlow = gradients[Math.floor(Math.random() * gradients.length)];
-        const finalTag = story.tag.startsWith('#') ? story.tag : '#' + story.tag;
-        const card = document.createElement('div');
-        card.className = "bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between cursor-pointer transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20";
+
+        const randomGlow =
+            gradients[Math.floor(Math.random() * gradients.length)];
+
+        const finalTag =
+            story.tag.startsWith("#")
+                ? story.tag
+                : "#" + story.tag;
+
+        const card = document.createElement("div");
+
+        card.className =
+            "bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between cursor-pointer transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20";
+
         card.innerHTML = `
             <div class="p-6">
                 <div class="w-full h-32 bg-gradient-to-br ${randomGlow} rounded-xl mb-4 flex items-center justify-center border border-slate-800/50">
                     <i class="fa-solid fa-quote-left text-2xl opacity-60"></i>
                 </div>
+
                 <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md">
                     ${finalTag}
                 </span>
-                <p class="text-xs sm:text-sm text-slate-300 font-light mt-4 leading-relaxed break-words line-clamp-3">${story.content}</p>
+
+                <p class="text-xs sm:text-sm text-slate-300 font-light mt-4 leading-relaxed break-words line-clamp-3">
+                    ${story.content}
+                </p>
             </div>
+
             <div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800/60 text-[10px] text-slate-500 flex justify-between">
                 <span>By: ${story.author}</span>
                 <span class="text-emerald-400">Read More →</span>
             </div>
         `;
+
         card.onclick = () => openStoryDetail(story);
+
         grid.appendChild(card);
+    });
+
+    // Grid tak scroll bhi ho jayega
+    grid.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
     });
 }
 
@@ -446,14 +485,14 @@ class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 roun
             <!-- Stories will dynamically render here -->
         </div>
         
-        <div class="text-center mt-8">
-            <button
-                id="load-more-btn"
-                onclick="loadMoreStories()"
-                class="hidden bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3 rounded-xl transition-all duration-300">
-                Load More Stories
-            </button>
-        </div>
+       <div class="text-center mt-5">
+    <button
+        id="load-more-tags"
+        onclick="loadMoreTags()"
+        class="bg-slate-800 hover:bg-slate-700 text-white px-6 py-2 rounded-xl font-semibold">
+        Load More Tags
+    </button>
+</div>
     </section>
 
     <!-- STORY DETAIL POPUP MODAL (Naya modal) -->
@@ -562,49 +601,80 @@ let allStories=[];let visibleStories=4;const STORIES_PER_LOAD=4;
 
     grid.innerHTML = "";
     spinner.classList.add("hidden");
-    grid.classList.remove("hidden");
-    
-    // Render Tags
-    const uniqueTags = [...new Set(allStories.map(s => s.tag.startsWith('#') ? s.tag : '#' + s.tag))];
+
+
+    // ===== TAGS =====
+    const uniqueTags = [...new Set(
+        allStories.map(s => s.tag.startsWith("#") ? s.tag : "#" + s.tag)
+    )];
+
+    let visibleTags = window.visibleTags || 7;
+
     tagsContainer.innerHTML = "";
-    uniqueTags.forEach(tag => {
-        const tagBtn = document.createElement('button');
-        tagBtn.className = "px-4 py-2 bg-emerald-600/20 border border-emerald-500/40 hover:border-emerald-500 text-emerald-400 text-xs sm:text-sm font-bold rounded-lg transition duration-200 cursor-pointer";
+
+    uniqueTags.slice(0, visibleTags).forEach(tag => {
+        const tagBtn = document.createElement("button");
+
+        tagBtn.className =
+            "px-4 py-2 bg-emerald-600/20 border border-emerald-500/40 hover:border-emerald-500 text-emerald-400 text-xs sm:text-sm font-bold rounded-lg transition duration-200 cursor-pointer";
+
         tagBtn.innerHTML = `<i class="fa-solid fa-tag mr-1"></i>${tag}`;
+
         tagBtn.onclick = () => showStoriesByTag(tag);
+
         tagsContainer.appendChild(tagBtn);
     });
+
     tagsContainer.classList.remove("hidden");
 
-    // Render Story Cards (Clickable)
-    const gradients = ['from-blue-600/20 to-cyan-600/30 text-cyan-400', 'from-red-600/20 to-orange-600/30 text-orange-400', 'from-purple-600/20 to-pink-600/30 text-pink-400'];
-    
-    allStories.slice(0, visibleStories).forEach((story, idx) => {
-        const randomGlow = gradients[Math.floor(Math.random() * gradients.length)];
-        const finalTag = story.tag.startsWith('#') ? story.tag : '#' + story.tag;
-        const card = document.createElement('div');
-        card.className = "bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between cursor-pointer transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20";
+    // ===== STORIES =====
+    const gradients = [
+        "from-blue-600/20 to-cyan-600/30 text-cyan-400",
+        "from-red-600/20 to-orange-600/30 text-orange-400",
+        "from-purple-600/20 to-pink-600/30 text-pink-400"
+    ];
+
+    allStories.slice(0, visibleStories).forEach(story => {
+
+        const randomGlow =
+            gradients[Math.floor(Math.random() * gradients.length)];
+
+        const finalTag =
+            story.tag.startsWith("#") ? story.tag : "#" + story.tag;
+
+        const card = document.createElement("div");
+
+        card.className =
+            "bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between cursor-pointer transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20";
+
         card.innerHTML = `
             <div class="p-6">
                 <div class="w-full h-32 bg-gradient-to-br ${randomGlow} rounded-xl mb-4 flex items-center justify-center border border-slate-800/50">
                     <i class="fa-solid fa-quote-left text-2xl opacity-60"></i>
                 </div>
-                <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md cursor-pointer hover:bg-emerald-500/20">
+
+                <span class="text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md">
                     ${finalTag}
                 </span>
-                <p class="text-xs sm:text-sm text-slate-300 font-light mt-4 leading-relaxed break-words line-clamp-3">${story.content}</p>
+
+                <p class="text-xs sm:text-sm text-slate-300 font-light mt-4 leading-relaxed break-words line-clamp-3">
+                    ${story.content}
+                </p>
             </div>
+
             <div class="px-6 py-4 bg-slate-950/40 border-t border-slate-800/60 text-[10px] text-slate-500 flex justify-between">
                 <span>By: ${story.author}</span>
                 <span class="text-emerald-400">Read More →</span>
             </div>
         `;
+
         card.onclick = () => openStoryDetail(story);
+
         grid.appendChild(card);
     });
 
     if (btn) {
-        btn.classList.toggle('hidden', visibleStories >= allStories.length);
+        btn.classList.toggle("hidden", visibleStories >= allStories.length);
     }
 }
         // ---------------------------------
@@ -912,6 +982,16 @@ function spinWheel() {
         function resetWheelDisplay() {
             document.getElementById('spin-result').innerText = "Chalo agla banda spin karo!";
         }
+        
+        window.visibleTags = 7;
+
+function loadMoreTags(){
+
+    window.visibleTags += 7;
+
+    renderStories();
+
+}
     </script>
 </body>
 </html>
