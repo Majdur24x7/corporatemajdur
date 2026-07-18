@@ -676,7 +676,16 @@ let allStories=[];let visibleStories=4;const STORIES_PER_LOAD=4;
     if (btn) {
         btn.classList.toggle("hidden", visibleStories >= allStories.length);
     }
+    
+    const loadMoreBtn = document.getElementById("load-more-tags");
+
+if (uniqueTags.length > visibleTags) {
+    loadMoreBtn.classList.remove("hidden");
+} else {
+    loadMoreBtn.classList.add("hidden");
 }
+}
+
         // ---------------------------------
         // THE BREAK DECIDER GAME LOGIC
         // ---------------------------------
