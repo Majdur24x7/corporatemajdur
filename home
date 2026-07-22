@@ -286,7 +286,7 @@ document.addEventListener('click', (e) => {
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 mb-10 w-full sm:w-auto px-4 justify-center">
-            <a href="https://instagram.com/majdur24x7" target="_blank" rel="noopener noreferrer" 
+            <a href="https://instagram.com/corporate.majduur" target="_blank" rel="noopener noreferrer" 
                class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:opacity-95 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg transform hover:-translate-y-0.5 transition">
                 <i class="fab fa-instagram text-lg"></i>
                 <span>Join our community</span>
