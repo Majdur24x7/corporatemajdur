@@ -41,10 +41,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&family=Orbitron:wght@600;800&display=swap');
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
+    
         }
         .digital-font {
             font-family: 'Orbitron', sans-serif;
@@ -238,6 +235,11 @@ document.addEventListener('click', (e) => {
     const storyModal = document.getElementById('story-detail-modal');
     if (e.target === storyModal) closeStoryDetail();
 });
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
     </script>
     
 </head>
@@ -468,7 +470,7 @@ class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 roun
     <!-- STORIES SECTION - WITH TAGS POPUP -->
     <section id="stories-section" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 relative z-10">
         <div class="text-center mb-10">
-            <h2 class="text-2xl sm:text-3xl font-bold mb-2">🏢 Corporate Stories – Real Office Life & Employee Experiences <span class="text-emerald-400">(Live Database)</span></h2>
+            <h2 class="text-2xl sm:text-3xl font-bold mb-2">🏢 Corporate Stories – Real Office Life & Employee Experiences <span class="text-emerald-400"></span></h2>
             <p class="text-xs sm:text-sm text-slate-400">Emotional, relatable fictional stories inspired by real corporate life, office culture, late nights, managers, appraisals, and the everyday struggles of employees.</p>
         </div>
 
