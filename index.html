@@ -553,7 +553,7 @@ class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 roun
     <!-- Footer -->
     <footer class="footer">
   <div class="footer-container">
-    <p>© 2026 Corporate Majdur. All Rights Reserved.</p>
+    <p>© <span id="year"></span> Corporate Majdur. All Rights Reserved.</p>
     <div class="footer-links">
       <a href="/about.html">About Us</a>
       <span>|</span>
@@ -566,8 +566,59 @@ class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 roun
       <a href="/disclaimer.html">Disclaimer</a>
     </div>
   </div>
+  <button class="scroll-to-top" id="scrollTop" title="Scroll to Top">↑</button>
 </footer>
-    
+
+<style>
+.footer {
+    margin-top: 60px;
+    padding: 25px 15px;
+    background: #111827;
+    border-top: 1px solid #2d3748;
+    text-align: center;
+    position: relative;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer p {
+    color: #9ca3af;
+    font-size: 14px;
+    margin: 0 0 12px 0;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0;
+}
+
+.footer-links span {
+    color: #4b5563;
+}
+
+.footer-links a {
+    color: #e5e7eb;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+    position:
+
     <!-- JavaScript logic -->
     <script>
         // ⭐ CHANGE THIS URL - Replace with your Google Apps Script Web App URL
