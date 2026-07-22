@@ -41,7 +41,10 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-    
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&family=Orbitron:wght@600;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
         .digital-font {
             font-family: 'Orbitron', sans-serif;
@@ -120,6 +123,52 @@
             pointer-events: none;
             filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.8));
         }
+        
+        .footer {
+    margin-top: 60px;
+    padding: 25px 15px;
+    background: #111827;
+    border-top: 1px solid #2d3748;
+    text-align: center;
+    position: relative;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer p {
+    color: #9ca3af;
+    font-size: 14px;
+    margin: 0 0 12px 0;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0;
+}
+
+.footer-links span {
+    color: #4b5563;
+}
+
+.footer-links a {
+    color: #e5e7eb;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
     </style>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RMS4345C6K"></script>
@@ -235,11 +284,6 @@ document.addEventListener('click', (e) => {
     const storyModal = document.getElementById('story-detail-modal');
     if (e.target === storyModal) closeStoryDetail();
 });
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
     </script>
     
 </head>
@@ -286,7 +330,7 @@ document.addEventListener('click', (e) => {
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 mb-10 w-full sm:w-auto px-4 justify-center">
-            <a href="https://instagram.com/corporate.majduur" target="_blank" rel="noopener noreferrer" 
+            <a href="https://instagram.com/majdur24x7" target="_blank" rel="noopener noreferrer" 
                class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:opacity-95 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg transform hover:-translate-y-0.5 transition">
                 <i class="fab fa-instagram text-lg"></i>
                 <span>Join our community</span>
@@ -470,7 +514,7 @@ class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 roun
     <!-- STORIES SECTION - WITH TAGS POPUP -->
     <section id="stories-section" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 relative z-10">
         <div class="text-center mb-10">
-            <h2 class="text-2xl sm:text-3xl font-bold mb-2">🏢 Corporate Stories – Real Office Life & Employee Experiences <span class="text-emerald-400"></span></h2>
+            <h2 class="text-2xl sm:text-3xl font-bold mb-2">🏢 Corporate Stories – Real Office Life & Employee Experiences <span class="text-emerald-400">(Live Database)</span></h2>
             <p class="text-xs sm:text-sm text-slate-400">Emotional, relatable fictional stories inspired by real corporate life, office culture, late nights, managers, appraisals, and the everyday struggles of employees.</p>
         </div>
 
@@ -523,34 +567,7 @@ class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 roun
             </div>
         </div>
     </div>
-    <!-- POPUP MODAL -->
-    <div id="story-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden z-50 items-center justify-center p-4">
-        <div class="bg-[#0f1626] border border-slate-800 w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl">
-            <div class="px-5 py-4 bg-slate-900/60 border-b border-slate-800 flex justify-between items-center">
-                <h3 class="font-bold text-base sm:text-lg text-emerald-400"><i class="fa-solid fa-feather mr-2"></i>Apna Dukh Likho</h3>
-                <button onclick="toggleModal(false)" class="text-slate-400 hover:text-white cursor-pointer text-2xl">&times;</button>
-            </div>
-            <form id="story-form" onsubmit="handleStorySubmit(event)" class="p-5 flex flex-col gap-4">
-                <div>
-                    <label class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Nickname</label>
-                    <input type="text" id="story-author" placeholder="e.g., Silent Majdur" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-emerald-500">
-                </div>
-                <div>
-                    <label class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Tag/Topic</label>
-                    <input type="text" id="story-tag" placeholder="e.g., #Salary" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-emerald-500">
-                </div>
-                <div>
-                    <label class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Trauma Story</label>
-                    <textarea id="story-content" rows="4" placeholder="Manager ne kya bol diya..." required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-emerald-500 resize-none"></textarea>
-                </div>
-                <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-95 text-white font-bold py-3 rounded-xl transition mt-2 cursor-pointer text-xs sm:text-sm">
-                    Submit Story (Live on Blog)
-                </button>
-            </form>
-        </div>
-    </div>
-    
-    <!-- Footer -->
+   <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <p>© <span id="year"></span> Corporate Majdur. All Rights Reserved.</p>
@@ -565,56 +582,7 @@ class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 roun
                 </div>
         </div>
     </footer>
-
-<style>
-.footer {
-    margin-top: 60px;
-    padding: 25px 15px;
-    background: #111827;
-    border-top: 1px solid #2d3748;
-    text-align: center;
-    position: relative;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-.footer p {
-    color: #9ca3af;
-    font-size: 14px;
-    margin: 0 0 12px 0;
-}
-
-.footer-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 0;
-}
-
-.footer-links span {
-    color: #4b5563;
-}
-
-.footer-links a {
-    color: #e5e7eb;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.footer-links a:hover {
-    color: #3b82f6;
-    text-decoration: underline;
-}
-
-/* Scroll to Top Button */
-.scroll-to-top {
-    position:
+    
 
     <!-- JavaScript logic -->
     <script>
