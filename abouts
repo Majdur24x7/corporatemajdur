@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Corporate Majdur - India's Employee Community</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: #1a2332;
+            color: #3b82f6;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: 0.3s;
+            border: 1px solid #3b82f6;
+        }
+
+        .back-button:hover {
+            background: #3b82f6;
+            color: #fff;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 50px 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .header-section h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .header-section p {
+            font-size: 16px;
+            color: #dbeafe;
+        }
+
+        .content-box {
+            background: #1a2332;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .content-box h2 {
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-size: 26px;
+        }
+
+        .content-box h3 {
+            color: #60a5fa;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .content-box p {
+            color: #9ca3af;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: #3b82f6;
+            font-weight: 600;
+        }
+
+        .quote {
+            background: #111827;
+            padding: 20px;
+            border-left: 4px solid #3b82f6;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-style: italic;
+            color: #9ca3af;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: #111827;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #2d3748;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.1);
+        }
+
+        .feature-card .emoji {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card h3 {
+            color: #e5e7eb;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: #111827;
+            padding: 25px 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #2d3748;
+        }
+
+        .stat-card h3 {
+            font-size: 32px;
+            color: #3b82f6;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .vision-box {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .vision-box h2 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        .vision-box p {
+            color: #dbeafe;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 30px;
+            background: #1a2332;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 14px 40px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .cta-button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding: 25px 15px;
+            background: #111827;
+            border-top: 1px solid #2d3748;
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 0;
+        }
+
+        .footer-links a {
+            color: #e5e7eb;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #3b82f6;
+        }
+
+        .footer-links span {
+            color: #4b5563;
+        }
+
+        @media (max-width: 768px) {
+            .header-section h1 {
+                font-size: 32px;
+            }
+
+            .content-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-button">← Back to Home</a>
+
+        <div class="header-section">
+            <h1>About Corporate Majdur</h1>
+            <p>India's Largest corporate Employee Community</p>
+        </div>
+
+        <div class="content-box">
+            <h2>🎯 Who Are We?</h2>
+            <p>
+                <span class="highlight">Corporate Majdur</span> is a community-driven platform where Indian employees 
+                find solidarity, humor, and real stories. We're the 9-to-5 survivors' club where your boss's "we're like a family" 
+                memes are our material, and your appraisal disappointments become our community's heart.
+            </p>
+            <div class="quote">
+                "From salary freezes to micromanagement, from layoff anxiety to promotion dreams... 
+                आप अकेले नहीं हो। You are not alone in this cubicle."
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h2>📖 The Story</h2>
+            <p>
+                It started simple: <strong>real conversations</strong> about corporate life. Employees sharing their frustrations, 
+                celebrating small wins, and finding humor in shared pain. What began as a space to vent became a movement.
+            </p>
+            <p>
+                Today, thousands of majdurs (hardworkers) connect here daily. Share their stories. Make friends. Laugh at similar 
+                struggles. Because sometimes, the best therapy is knowing someone else got a "See me after the meeting" message too.
+            </p>
+        </div>
+
+        <div class="content-box">
+            <h2>❓ What We Offer</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="emoji">😂</div>
+                    <h3>Memes & Humor</h3>
+                    <p>Corporate jokes that hit different</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">📖</div>
+                    <h3>Real Stories</h3>
+                    <p>Employee experiences & confessions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">🎮</div>
+                    <h3>Fun Games</h3>
+                    <p>Break timers & escape rooms</p>
+                </div>
+                <div class="feature-card">
+                    <div class="emoji">👥</div>
+                    <h3>Community</h3>
+                    <p>Connect with 1000s like you</p>
+                </div>                   
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h2>📊 By The Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>10K+</h3>
+                    <p>Active Members</p>
+                </div>
+                <div class="stat-card">
+                    <h3>5M+</h3>
+                    <p>Monthly Reach</p>
+                </div>
+                <div class="stat-card">
+                    <h3>100+</h3>
+                    <p>Stories Shared</p>
+                </div>
+                <div class="stat-card">
+                    <h3>24/7</h3>
+                    <p>Community Active</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="vision-box">
+            <h2>🚀 Our Vision</h2>
+            <p>
+                To build the largest community of corporate employees where <strong>every voice matters</strong>, 
+                every story is celebrated, and <strong>no one feels alone</strong> in their corporate journey.
+            </p>
+        </div>
+
+        <div class="content-box">
+            <h2>💪 Why Join Us?</h2>
+            <p>
+                <strong>You've never felt more understood.</strong> Whether you're dealing with:
+            </p>
+            <div style="margin: 15px 0; color: #9ca3af;">
+                ✓ Toxic managers & micromanagement<br>
+                ✓ Salary negotiations gone wrong<br>
+                ✓ Appraisal disappointments<br>
+                ✓ Imposter syndrome<br>
+                ✓ Work-life balance struggles<br>
+                ✓ Layoff anxiety<br>
+                ✓ The dreaded "performance review"
+            </div>
+            <p>
+                ...there's a majdur here who's been through it. And probably has a meme about it too. 😂
+            </p>
+        </div>
+
+        <div class="cta-section">
+            <h3 style="color: #e5e7eb; margin-bottom: 10px;">Ready to Join the Survivors Club?</h3>
+            <p style="color: #9ca3af; margin-bottom: 20px;">
+                Connect with thousands of employees. Share your story. Find your tribe.
+            </p>
+            <a href="https://instagram.com/corporate.majduur" class="cta-button">Join Our Community →</a>
+        </div>
+
+        <div class="content-box" style="margin-top: 30px;">
+            <h2>📞 Get In Touch</h2>
+            <p>
+                Have a story? Want to collaborate? Just want to vent?
+            </p>
+            <p>
+                <strong>Email:</strong> hello@corporatemajdur.com<br>
+                <strong>Instagram:</strong> @majdur24x7<br>
+                <strong>Community:</strong> <a href="/" style="color: #3b82f6;">Corporate Majdur Platform</a>
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>© <span id="year"></span> Corporate Majdur. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="/about.html">About Us</a>
+                <span>|</span>
+                <a href="/contact.html">Contact Us</a>
+                <span>|</span>
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <span>|</span>
+                <a href="/terms.html">Terms & Conditions</a>
+                <span>|</span>
+                <a href="/disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
