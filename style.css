@@ -347,6 +347,42 @@ font-size:30px;
 
 }
 
+.footer{
+    margin-top:60px;
+    padding:25px 15px;
+    background:#111827;
+    border-top:1px solid #2d3748;
+    text-align:center;
+}
+
+.footer p{
+    color:#9ca3af;
+    font-size:14px;
+    margin-bottom:12px;
+}
+
+.footer-links{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.footer-links span{
+    color:#4b5563;
+}
+
+.footer-links a{
+    color:#e5e7eb;
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
+}
+
+.footer-links a:hover{
+    color:#3b82f6;
+}
+
 } 
 
 @media (min-width: 1024px) {
