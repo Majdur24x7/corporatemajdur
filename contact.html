@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Corporate Majdur</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: #1a2332;
+            color: #3b82f6;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: 0.3s;
+            border: 1px solid #3b82f6;
+        }
+
+        .back-button:hover {
+            background: #3b82f6;
+            color: #fff;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 50px 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .header-section h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .header-section p {
+            font-size: 14px;
+            color: #dbeafe;
+        }
+
+        .contact-box {
+            background: #1a2332;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .contact-box h2 {
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .contact-box p {
+            color: #9ca3af;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            background: #111827;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #2d3748;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .contact-info strong {
+            color: #60a5fa;
+        }
+
+        #contact-form {
+            background: #1a2332;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        #contact-form h2 {
+            color: #3b82f6;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #9ca3af;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: #111827;
+            border: 1px solid #2d3748;
+            border-radius: 6px;
+            color: #e5e7eb;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: #3b82f6;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #2563eb;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .social-links a {
+            background: #111827;
+            color: #3b82f6;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.3s;
+            border: 1px solid #3b82f6;
+        }
+
+        .social-links a:hover {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding: 25px 15px;
+            background: #111827;
+            border-top: 1px solid #2d3748;
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 0;
+        }
+
+        .footer-links a {
+            color: #e5e7eb;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #3b82f6;
+        }
+
+        .footer-links span {
+            color: #4b5563;
+        }
+
+        @media (max-width: 768px) {
+            .header-section h1 {
+                font-size: 28px;
+            }
+
+            .contact-box {
+                padding: 20px;
+            }
+
+            .social-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-button">← Back</a>
+
+        <div class="header-section">
+            <h1>Get In Touch</h1>
+            <p>Share Your Story With Us</p>
+        </div>
+
+        <div class="contact-box">
+            <h2>📧 Email Us Your Story</h2>
+            <p>
+                Share your corporate experience, funny incident, or office survival story directly with us.
+            </p>
+            <div class="contact-info">
+                <p><strong>📧 Stories:</strong> corporatemazdoor24x7@gmail.com</p>
+                <p><strong>📧 General:</strong> corporatemazdoor24x7@gmail.com</p>
+                <p><strong>📧 Support:</strong> corporatemazdoor24x7@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="contact-box">
+            <h2>📱 Follow Our Community</h2>
+            <p>
+                Join thousands of employees on Instagram. Share, laugh, and connect with the community.
+            </p>
+            <div class="social-links">
+                <a href="https://instagram.com/majdur24x7" target="_blank">Follow @corporate.majduur</a>
+            </div>
+        </div>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>© <span id="year"></span> Corporate Majdur. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="/about-us.html">About Us</a>
+                <span>|</span>
+                <a href="/contact.html">Contact Us</a>
+                <span>|</span>
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <span>|</span>
+                <a href="/terms.html">Terms & Conditions</a>
+                </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Form submit
+        document.getElementById('storyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Your story has been submitted. We\'ll review it soon! 🙌');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
