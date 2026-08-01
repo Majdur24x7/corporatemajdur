@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-2307304322759348">
+
+    <title>Corporate Memes | Office Memes & Workplace Humor | Corporate Majdur</title>
+
+    <meta name="description"
+        content="Explore the best corporate memes, office jokes, workplace humor, manager memes and employee life memes on Corporate Majdur.">
+
+    <meta name="keywords"
+        content="corporate memes, office memes, employee memes, workplace humor, manager memes, corporate jokes, office jokes">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            background: #050914;
+            color: #ffffff;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #ffffff, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .category-card {
+            background: linear-gradient(
+                145deg,
+                rgba(17, 24, 39, 0.95),
+                rgba(8, 15, 30, 0.95)
+            );
+            border: 1px solid rgba(96, 165, 250, 0.12);
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(96, 165, 250, 0.45);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .category-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.12) rotate(-3deg);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+<header class="w-full max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-center items-center relative z-20">
+    <a href="#" class="flex items-center gap-3 group">
+        <!-- Logo Image Implementation: Height 10 (40px) rakhi hai aur width auto -->
+        <div class="h-10 flex items-center justify-center overflow-hidden bg-transparent">
+            <img src="images/logo.png" alt="Corporate Majdur Logo" class="h-full w-auto object-contain">
+        </div>
+    </a>
+</header>
+
+<main>
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="relative overflow-hidden">
+
+    <!-- Background Glow -->
+    <div class="absolute -top-40 left-1/2
+                -translate-x-1/2
+                w-[600px] h-[400px]
+                bg-blue-600/10
+                blur-3xl rounded-full">
+    </div>
+
+    <div class="relative max-w-7xl mx-auto
+                px-5 lg:px-8
+                pt-20 pb-14
+                text-center">
+
+        <div class="inline-flex items-center gap-2
+                    px-4 py-2
+                    rounded-full
+                    border border-blue-400/20
+                    bg-blue-400/5
+                    text-blue-300
+                    text-xs font-semibold
+                    mb-6">
+
+            😂 CORPORATE MEME ZONE
+
+        </div>
+
+        <h1 class="text-4xl md:text-6xl
+                   font-black tracking-tight
+                   leading-tight">
+
+            Corporate Life,
+            <span class="gradient-text">
+                But Make It Funny.
+            </span>
+
+        </h1>
+
+        <p class="mt-5 max-w-2xl mx-auto
+                  text-gray-400
+                  text-base md:text-lg
+                  leading-relaxed">
+
+            From Monday blues to useless meetings,
+            find memes that perfectly describe
+            your everyday corporate life.
+
+        </p>
+
+        <div class="mt-8 flex flex-wrap
+                    justify-center gap-3
+                    text-sm text-gray-500">
+
+            <span class="px-4 py-2 rounded-full bg-white/5">
+                💻 Office Life
+            </span>
+
+            <span class="px-4 py-2 rounded-full bg-white/5">
+                😂 Memes
+            </span>
+
+            <span class="px-4 py-2 rounded-full bg-white/5">
+                ☕ Employee Life
+            </span>
+
+            <span class="px-4 py-2 rounded-full bg-white/5">
+                😭 Corporate Reality
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CATEGORIES
+===================================================== -->
+
+<section id="categories" class="max-w-7xl mx-auto
+                px-5 lg:px-8
+                pb-24">
+
+    <div class="flex items-end
+                justify-between
+                mb-8">
+
+        <div>
+
+            <p class="text-blue-400
+                      text-sm font-semibold
+                      uppercase tracking-wider mb-2">
+
+                Browse Memes
+
+            </p>
+
+            <h2 class="text-2xl md:text-3xl
+                       font-bold">
+
+                Choose Your
+                <span class="text-blue-400">
+                    Corporate Mood
+                </span>
+
+            </h2>
+
+        </div>
+
+        <div class="hidden sm:block
+                    text-sm text-gray-500">
+
+            Pick a category →
+
+        </div>
+
+    </div>
+
+
+    <!-- CATEGORY GRID -->
+
+    <div class="grid
+                grid-cols-2
+                md:grid-cols-3
+                lg:grid-cols-4
+                gap-4 md:gap-6">
+
+
+        <!-- CARD 1 -->
+
+        <a href="/memes?category=office-life"
+           class="category-card rounded-2xl
+                  p-5 md:p-7">
+
+            <div class="category-icon
+                        w-14 h-14
+                        rounded-2xl
+                        bg-blue-500/10
+                        flex items-center justify-center
+                        text-3xl mb-5">
+
+                💻
+
+            </div>
+
+            <h3 class="font-bold text-lg">
+                Office Life
+            </h3>
+
+            <p class="text-sm text-gray-500 mt-2">
+                Everyday office struggles
+            </p>
+
+            <div class="mt-5 text-blue-400 text-sm font-semibold">
+                Explore →
+            </div>
+
+        </a>
+
+
+        <!-- CARD 2 -->
+
+        <a href="/memes?category=manager"
+           class="category-card rounded-2xl
+                  p-5 md:p-7">
+
+            <div class="category-icon
+                        w-14 h-14
+                        rounded-2xl
+                        bg-blue-500/10
+                        flex items-center justify-center
+                        text-3xl mb-5">
+
+                👨‍💼
+
+            </div>
+
+            <h3 class="font-bold text-lg">
+                Manager Problems
+            </h3>
+
+            <p class="text-sm text-gray-500 mt-2">
+                Bosses, meetings & targets
+            </p>
+
+            <div class="mt-5 text-blue-400 text-sm font-semibold">
+                Explore →
+            </div>
+
+        </a>
+
+
+        <!-- CARD 3 -->
+
+        <a href="/memes?category=employee-life"
+           class="category-card rounded-2xl
+                  p-5 md:p-7">
+
+            <div class="category-icon
+                        w-14 h-14
+                        rounded-2xl
+                        bg-blue-500/10
+                        flex items-center justify-center
+                        text-3xl mb-5">
+
+                🧑‍💻
+
+            </div>
+
+            <h3 class="font-bold text-lg">
+                Employee Life
+            </h3>
+
+            <p class="text-sm text-gray-500 mt-2">
+                The real employee experience
+            </p>
+
+            <div class="mt-5 text-blue-400 text-sm font-semibold">
+                Explore →
+            </div>
+
+        </a>
+
+
+        <!-- CARD 4 -->
+
+        <a href="/memes?category=meetings"
+           class="category-card rounded-2xl
+                  p-5 md:p-7">
+
+            <div class="category-icon
+                        w-14 h-14
+                        rounded-2xl
+                        bg-blue-500/10
+                        flex items-center justify-center
+                        text-3xl mb-5">
+
+                🗣️
+
+            </div>
+
+            <h3 class="font-bold text-lg">
+                Meetings
+            </h3>
+
+            <p class="text-sm text-gray-500 mt-2">
+                This meeting could've been an email
+            </p>
+
+            <div class="mt-5 text-blue-400 text-sm font-semibold">
+                Explore →
+            </div>
+
+        </a>
+
+
+        <!-- CARD 5 -->
+
+        <a href="/memes?category=salary"
+           class="category-card rounded-2xl
+                  p-5 md:p-7">
+
+            <div class="category-icon
+                        w-14 h-14
+                        rounded-2xl
+                        bg-blue-500/10
+                        flex items-center justify-center
+                        text-3xl mb-5">
+
+                💸
+
+            </div>
+
+            <h3 class="font-bold text-lg">
+                Salary & Payday
+            </h3>
+
+            <p class="text-sm text-gray-500 mt-2">
+                Salary arrives, salary disappears
+            </p>
+
+            <div class="mt-5 text-blue-400 text-sm font-semibold">
+                Explore →
+            </div>
+
+        </a>
+
+
+        <!-- CARD 6 -->
+
+        <a href="/memes?category=hr"
+           class="category-card rounded-2xl
+                  p-5 md:p-7">
+
+            <div class="category-icon
+                        w-14 h-14
+                        rounded-2xl
+                        bg-blue-500/10
+                        flex items-center justify-center
+                        text-3xl mb-5">
+
+                🧑‍⚖️
+
+            </div>
+
+            <h3 class="font-bold text-lg">
+                HR Memes
+            </h3>
+
+            <p class="text-sm text-gray-500 mt-2">
+                HR says one thing, reality another
+            </p>
+
+            <div class="mt-5 text-blue-400 text-sm font-semibold">
+                Explore →
+            </div>
+
+        </a>
+
+
+        <!-- CARD 7 -->
+
+        <a href="/memes?category=monday"
+           class="category-card rounded-2xl
+                  p-5 md:p-7">
+
+            <div class="category-icon
+                        w-14 h-14
+                        rounded-2xl
+                        bg-blue-500/10
+                        flex items-center justify-center
+                        text-3xl mb-5">
+
+                😩
+
+            </div>
+
+            <h3 class="font-bold text-lg">
+                Monday Blues
+            </h3>
+
+            <p class="text-sm text-gray-500 mt-2">
+                Back to work reality
+            </p>
+
+            <div class="mt-5 text-blue-400 text-sm font-semibold">
+                Explore →
+            </div>
+
+        </a>
+
+
+        <!-- CARD 8 -->
+
+        <a href="/memes?category=friday"
+           class="category-card rounded-2xl
+                  p-5 md:p-7">
+
+            <div class="category-icon
+                        w-14 h-14
+                        rounded-2xl
+                        bg-blue-500/10
+                        flex items-center justify-center
+                        text-3xl mb-5">
+
+                🥳
+
+            </div>
+
+            <h3 class="font-bold text-lg">
+                Friday Mood
+            </h3>
+
+            <p class="text-sm text-gray-500 mt-2">
+                Survived another week
+            </p>
+
+            <div class="mt-5 text-blue-400 text-sm font-semibold">
+                Explore →
+            </div>
+
+        </a>
+
+
+        <!-- CARD 9 -->
+
+        <a href="/memes?category=wfh"
+           class="category-card rounded-2xl
+                  p-5 md:p-7">
+
+            <div class="category-icon
+                        w-14 h-14
+                        rounded-2xl
+                        bg-blue-500/10
+                        flex items-center justify-center
+                        text-3xl mb-5">
+
+                🏠
+
+            </div>
+
+            <h3 class="font-bold text-lg">
+                Work From Home
+            </h3>
+
+            <p class="text-sm text-gray-500 mt-2">
+                Home, laptop & endless calls
+            </p>
+
+            <div class="mt-5 text-blue-400 text-sm font-semibold">
+                Explore →
+            </div>
+
+        </a>
+
+
+        <!-- CARD 10 -->
+
+        <a href="/memes?category=corporate-truth"
+           class="category-card rounded-2xl
+                  p-5 md:p-7">
+
+            <div class="category-icon
+                        w-14 h-14
+                        rounded-2xl
+                        bg-blue-500/10
+                        flex items-center justify-center
+                        text-3xl mb-5">
+
+                🎯
+
+            </div>
+
+            <h3 class="font-bold text-lg">
+                Corporate Truth
+            </h3>
+
+            <p class="text-sm text-gray-500 mt-2">
+                Things nobody says out loud
+            </p>
+
+            <div class="mt-5 text-blue-400 text-sm font-semibold">
+                Explore →
+            </div>
+
+        </a>
+
+
+        <!-- CARD 11 -->
+
+        <a href="/memes?category=workload"
+           class="category-card rounded-2xl
+                  p-5 md:p-7">
+
+            <div class="category-icon
+                        w-14 h-14
+                        rounded-2xl
+                        bg-blue-500/10
+                        flex items-center justify-center
+                        text-3xl mb-5">
+
+                📚
+
+            </div>
+
+            <h3 class="font-bold text-lg">
+                Workload
+            </h3>
+
+            <p class="text-sm text-gray-500 mt-2">
+                More work, same salary
+            </p>
+
+            <div class="mt-5 text-blue-400 text-sm font-semibold">
+                Explore →
+            </div>
+
+        </a>
+
+
+        <!-- CARD 12 -->
+
+        <a href="/memes?category=weekend"
+           class="category-card rounded-2xl
+                  p-5 md:p-7">
+
+            <div class="category-icon
+                        w-14 h-14
+                        rounded-2xl
+                        bg-blue-500/10
+                        flex items-center justify-center
+                        text-3xl mb-5">
+
+                🛌
+
+            </div>
+
+            <h3 class="font-bold text-lg">
+                Weekend
+            </h3>
+
+            <p class="text-sm text-gray-500 mt-2">
+                Two days of freedom
+            </p>
+
+            <div class="mt-5 text-blue-400 text-sm font-semibold">
+                Explore →
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+</body>
+</html>
