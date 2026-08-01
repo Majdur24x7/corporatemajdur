@@ -3,26 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-adsense-account" content="ca-pub-2307304322759348">
-
-    <title>Corporate Memes | Office Memes & Workplace Humor | Corporate Majdur</title>
-
-    <meta name="description"
-        content="Explore the best corporate memes, office jokes, workplace humor, manager memes and employee life memes on Corporate Majdur.">
-
-    <meta name="keywords"
-        content="corporate memes, office memes, employee memes, workplace humor, manager memes, corporate jokes, office jokes">
-
+    <title>Manager Memes | Corporate Majdur</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         * {
             font-family: 'Montserrat', sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         body {
@@ -37,19 +25,54 @@
         }
 
         .category-card {
-            background: linear-gradient(
-                145deg,
-                rgba(17, 24, 39, 0.95),
-                rgba(8, 15, 30, 0.95)
-            );
+            background: linear-gradient(145deg, rgba(17, 24, 39, 0.95), rgba(8, 15, 30, 0.95));
             border: 1px solid rgba(96, 165, 250, 0.12);
             transition: all 0.3s ease;
         }
 
         .category-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(96, 165, 250, 0.45);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+            border-color: rgba(96, 165, 250, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(145deg, rgba(25, 35, 50, 0.98), rgba(12, 20, 40, 0.98));
+        }
+
+        .meme-card {
+            background: linear-gradient(145deg, rgba(17, 24, 39, 0.95), rgba(8, 15, 30, 0.95));
+            border: 1px solid rgba(96, 165, 250, 0.12);
+            transition: all 0.3s ease;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .meme-card:hover {
+            border-color: rgba(96, 165, 250, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(145deg, rgba(25, 35, 50, 0.98), rgba(12, 20, 40, 0.98));
+        }
+
+        .meme-text {
+            line-height: 1.5;
+            letter-spacing: 0.3px;
+        }
+
+        .back-button {
+            transition: all 0.2s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-4px);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: block;
         }
 
         .category-icon {
@@ -64,405 +87,363 @@
 
 <body>
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
-<header class="w-full max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-center items-center relative z-20">
-    <a href="/" class="flex items-center gap-3 group">
-        <!-- Logo Image Implementation: Height 10 (40px) rakhi hai aur width auto -->
-        <div class="h-10 flex items-center justify-center overflow-hidden bg-transparent">
-            <img src="images/logo.png" alt="Corporate Majdur Logo" class="h-full w-auto object-contain">
-        </div>
-    </a>
-</header>
-
-<main>
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="relative overflow-hidden">
-
-    <!-- Background Glow -->
-    <div class="absolute -top-40 left-1/2
-                -translate-x-1/2
-                w-[600px] h-[400px]
-                bg-blue-600/10
-                blur-3xl rounded-full">
-    </div>
-
-    <div class="relative max-w-7xl mx-auto
-                px-5 lg:px-8
-                pt-20 pb-14
-                text-center">
-
-        <div class="inline-flex items-center gap-2
-                    px-4 py-2
-                    rounded-full
-                    border border-blue-400/20
-                    bg-blue-400/5
-                    text-blue-300
-                    text-xs font-semibold
-                    mb-6">
-
-            😂 CORPORATE MEME ZONE
-
-        </div>
-
-        <h1 class="text-4xl md:text-6xl
-                   font-black tracking-tight
-                   leading-tight"
-           style="font-weight: 900;">
-
-            Corporate Life,
-            <span class="gradient-text">
-                But Make It Funny.
-            </span>
-
-        </h1>
-
-        <div class="mt-8 flex flex-wrap
-                    justify-center gap-3
-                    text-sm text-gray-500">
-
-            <span class="px-4 py-2 rounded-full bg-white/5">
-                💻 Office Life
-            </span>
-
-            <span class="px-4 py-2 rounded-full bg-white/5">
-                😂 Memes
-            </span>
-
-            <span class="px-4 py-2 rounded-full bg-white/5">
-                ☕ Employee Life
-            </span>
-
-            <span class="px-4 py-2 rounded-full bg-white/5">
-                😭 Corporate Reality
-            </span>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     CATEGORIES
-===================================================== -->
-
-<section id="categories" class="max-w-7xl mx-auto
-                px-5 lg:px-8
-                pb-24">
-
-    <div class="flex items-end
-                justify-between
-                mb-8">
-
-        <div>
-
-            <p class="text-blue-400
-                      text-sm font-semibold
-                      uppercase tracking-wider mb-2">
-
-                Browse Memes
-
-            </p>
-
-            <h2 class="text-2xl md:text-3xl
-                       font-bold">
-
-                Choose Your
-                <span class="text-blue-400">
-                    Corporate Mood
-                </span>
-
-            </h2>
-
-        </div>
-
-        <div class="hidden sm:block
-                    text-sm text-gray-500">
-
-            Pick a category →
-
-        </div>
-
-    </div>
-
-
-    <!-- CATEGORY GRID -->
-
-    <div class="grid
-                grid-cols-2
-                md:grid-cols-3
-                lg:grid-cols-4
-                gap-4 md:gap-6">
-
-
+    <!-- HOME PAGE - CATEGORIES -->
+    <div id="homePage" class="visible">
         
-        <!-- CARD 1: MANAGER -->
+        
 
-        <div class="category-card rounded-2xl
-                  p-5 md:p-7 cursor-pointer"
-             onclick="window.location.href='manager-memes-categories.html'">
+        <!-- HERO SECTION -->
+        <section class="relative overflow-hidden">
 
-            <div class="category-icon
-                        w-14 h-14
-                        rounded-2xl
-                        bg-blue-500/10
-                        flex items-center justify-center
-                        text-3xl mb-5">
+            <!-- Background Glow -->
+            <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-600/10 blur-3xl rounded-full"></div>
 
-                👨‍💼
+            <div class="relative max-w-7xl mx-auto px-5 lg:px-8 pt-8 md:pt-20 pb-10 md:pb-14 text-center">
 
-            </div>
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-400/20 bg-blue-400/5 text-blue-300 text-xs font-semibold mb-3">
+                    😂 CORPORATE MEME ZONE
+                </div>
 
-            <h3 class="font-bold text-lg">
-                Manager
-            </h3>
+                <h1 class="text-3xl md:text-6xl font-black tracking-tight leading-tight" style="font-weight: 900;">
+                    "Find Your Vibe,
+                    <span class="gradient-text">
+                        Pick Your Laugh".
+                    </span>
+                </h1>
 
-            <p class="text-sm text-gray-500 mt-2">
-                Bosses, meetings & targets
-            </p>
+                <div class="mt-6 md:mt-8 flex flex-wrap justify-center gap-2 md:gap-3 text-xs md:text-sm text-gray-500">
+                    <span class="px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/5">
+                        💻 Office Life
+                    </span>
 
-            <div class="mt-5 text-blue-400 text-sm font-semibold">
-                Explore →
-            </div>
+                    <span class="px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/5">
+                        😂 Memes
+                    </span>
 
-        </div>
+                    <span class="px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/5">
+                        ☕ Employee Life
+                    </span>
 
-
-        <!-- CARD 2: CORPORATE LIFE -->
-
-        <div class="category-card rounded-2xl
-                  p-5 md:p-7 cursor-pointer"
-             onclick="window.location.href='corporate-life.html'">
-
-            <div class="category-icon
-                        w-14 h-14
-                        rounded-2xl
-                        bg-blue-500/10
-                        flex items-center justify-center
-                        text-3xl mb-5">
-
-                🧑‍💻
+                    <span class="px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/5">
+                        😭 Corporate Reality
+                    </span>
+                </div>
 
             </div>
 
-            <h3 class="font-bold text-lg">
-                Corporate Life
-            </h3>
+        </section>
 
-            <p class="text-sm text-gray-500 mt-2">
-                The real employee experience
-            </p>
+        <main class="max-w-7xl mx-auto px-3 md:px-8 py-6 md:py-10">
 
-            <div class="mt-5 text-blue-400 text-sm font-semibold">
-                Explore →
-            </div>
+            
 
-        </div>
+            <!-- CATEGORIES GRID -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
 
+                <!-- CATEGORY 1 -->
+                <div onclick="loadCategory('Manager', managerMemes)" class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8">
+                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">👔</div>
+                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">Manager</h3>
+                    <p class="text-gray-400 text-sm mb-4">Apna manager kaisa hota hai...</p>
+                    <div class="mt-auto">
+                        <span class="text-blue-400 font-semibold">8 Memes → </span>
+                    </div>
+                </div>
 
-        <!-- CARD 3: MEETINGS -->
+                <!-- CATEGORY 2 -->
+                <div onclick="loadCategory('Boss', bossMemes)" class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8">
+                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">😤</div>
+                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">Boss</h3>
+                    <p class="text-gray-400 text-sm mb-4">Jab boss ko gussa aata hai...</p>
+                    <div class="mt-auto">
+                        <span class="text-blue-400 font-semibold">6 Memes → </span>
+                    </div>
+                </div>
 
-        <div class="category-card rounded-2xl
-                  p-5 md:p-7 cursor-pointer"
-             onclick="window.location.href='meetings.html'">
+                <!-- CATEGORY 3 -->
+                <div onclick="loadCategory('HR', hrMemes)" class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8">
+                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">📋</div>
+                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">HR</h3>
+                    <p class="text-gray-400 text-sm mb-4">HR ke interesting moments...</p>
+                    <div class="mt-auto">
+                        <span class="text-blue-400 font-semibold">5 Memes → </span>
+                    </div>
+                </div>
 
-            <div class="category-icon
-                        w-14 h-14
-                        rounded-2xl
-                        bg-blue-500/10
-                        flex items-center justify-center
-                        text-3xl mb-5">
+                <!-- CATEGORY 4 -->
+                <div onclick="loadCategory('Work Life', workLifeMemes)" class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8">
+                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">⏰</div>
+                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">Work Life</h3>
+                    <p class="text-gray-400 text-sm mb-4">Office ka daily drama...</p>
+                    <div class="mt-auto">
+                        <span class="text-blue-400 font-semibold">7 Memes → </span>
+                    </div>
+                </div>
 
-                🗣️
+                <!-- CATEGORY 5 -->
+                <div onclick="loadCategory('Salary', salaryMemes)" class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8">
+                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">💰</div>
+                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">Salary</h3>
+                    <p class="text-gray-400 text-sm mb-4">Paise ki baatein...</p>
+                    <div class="mt-auto">
+                        <span class="text-blue-400 font-semibold">4 Memes → </span>
+                    </div>
+                </div>
 
-            </div>
-
-            <h3 class="font-bold text-lg">
-                Meetings
-            </h3>
-
-            <p class="text-sm text-gray-500 mt-2">
-                This meeting could've been an email
-            </p>
-
-            <div class="mt-5 text-blue-400 text-sm font-semibold">
-                Explore →
-            </div>
-
-        </div>
-
-
-        <!-- CARD 4: SALARY -->
-
-        <div class="category-card rounded-2xl
-                  p-5 md:p-7 cursor-pointer"
-             onclick="window.location.href='salary.html'">
-
-            <div class="category-icon
-                        w-14 h-14
-                        rounded-2xl
-                        bg-blue-500/10
-                        flex items-center justify-center
-                        text-3xl mb-5">
-
-                💸
-
-            </div>
-
-            <h3 class="font-bold text-lg">
-                Salary & Payday
-            </h3>
-
-            <p class="text-sm text-gray-500 mt-2">
-                Salary arrives, salary disappears
-            </p>
-
-            <div class="mt-5 text-blue-400 text-sm font-semibold">
-                Explore →
-            </div>
-
-        </div>
-
-
-        <!-- CARD 5: HR -->
-
-        <div class="category-card rounded-2xl
-                  p-5 md:p-7 cursor-pointer"
-             onclick="window.location.href='hr.html'">
-
-            <div class="category-icon
-                        w-14 h-14
-                        rounded-2xl
-                        bg-blue-500/10
-                        flex items-center justify-center
-                        text-3xl mb-5">
-
-                🧑‍⚖️
+                <!-- CATEGORY 6 -->
+                <div onclick="loadCategory('Meeting', meetingMemes)" class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8">
+                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">📞</div>
+                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">Meeting</h3>
+                    <p class="text-gray-400 text-sm mb-4">Meeting ke andar kya hota hai...</p>
+                    <div class="mt-auto">
+                        <span class="text-blue-400 font-semibold">5 Memes → </span>
+                    </div>
+                </div>
 
             </div>
 
-            <h3 class="font-bold text-lg">
-                HR
-            </h3>
-
-            <p class="text-sm text-gray-500 mt-2">
-                HR says one thing, reality another
-            </p>
-
-            <div class="mt-5 text-blue-400 text-sm font-semibold">
-                Explore →
-            </div>
-
-        </div>
-
-
-        <!-- CARD 6: CORPORATE TRUTH -->
-
-        <div class="category-card rounded-2xl
-                  p-5 md:p-7 cursor-pointer"
-             onclick="window.location.href='corporate-truth.html'">
-
-            <div class="category-icon
-                        w-14 h-14
-                        rounded-2xl
-                        bg-blue-500/10
-                        flex items-center justify-center
-                        text-3xl mb-5">
-
-                🎯
-
-            </div>
-
-            <h3 class="font-bold text-lg">
-                Corporate Truth
-            </h3>
-
-            <p class="text-sm text-gray-500 mt-2">
-                Things nobody says out loud
-            </p>
-
-            <div class="mt-5 text-blue-400 text-sm font-semibold">
-                Explore →
-            </div>
-
-        </div>
-
-
-        <!-- CARD 7: AI vs EMPLOYEE -->
-
-        <div class="category-card rounded-2xl
-                  p-5 md:p-7 cursor-pointer"
-             onclick="window.location.href='ai-vs-employee.html'">
-
-            <div class="category-icon
-                        w-14 h-14
-                        rounded-2xl
-                        bg-blue-500/10
-                        flex items-center justify-center
-                        text-3xl mb-5">
-
-                🤖
-
-            </div>
-
-            <h3 class="font-bold text-lg">
-                AI vs Employee
-            </h3>
-
-            <p class="text-sm text-gray-500 mt-2">
-                More work, same salary
-            </p>
-
-            <div class="mt-5 text-blue-400 text-sm font-semibold">
-                Explore →
-            </div>
-
-        </div>
-
-
-        <!-- CARD 8: WEEKEND -->
-
-        <div class="category-card rounded-2xl
-                  p-5 md:p-7 cursor-pointer"
-             onclick="window.location.href='weekend.html'">
-
-            <div class="category-icon
-                        w-14 h-14
-                        rounded-2xl
-                        bg-blue-500/10
-                        flex items-center justify-center
-                        text-3xl mb-5">
-
-                🛌
-
-            </div>
-
-            <h3 class="font-bold text-lg">
-                Weekend
-            </h3>
-
-            <p class="text-sm text-gray-500 mt-2">
-                Two days of freedom
-            </p>
-
-            <div class="mt-5 text-blue-400 text-sm font-semibold">
-                Explore →
-            </div>
-
-        </div>
-
+        </main>
     </div>
 
-</section>
+    <!-- CATEGORY PAGE - MEMES -->
+    <div id="categoryPage" class="hidden">
+        
+        <!-- CATEGORY HERO SECTION -->
+        <section class="relative overflow-hidden border-b border-blue-500/10">
 
-</main>
+            <!-- Background Glow -->
+            <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-600/10 blur-3xl rounded-full"></div>
 
+            <div class="relative max-w-7xl mx-auto px-5 lg:px-8 py-8">
+
+                <div class="flex items-center justify-between gap-4">
+                    <!-- Left: Category Title -->
+                    <div class="flex items-baseline gap-2">
+                        <h1 class="text-2xl md:text-3xl font-black tracking-tight" style="font-weight: 900;">
+                            <span id="categoryTitle" class="text-blue-400">Category</span>
+                            <span class="text-white ml-2">Memes</span>
+                        </h1>
+                        <p class="text-gray-400 text-xs md:text-sm whitespace-nowrap">
+                            (<span id="categoryCount">0</span> memes)
+                        </p>
+                    </div>
+
+                    <!-- Right: Back Button -->
+                    <button onclick="goBack()" class="back-button flex items-center gap-2 px-4 py-2 bg-blue-500/20 hover:bg-blue-500/40 text-blue-400 hover:text-blue-300 transition-all font-semibold text-xs md:text-sm rounded-lg border border-blue-500/30 hover:border-blue-500/60 whitespace-nowrap flex-shrink-0">
+                        ← Back
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <main class="max-w-7xl mx-auto px-3 md:px-8 py-10">
+
+            <!-- MEMES GRID -->
+            <div id="memesGrid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5">
+                <!-- Memes will be loaded here -->
+            </div>
+
+        </main>
+    </div>
+
+    <!-- POPUP MODAL -->
+    <div id="memeModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden p-4">
+        <div class="relative bg-[#0b1329] border border-blue-500/20 rounded-2xl max-w-2xl w-full overflow-hidden shadow-2xl p-6 md:p-8">
+            
+            <!-- Top Action Bar -->
+            <div class="flex items-center justify-between mb-6">
+                <!-- Close Button -->
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white bg-white/10 hover:bg-white/20 rounded-full w-8 h-8 flex items-center justify-center transition-colors text-sm font-bold">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Meme Text -->
+            <div class="mb-8">
+                <h3 id="modalTitle" class="font-bold text-white text-xl md:text-2xl leading-relaxed meme-text"></h3>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center justify-between pt-6 border-t border-gray-800">
+                <button onclick="toggleLike(this)" class="text-sm text-gray-300 hover:text-red-400 transition-colors font-medium">❤️ Like</button>
+                
+                <!-- Share Button -->
+                <div class="relative">
+                    <button onclick="toggleShareMenu(event)" class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-semibold transition-colors">
+                        Share ↗
+                    </button>
+
+                    <!-- Social Media Dropdown -->
+                    <div id="shareDropdown" class="absolute right-0 bottom-full mb-2 w-44 bg-[#111c38] border border-blue-500/20 rounded-xl shadow-xl hidden overflow-hidden z-20">
+                        <a href="#" onclick="shareTo('WhatsApp')" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">
+                            💬 WhatsApp
+                        </a>
+                        <a href="#" onclick="shareTo('Twitter/X')" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">
+                            🐦 Twitter / X
+                        </a>
+                        <a href="#" onclick="shareTo('LinkedIn')" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">
+                            💼 LinkedIn
+                        </a>
+                        <a href="#" onclick="copyLink()" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors border-t border-gray-800">
+                            🔗 Copy Link
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // MEME DATA BY CATEGORY
+
+        const managerMemes = [
+            { text: 'Manager kehta tha "I am a foodie"... Saala m@*****C** meri job hi khaa gaya', likes: 105 },
+            { text: 'Kon kehta hai Manager apne hote hain.....i believe in manager hi sabse bade B*****e hote hai', likes: 528 },
+            { text: 'Dear Manager........Apne Harkato mein sudhaar lao lala,--------Tum sirf Company ke andar Manager ho, Bahar nahi.', likes: 328 },
+            { text: 'Manager se sach bolkar leave maang ke dekh liye ..C***** saala ye ...jhooth hi deserve karte hain.', likes: 428 },
+            { text: 'ek bar dusri job mil jaye*----------Manager ki G***D aisi fadunga darzi bhi bolega ......abb appko new lagwani padegi...', likes: 678 },
+            { text: 'Manager: Work hard aur success paoge. Baki sab dikhega. Meri tarah dekho!', likes: 892 },
+            { text: 'Jab Manager kehte hain "Chalo Beta, Friday toh haan par work-life balance seekhna padega"', likes: 245 },
+            { text: 'Manager: Mujhe office culture pasand hai. Employees: Haan, apka apna culture!', likes: 412 }
+        ];
+
+        const bossMemes = [
+            { text: 'Boss: Meeting cancel. Jao aur kaam karo. Baki sab overrated hai.', likes: 567 },
+            { text: 'Jab boss ek ek employee se puchhe "Sab theek hai na?" aur fir apni fikr se jaye', likes: 456 },
+            { text: 'Boss ko project deadline se ek din pehle project yaad aata hai', likes: 789 },
+            { text: 'Boss: Ye decision mere liye badhaiya hai. Employee: Lekin vo galat hai! Boss: Toh ghalat hi sahi!', likes: 334 },
+            { text: 'Boss se pehle project complete hona chahiye, fir iska budget decide hoga', likes: 523 },
+            { text: 'Jab boss apna mood off hota hai aur pura office suffer karta hai', likes: 612 }
+        ];
+
+        const hrMemes = [
+            { text: 'HR: Cultural fit matter karti hai. Also HR: Aapka cultural fit match nahi hua', likes: 445 },
+            { text: 'HR meeting: Sab ko appreciate karte hain... par kisi ko increment nahi dete', likes: 678 },
+            { text: 'HR: Confidential information. Also HR: Sabko batate hain', likes: 523 },
+            { text: 'Jab HR policy change hota hai aur kisi ko pata nahi chalata', likes: 412 },
+            { text: 'HR interview: Ek chalte employee ko nikal dete hain, dusre ko nahi le paate', likes: 356 }
+        ];
+
+        const workLifeMemes = [
+            { text: 'Monday morning ko office jaate time: Ye sab kyon kar raha hoon?', likes: 834 },
+            { text: 'Friday: Khushi. Saturday: Sone ka plan. Sunday: Neend hi neend. Monday: Ghum!', likes: 945 },
+            { text: 'Work-life balance: Kaam mein life nahi hai, life mein kaam hai', likes: 567 },
+            { text: 'Laptop off karne ke baad: Aa gaya peace of mind!', likes: 478 },
+            { text: 'Remote work: Acha lagta hai lekin video call mein dress pehni padti hai', likes: 723 },
+            { text: 'Office mein: Kaam. Ghar mein: Bhi kaam. Bathroom mein: Kaam ka tension!', likes: 634 },
+            { text: '9-5 job: Actually 8-8 kaam, 5-9 tension rehti hai!', likes: 821 }
+        ];
+
+        const salaryMemes = [
+            { text: 'Salary day: Khushi. Ek din baad: Sab khatam. Baki: Udhar!', likes: 912 },
+            { text: 'Salary increment: 5%. Inflation: 15%. Celebration: Nahi hona!', likes: 756 },
+            { text: 'Boss: Budget limited hai. Employees: Toh apni salary kaim karo na!', likes: 645 },
+            { text: 'Salary check karte time: Yeh numbers galat ho gaye kya?', likes: 534 }
+        ];
+
+        const meetingMemes = [
+            { text: 'Meeting ka agenda: Kuch clear nahi, bas time barbaad', likes: 823 },
+            { text: 'Video call mein: Sab mute, mic nahi kaam kar raha, aur message kuch samajh nahi ata', likes: 645 },
+            { text: 'Meeting end time: 1 hour. Actual time: 2 hours. Fayda: Zero', likes: 734 },
+            { text: 'Jab ek admi 30 min meeting ko 2 hours tak chalate hain', likes: 567 },
+            { text: 'Important meeting mein: "Can you see my screen?" - 10 minutes waste!', likes: 612 }
+        ];
+
+        // PAGE NAVIGATION
+
+        function loadCategory(categoryName, memes) {
+            document.getElementById('homePage').classList.add('hidden');
+            document.getElementById('categoryPage').classList.remove('hidden');
+            document.getElementById('categoryTitle').innerText = categoryName;
+            document.getElementById('categoryCount').innerText = memes.length;
+            
+            renderMemes(memes);
+            window.scrollTo(0, 0);
+        }
+
+        function goBack() {
+            document.getElementById('categoryPage').classList.add('hidden');
+            document.getElementById('homePage').classList.remove('hidden');
+            closeModal();
+            window.scrollTo(0, 0);
+        }
+
+        function renderMemes(memes) {
+            const grid = document.getElementById('memesGrid');
+            grid.innerHTML = '';
+            
+            memes.forEach(meme => {
+                const card = document.createElement('div');
+                card.className = 'meme-card rounded-xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-6';
+                card.onclick = () => openModal(meme.text);
+                card.innerHTML = `
+                    <h3 class="font-semibold text-sm md:text-base text-white leading-relaxed meme-text flex-grow">
+                        ${meme.text}
+                    </h3>
+                    <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-800 text-xs md:text-sm text-gray-400">
+                        <span>❤️ ${meme.likes}</span>
+                        <span class="text-blue-400 font-semibold">Read →</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // MODAL FUNCTIONS
+
+        function openModal(title) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('memeModal').classList.remove('hidden');
+            document.getElementById('shareDropdown').classList.add('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('memeModal').classList.add('hidden');
+            document.getElementById('shareDropdown').classList.add('hidden');
+        }
+
+        function toggleShareMenu(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById('shareDropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        function shareTo(platform) {
+            alert('Shared to ' + platform + '!');
+            document.getElementById('shareDropdown').classList.add('hidden');
+        }
+
+        function copyLink() {
+            alert('Meme link copied to clipboard!');
+            document.getElementById('shareDropdown').classList.add('hidden');
+        }
+
+        function toggleLike(button) {
+            button.classList.toggle('text-red-400');
+            button.classList.toggle('text-gray-300');
+        }
+
+        window.onclick = function(e) {
+            const modal = document.getElementById('memeModal');
+            const dropdown = document.getElementById('shareDropdown');
+            
+            if (e.target === modal) {
+                closeModal();
+            } else {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
