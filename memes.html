@@ -406,10 +406,37 @@ window.addEventListener("DOMContentLoaded", function(){
     fetch(API_URL)
       .then(response => response.json())
       .then(data => {
+
           memeData = data;
-          isDataLoaded = true; // ✅ Mark as loaded
+          isDataLoaded = true;
+
           console.log("✅ Memes loaded!", memeData);
-          generateCategoryGrid(); // ✅ Categories generate karo
+
+          generateCategoryGrid();
+
+          // Check if category URL exists
+          const path = window.location.pathname;
+          const basePath = "/memes/";
+
+          if (path.startsWith(basePath)) {
+
+              const encodedCategory = path.substring(basePath.length);
+
+              if (encodedCategory) {
+
+                  const category = decodeURIComponent(encodedCategory);
+
+                  console.log("📂 Category URL:", category);
+
+                  // Check category exists
+                  if (memeData[category]) {
+                      openPopup(category);
+                  } else {
+                      console.log("❌ Category not found:", category);
+                  }
+              }
+          }
+
       })
       .catch(error => {
           console.error("❌ Error:", error);
@@ -431,7 +458,10 @@ function generateCategoryGrid() {
         
         const card = document.createElement("div");
         card.className = "card";
-        card.onclick = () => openPopup(category);
+        card.onclick = () => {
+    const slug = encodeURIComponent(category);
+    window.location.href = `/memes/${slug}`;
+};
         
         card.innerHTML = `
             <div class="icon">📝</div>
@@ -483,7 +513,13 @@ function loadMore(){
 }
 
 function closePopup(){
+
     document.getElementById("memePopup").classList.add("hidden");
+
+    // Category page se main memes page par wapas
+    if (window.location.pathname.startsWith("/memes/")) {
+        window.location.href = "/memes";
+    }
 }
 
 document.getElementById("memePopup").addEventListener("click", function(e){
