@@ -115,6 +115,11 @@
         .home-button:hover {
             transform: translateY(-3px);
         }
+        
+        .highlight {
+    color: #60a5fa;
+    font-weight: 800;
+}
     </style>
 </head>
 
@@ -212,7 +217,7 @@
 
                 <!-- CATEGORY 2 -->
                 <div
-                    onclick="loadCategory('Boss', bossMemes)"
+                    onclick="loadCategory('Corporate life', corporatelifeMemes)"
                     class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8"
                 >
 
@@ -221,7 +226,7 @@
                     </div>
 
                     <h3 class="font-bold text-xl md:text-2xl text-white mb-2">
-                        Boss
+                        Corporate Life
                     </h3>
 
                     <p class="text-gray-400 text-sm mb-4">
@@ -636,77 +641,82 @@
         const managerMemes = [
 
             {
-                text: 'Manager kehta tha "I am a foodie"... Saala m@*****C** meri job hi khaa gaya',
+                text: 'Manager kehta tha "I am a foodie"... <span class="highlight">Saala m@*****C**</span> meri job hi khaa gaya',
                 likes: 105
             },
 
             {
-                text: 'Kon kehta hai Manager apne hote hain.....i believe in manager hi sabse bade B*****e hote hai',
+                text: 'Kon kehta hai Manager apne hote hain.....i believe in manager hi <span class="highlight">sabse bade B*****e</span> hote hai',
                 likes: 528
             },
 
             {
-                text: 'Dear Manager........Apne Harkato mein sudhaar lao lala,--------Tum sirf Company ke andar Manager ho, Bahar nahi.',
+                text: 'Dear Manager........Apne <span class="highlight">Harkato mein sudhaar</span> lao lala,--------Tum sirf Company ke andar Manager ho, Bahar nahi.',
                 likes: 328
             },
 
             {
-                text: 'Manager se sach bolkar leave maang ke dekh liye ..C***** saala ye ...jhooth hi deserve karte hain.',
+                text: 'Manager se sach bolkar leave maang ke dekh liye .. <span class="highlight">C***** saala</span> ye ...jhooth hi deserve karte hain.',
                 likes: 428
             },
 
             {
-                text: 'ek bar dusri job mil jaye*----------Manager ki G***D aisi fadunga darzi bhi bolega ......abb appko new lagwani padegi...',
+                text: 'ek bar dusri job mil jaye---------Manager ki <span class="highlight"> G***D</span> aisi fadunga darzi bhi bolega ......abb appko new lagwani padegi...',
                 likes: 678
             },
 
             {
-                text: 'Manager: Work hard aur success paoge. Baki sab dikhega. Meri tarah dekho!',
+                text: 'Manager:- Mere saath adjust karna seekho.  Employee:- Sir, Apke Ghar ka <span class="highlight">Furniture</span> nahi hoon… jo har jagah fit hounga.',
                 likes: 892
             },
 
             {
-                text: 'Jab Manager kehte hain "Chalo Beta, Friday toh haan par work-life balance seekhna padega"',
+                text: 'Manager: “Team ko sacrifice karna padta hai. Employee: “Sir, sacrifice hum karein aur <span class="highlight">credit</span> aap le jao… ye kaunsa naya C****t** system hai?',
+                likes: 245
+            },
+            
+            {
+                text: 'Manager: “Open communication honi chahiye. Employee: “Sir, sach bol diya toh aapki <span class="highlight">g***d</span> jal jayegi.” 💀',
                 likes: 245
             },
 
             {
-                text: 'Manager: Mujhe office culture pasand hai. Employees: Haan, apka apna culture!',
+                text: 'Har office mein 1 aisa Manager zaroor hota hai…...      Jisko dekhte hi employee ke muh se "Good Morning" Sir aur dimaag se <span class="highlight">“Agaya L**du”</span> nikalta hai.',
                 likes: 412
             }
 
         ];
 
 
-        const bossMemes = [
+        const corporatelifeMemes = [
 
             {
-                text: 'Boss: Meeting cancel. Jao aur kaam karo. Baki sab overrated hai.',
+                text: 'Tip of the day: <span class="highlight">Do not stress</span>, the Company is not even yours.',
                 likes: 567
             },
 
             {
-                text: 'Jab boss ek ek employee se puchhe "Sab theek hai na?" aur fir apni fikr se jaye',
+                text: 'Apne kirdar mein akad rakho, jin <span class="highlight">Employee</span> mein dum nhi hota na, aksar unko hi meeting me p***la jata hain.',
                 likes: 456
             },
 
             {
-                text: 'Boss ko project deadline se ek din pehle project yaad aata hai',
+                text: 'Har udaas shaqs ka masla <span class="highlight">ISHQ</span> nhi hai, kuch se Job switch nhi ho pa rahi hai..',
                 likes: 789
             },
 
             {
-                text: 'Boss: Ye decision mere liye badhaiya hai. Employee: Lekin vo galat hai! Boss: Toh ghalat hi sahi!',
+                text: 'Zindagi mazdurro wali ho gayi hai...Aur log...<span class="highlight">"Sir..Sir"</span> kehkar bulate hain.',
                 likes: 334
             },
 
             {
-                text: 'Boss se pehle project complete hona chahiye, fir iska budget decide hoga',
+                text: 'Corporate life ne patience ko <span class="highlight">permanent</span> skill bana diya.',
                 likes: 523
             },
 
             {
-                text: 'Jab boss apna mood off hota hai aur pura office suffer karta hai',
+                text: 'Corporate me <span class="highlight">‘Growth opportunity’</span> ka matlab Zyada kaam, Same Designation.',
                 likes: 612
             }
 
@@ -973,7 +983,7 @@
 
         function openModal(title) {
 
-            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalTitle').innerHTML = title;
 
             document.getElementById('memeModal').classList.remove('hidden');
 
@@ -1053,6 +1063,8 @@
             }
 
         };
+        
+        
 
 
 
