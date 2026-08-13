@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>कॉर्पोरेट मज़दूर - Corporate Mazdoor Radio</title>
     
-    <!-- Speed Optimization for Fonts (Montserrat Included) -->
+    <!-- Speed Optimization for Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
@@ -36,72 +36,104 @@
             padding: 20px 24px;
         }
 
-        /* Top Bar */
+        /* Top Bar - 3 Column Grid (Left - Center - Right) */
         .top-bar { 
-            display: flex; 
-            justify-content: space-between; 
+            display: grid; 
+            grid-template-columns: 1fr auto 1fr;
             align-items: center; 
             width: 100%; 
             z-index: 10; 
         }
+
+        .top-left-info {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
         
-        .status-badge { 
-            background: rgba(20, 20, 25, 0.65); 
+        /* Time Clock (Bada aur Left Aligned) */
+        .info-pill { 
+            background: rgba(20, 20, 25, 0.7); 
             backdrop-filter: blur(12px); 
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.12); 
+            border: 1px solid rgba(255, 255, 255, 0.18); 
+            padding: 7px 16px; 
+            border-radius: 20px; 
+            font-size: 13px; 
+            letter-spacing: 1.2px; 
+            font-weight: 700; 
+            color: #ffffff; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Center Status Badge */
+        .top-center-info {
+            display: flex;
+            justify-content: center;
+        }
+
+        .status-badge { 
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(14px); 
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(34, 197, 94, 0.4); 
             padding: 6px 14px; 
             border-radius: 20px; 
             font-size: 12px; 
             display: flex; 
             align-items: center; 
             gap: 8px; 
-            font-weight: 500; 
+            font-weight: 600; 
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.22);
+            color: #ffffff;
         }
         
+        /* Pulsing Dot Animation */
         .status-dot { 
-            width: 7px; 
-            height: 7px; 
+            width: 8px; 
+            height: 8px; 
             background-color: #22c55e; 
             border-radius: 50%; 
-            box-shadow: 0 0 8px #22c55e; 
-        }
-        
-        .top-right-info { display: flex; align-items: center; gap: 8px; }
-        
-        .info-pill { 
-            background: rgba(20, 20, 25, 0.65); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.12); 
-            padding: 6px 14px; 
-            border-radius: 20px; 
-            font-size: 11px; 
-            letter-spacing: 1.2px; 
-            font-weight: 600; 
-            color: #d1d5db; 
+            animation: pulseDot 1.8s infinite ease-in-out;
         }
 
-        /* Nav Songs Button */
+        @keyframes pulseDot {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.8); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        
+        /* Right Nav Buttons Stacked (Songs + Memes) */
+        .top-right-info { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-end; 
+            gap: 6px; 
+        }
+        
         .nav-btn {
             background: rgba(20, 20, 25, 0.65);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: #ffffff;
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.2s ease;
+            display: inline-block;
+            text-align: center;
+            min-width: 75px;
         }
 
         .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-1px);
         }
 
         /* Center Content Responsive */
@@ -173,7 +205,7 @@
         .cta-btn svg { transition: transform 0.3s ease; }
         .cta-btn:hover svg { transform: translateX(4px); }
 
-        /* Player Bar Responsive & Lifted Up */
+        /* Player Bar */
         .bottom-section { 
             display: flex; 
             flex-direction: column; 
@@ -181,7 +213,7 @@
             gap: 14px; 
             width: 100%; 
             z-index: 10; 
-            margin-bottom: 25px; /* Lifted up from bottom */
+            margin-bottom: 25px; 
         }
         
         .player-card {
@@ -199,7 +231,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
         }
 
-        /* Album Art Image Box */
         .album-art-box { 
             width: 42px; 
             height: 42px; 
@@ -232,7 +263,7 @@
 
         .time-display { font-size: 10px; font-family: 'Montserrat', monospace; color: #9ca3af; min-width: 65px; text-align: right; font-weight: 500; }
 
-        /* Footer Info Section (Location & Instagram Icons) */
+        /* Footer Info Section */
         .footer-info {
             display: flex;
             align-items: center;
@@ -254,9 +285,7 @@
             transition: color 0.2s ease;
         }
 
-        .footer-item:hover {
-            color: #ffffff;
-        }
+        .footer-item:hover { color: #ffffff; }
 
         .footer-item svg {
             width: 14px;
@@ -270,9 +299,11 @@
 
         #youtubePlayer { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 
-        /* Mobile Adjustments (Screen < 600px) */
+        /* Mobile Adjustments */
         @media (max-width: 600px) {
             .hero-container { padding: 16px; }
+            .info-pill { font-size: 11px; padding: 5px 10px; }
+            .status-badge { font-size: 10px; padding: 4px 10px; }
             .bottom-section { margin-bottom: 15px; }
             .player-card { padding: 8px 14px; border-radius: 30px; }
             .time-display { display: none; } 
@@ -283,17 +314,25 @@
 <body>
 
     <div class="hero-container">
-        <!-- Top Bar -->
+        <!-- Top Bar with Left Clock, Center Status, Right Songs & Memes -->
         <div class="top-bar">
-            <div class="status-badge">
-                <span class="status-dot"></span>
-                <span>1,142 on.shift</span>
-            </div>
-            <div class="top-right-info">
-                <!-- Only Songs Button -->
-                <button class="nav-btn">Songs</button>
-                
+            <!-- Left: Bigger Live Clock -->
+            <div class="top-left-info">
                 <div class="info-pill" id="liveClock">00:00:00 AM</div>
+            </div>
+
+            <!-- Center: Live Status Badge -->
+            <div class="top-center-info">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span><span id="listenerCount">1,142</span> on.shift</span>
+                </div>
+            </div>
+
+            <!-- Right: Songs and Memes Link (Stacked Below) -->
+            <div class="top-right-info">
+                <button class="nav-btn">Songs</button>
+                <a href="https://www.corporatemajdur.com/memes" target="_blank" rel="noopener noreferrer" class="nav-btn">Memes</a>
             </div>
         </div>
 
@@ -301,7 +340,7 @@
         <div class="center-content">
             <h1 class="hindi-title">कॉर्पोरेट मज़दूर</h1>
             <div class="english-subtitle">CORPORATE MAZDOOR • OVERTIME ALL HOURS</div>
-            <div class="meta-line">KAAM KA PRESSURE, MUSIC KA SUKOON — JAHAN HAR BEAT KE SAATH, CORPORATE LIFE THODI AUR EASY LAGE</div>
+            <div class="meta-line">KAAM KA PRESSURE, MUSIC KA SUKOON — JAHAN HAR BEAT KE SAATH, CORPORATE LIFE THODI AUR EASY LAGE.</div>
 
             <!-- CTA Button -->
             <a href="https://www.corporatemajdur.com/#stories-section" target="_blank" rel="noopener noreferrer" class="cta-btn">
@@ -313,10 +352,9 @@
             </a>
         </div>
 
-        <!-- Player Section with Footer Icons (Location + Instagram) -->
+        <!-- Player Section -->
         <div class="bottom-section">
             <div class="player-card">
-                <!-- Direct Album Thumbnail Image -->
                 <div class="album-art-box">
                     <img id="albumArtImg" src="" alt="Album Cover">
                 </div>
@@ -353,7 +391,6 @@
 
             <!-- Footer Location & Instagram Section -->
             <div class="footer-info">
-                <!-- Location Item -->
                 <div class="footer-item">
                     <svg viewBox="0 0 24 24">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -362,14 +399,13 @@
                     <span>India</span>
                 </div>
 
-                <!-- Instagram Item -->
                 <a href="https://instagram.com/corporate.mazduur" target="_blank" rel="noopener noreferrer" class="footer-item">
                     <svg viewBox="0 0 24 24">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
-                    <span>@corporatemazdoor</span>
+                    <span>@corporate.mazduur</span>
                 </a>
             </div>
         </div>
@@ -377,10 +413,9 @@
 
     <div id="youtubePlayer"></div>
 
-    <!-- Optimized YouTube Async Script -->
     <script async src="https://www.youtube.com/iframe_api"></script>
     <script>
-        // Real-time Live Clock Optimization
+        // Real-time Live Clock
         function updateLiveClock() {
             const now = new Date();
             let hours = now.getHours();
@@ -395,6 +430,22 @@
         setInterval(updateLiveClock, 1000);
         updateLiveClock();
 
+        // Realistic Live Listener Counter Fluctuation
+        let activeListeners = 1142;
+        function updateListenerCount() {
+            const change = Math.floor(Math.random() * 7) - 3;
+            activeListeners = Math.max(1050, activeListeners + change);
+            
+            const countSpan = document.getElementById('listenerCount');
+            if (countSpan) {
+                countSpan.innerText = activeListeners.toLocaleString();
+            }
+
+            const nextInterval = Math.floor(Math.random() * 4000) + 3000;
+            setTimeout(updateListenerCount, nextInterval);
+        }
+        setTimeout(updateListenerCount, 3000);
+
         // YouTube Playlist Config
         const youtubePlaylist = [
             { videoId: "jfKfPfyJRdk", title: "Lofi Hip Hop Beats — Relax / Study", artist: "Lofi Girl" },
@@ -407,14 +458,12 @@
         let isPlaying = false;
         let timerInterval = null;
 
-        // Load Track details initially without waiting for player state
         updateTrackUI();
 
         function updateTrackUI() {
             const currentSong = youtubePlaylist[currentSongIndex];
             document.getElementById('trackTitle').innerText = currentSong.title;
             document.getElementById('trackArtist').innerText = currentSong.artist;
-            // Fetch YouTube HQ Thumbnail image directly
             document.getElementById('albumArtImg').src = `https://img.youtube.com/vi/${currentSong.videoId}/hqdefault.jpg`;
         }
 
