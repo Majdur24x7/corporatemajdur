@@ -173,8 +173,16 @@
         .cta-btn svg { transition: transform 0.3s ease; }
         .cta-btn:hover svg { transform: translateX(4px); }
 
-        /* Player Bar Responsive */
-        .bottom-section { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; z-index: 10; }
+        /* Player Bar Responsive & Lifted Up */
+        .bottom-section { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 14px; 
+            width: 100%; 
+            z-index: 10; 
+            margin-bottom: 25px; /* Lifted up from bottom */
+        }
         
         .player-card {
             background: rgba(18, 18, 22, 0.82); 
@@ -265,6 +273,7 @@
         /* Mobile Adjustments (Screen < 600px) */
         @media (max-width: 600px) {
             .hero-container { padding: 16px; }
+            .bottom-section { margin-bottom: 15px; }
             .player-card { padding: 8px 14px; border-radius: 30px; }
             .time-display { display: none; } 
             .footer-info { gap: 14px; font-size: 10px; }
@@ -360,7 +369,7 @@
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
-                    <span>@corporate.mazduur</span>
+                    <span>@corporatemazdoor</span>
                 </a>
             </div>
         </div>
