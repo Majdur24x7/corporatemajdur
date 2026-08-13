@@ -3,18 +3,18 @@
 
 const youtubePlaylist = [
     {
-        videoId: "jfKfPfyJRdk", // Yahan YouTube Video ID daalein
-        title: "Lofi Hip Hop Beats — Relax / Study",
-        artist: "Lofi Girl"
+        videoId: "r0c1f6XxRQg", // Yahan YouTube Video ID daalein
+        title: "Remembering the Golden Voice",
+        artist: "Evergreen Hits of KK"
     },
     {
-        videoId: "5qap5aO4i9A",
-        title: "Late Night Chill Vibes",
-        artist: "Corporate Mazdoor Radio"
+        videoId: "LX2zshAgECQ",
+        title: "Aankhon Se Tune 2.0",
+        artist: "Bhai Tera Star Hai "
     },
     {
-        videoId: "DWcU19ZY440",
-        title: "Deep Focus Coding Beats",
-        artist: "Overtime Vibes"
+        videoId: "V3vSJyHWFEw",
+        title: "Aankhon Mein Tera Hi Chehra",
+        artist: "90s Superhit Song"
     }
 ];
