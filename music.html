@@ -1,564 +1,312 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Corporate Majdur Radio — कॉर्पोरेट मजदूर रेडियो</title>
-    <meta
-      name="description"
-      content="Corporate Majdur Radio — jo gaana office ke us waqt chal raha hota hai. IST ke hisaab se mood-matched gaane, ek lit window ki tarah."
-    />
-    <meta property="og:title" content="Corporate Majdur Radio" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&family=Tiro+Devanagari+Hindi&display=swap"
-      rel="stylesheet"
-    />
-
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>कॉर्पोरेट मज़दूर - Corporate Mazdoor Radio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-      /* ============================================================
-         Corporate Majdur Radio — v2
-         Design language: the office facade itself. Lit windows =
-         a shift that is live; dark windows = shifts waiting their
-         turn. The photograph is not a backdrop, it IS the interface.
-         ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      :root {
-        --bg: #07080a;
-        --bg-deep: #030404;
-        --panel: #101218;
-        --panel-2: #171a22;
-        --amber: #e8a855;
-        --amber-soft: rgba(232, 168, 85, 0.16);
-        --amber-line: rgba(232, 168, 85, 0.35);
-        --ink: #eeece6;
-        --ink-dim: #93969e;
-        --ink-faint: #5b5e66;
-        --city: #3a4a63;
-        --line: rgba(255, 255, 255, 0.09);
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow: hidden;
+            background-color: #0d0d11;
+            color: #ffffff;
+        }
 
-        --font-display: "Montserrat", sans-serif;
-        --font-sans: "Montserrat", system-ui, sans-serif;
-        --font-mono: "IBM Plex Mono", ui-monospace, monospace;
-        --font-hindi: "Tiro Devanagari Hindi", serif;
-      }
+        /* Fullscreen Hero Background Container */
+        .hero-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(180deg, rgba(10, 10, 14, 0.4) 0%, rgba(10, 10, 14, 0.75) 100%), url('images/musicmajdur.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 40px;
+        }
 
-      * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* Top Navigation Bar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            z-index: 10;
+        }
 
-      html { scroll-behavior: smooth; }
+        .status-badge {
+            background: rgba(20, 20, 25, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-      body {
-        background: var(--bg);
-        color: var(--ink);
-        font-family: var(--font-sans);
-        -webkit-font-smoothing: antialiased;
-        line-height: 1.6;
-      }
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #22c55e;
+        }
 
-      ::selection { background: var(--amber-soft); color: #fff; }
-      img { display: block; max-width: 100%; }
-      a { color: inherit; }
-      button { font-family: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+        .top-right-info {
+            display: flex;
+            gap: 10px;
+        }
 
-      .container { width: min(1180px, 100% - 3rem); margin-inline: auto; }
-      .hindi { font-family: var(--font-hindi); font-weight: 400; }
-      .mono { font-family: var(--font-mono); }
-      .eyebrow {
-        font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.22em;
-        text-transform: uppercase; color: var(--amber); font-weight: 500;
-      }
-      .muted { color: var(--ink-dim); }
+        .info-pill {
+            background: rgba(20, 20, 25, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            color: #d1d5db;
+        }
 
-      /* ================= STICKY MINI PLAYER ================= */
-      .miniplayer {
-        position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-        display: flex; align-items: center; gap: 1rem;
-        padding: 0.85rem 1.5rem;
-        background: rgba(7, 8, 10, 0.72);
-        backdrop-filter: blur(14px);
-        border-bottom: 1px solid var(--line);
-        transform: translateY(-110%);
-        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-      .miniplayer.is-visible { transform: translateY(0); }
-      .miniplayer__btn {
-        flex-shrink: 0; width: 2.4rem; height: 2.4rem; border-radius: 999px;
-        border: 1px solid var(--amber-line); background: var(--amber-soft); color: var(--amber);
-        display: flex; align-items: center; justify-content: center; font-size: 0.9rem;
-        transition: background 0.2s ease;
-      }
-      .miniplayer__btn:hover { background: rgba(232, 168, 85, 0.28); }
-      .miniplayer__meta { min-width: 0; flex: 1; }
-      .miniplayer__song { font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .miniplayer__mood { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-top: 0.15rem; }
-      .miniplayer__clock { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-dim); flex-shrink: 0; }
-      .eq { display: flex; align-items: flex-end; gap: 2px; height: 12px; flex-shrink: 0; }
-      .eq span { width: 2.5px; background: var(--amber); border-radius: 2px; height: 3px; opacity: 0.4; }
-      .is-playing .eq span { animation: eqbeat 0.9s ease-in-out infinite; opacity: 1; }
-      .eq span:nth-child(1) { animation-delay: 0s; }
-      .eq span:nth-child(2) { animation-delay: 0.15s; }
-      .eq span:nth-child(3) { animation-delay: 0.3s; }
-      .eq span:nth-child(4) { animation-delay: 0.45s; }
-      @keyframes eqbeat { 0%, 100% { height: 3px; } 50% { height: 12px; } }
+        /* Center Main Typography */
+        .center-content {
+            text-align: center;
+            z-index: 10;
+            margin-top: auto;
+            margin-bottom: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-      #yt-audio-mount { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
+        .hindi-title {
+            font-family: 'Rozha One', serif;
+            font-size: clamp(64px, 9vw, 130px);
+            font-weight: 700;
+            line-height: 0.95;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
 
-      /* ================= HERO ================= */
-      .hero {
-        position: relative; isolation: isolate; min-height: 100vh;
-        display: flex; flex-direction: column; justify-content: flex-end;
-        overflow: hidden;
-      }
-      .hero__img {
-        position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-        object-position: center 55%;
-        z-index: -3; filter: saturate(1.05);
-      }
-      .hero__scrim {
-        position: absolute; inset: 0; z-index: -2;
-        background:
-          linear-gradient(180deg, rgba(3,4,4,0.55) 0%, rgba(3,4,4,0.15) 30%, rgba(3,4,4,0.55) 68%, var(--bg) 100%);
-      }
-      .hero__vignette {
-        position: absolute; inset: 0; z-index: -1;
-        box-shadow: inset 0 0 18vw 2vw rgba(0,0,0,0.65);
-      }
+        .english-subtitle {
+            font-size: clamp(12px, 1.3vw, 16px);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
 
-      .hero__top {
-        display: flex; justify-content: space-between; align-items: flex-start;
-        padding-top: 2.25rem;
-      }
-      .hero__brand { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-dim); }
-      .hero__clockwrap { text-align: right; }
-      .hero__clock { font-family: var(--font-mono); font-size: 0.95rem; color: var(--amber); }
-      .hero__clocklabel { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; color: var(--ink-faint); text-transform: uppercase; margin-top: 0.15rem; }
+        .meta-line {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+        }
 
-      .hero__body { padding-bottom: 5rem; max-width: 42rem; }
-      .hero__kicker { color: var(--amber); }
-      .hero__title {
-        margin-top: 0.9rem; font-family: var(--font-display); font-weight: 600; font-style: italic;
-        font-size: clamp(2.6rem, 6.4vw, 4.6rem); line-height: 1.04; color: #fbf9f4; letter-spacing: -0.01em;
-      }
-      .hero__title strong { font-style: normal; font-weight: 800; display: block; color: var(--amber); }
-      .hero__sub { margin-top: 1.35rem; font-size: 1.08rem; color: #d7d5cd; max-width: 34rem; }
-      .hero__status {
-        margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-dim);
-        border-left: 2px solid var(--amber-line); padding-left: 0.9rem;
-      }
+        /* Bottom Floating Audio Player */
+        .bottom-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            z-index: 10;
+        }
 
-      .hero__cta { margin-top: 2.25rem; display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
-      .playbtn {
-        display: flex; align-items: center; gap: 0.75rem;
-        border-radius: 999px; padding: 0.2rem 1.5rem 0.2rem 0.2rem;
-        background: rgba(255,255,255,0.04); border: 1px solid var(--amber-line);
-        transition: background 0.2s ease, transform 0.2s ease;
-      }
-      .playbtn:hover { background: var(--amber-soft); transform: translateY(-1px); }
-      .playbtn__circle {
-        width: 2.9rem; height: 2.9rem; border-radius: 999px; background: var(--amber); color: #1a1206;
-        display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
-        box-shadow: 0 0 26px rgba(232, 168, 85, 0.45);
-      }
-      .playbtn__text { text-align: left; }
-      .playbtn__text b { display: block; font-size: 0.92rem; font-weight: 600; }
-      .playbtn__text span { display: block; font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.1rem; }
-      .hero__scroll { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); }
+        .player-card {
+            background: rgba(18, 18, 22, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50px;
+            padding: 8px 24px 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            max-width: 580px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
 
-      /* ================= SECTION SHARED ================= */
-      .section { padding-block: 6rem; }
-      .section__head { max-width: 38rem; }
-      .section__eyebrow { color: var(--amber); }
-      .section__title {
-        margin-top: 0.75rem; font-family: var(--font-display); font-weight: 700;
-        font-size: clamp(1.9rem, 3.6vw, 2.75rem); color: #fbf9f4; line-height: 1.15; letter-spacing: -0.01em;
-      }
-      .section__lede { margin-top: 1rem; color: var(--ink-dim); font-size: 1.02rem; max-width: 34rem; }
+        .album-art {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #2a2a35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #9ca3af;
+        }
 
-      /* ================= MANIFESTO ================= */
-      .manifesto { border-top: 1px solid var(--line); }
-      .manifesto__grid { display: grid; gap: 3rem; margin-top: 3rem; }
-      @media (min-width: 860px) { .manifesto__grid { grid-template-columns: 1fr 1fr; } }
-      .manifesto__grid p { color: #cfcdc5; font-size: 1.05rem; }
-      .manifesto__grid p + p { margin-top: 1.1rem; }
+        .track-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-      /* ================= FACADE (shift grid) ================= */
-      .facade { border-top: 1px solid var(--line); background: var(--bg-deep); }
-      .facade__grid {
-        margin-top: 3rem; display: grid; gap: 3px; background: #000;
-        border: 3px solid #000; border-radius: 4px; overflow: hidden;
-      }
-      @media (min-width: 760px) { .facade__grid { grid-template-columns: repeat(4, 1fr); } }
-      @media (max-width: 759px) { .facade__grid { grid-template-columns: repeat(2, 1fr); } }
+        .track-title {
+            font-size: 13px;
+            font-weight: 600;
+        }
 
-      .window {
-        position: relative; aspect-ratio: 3 / 4; padding: 1.35rem;
-        display: flex; flex-direction: column; justify-content: space-between;
-        background: linear-gradient(160deg, #14161c, #0a0b0e);
-        transition: background 0.6s ease;
-      }
-      .window::before {
-        content: ""; position: absolute; inset: 0;
-        background: radial-gradient(120% 90% at 50% 0%, rgba(59, 74, 99, 0.25), transparent 60%);
-        pointer-events: none;
-      }
-      .window.is-lit {
-        background: linear-gradient(160deg, #2b2313, #171208);
-      }
-      .window.is-lit::before {
-        background: radial-gradient(120% 100% at 50% -10%, rgba(232, 168, 85, 0.35), transparent 65%);
-      }
-      .window__top { display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 1; }
-      .window__hi { font-family: var(--font-hindi); font-size: 1.5rem; color: #fbf9f4; }
-      .window__en { margin-top: 0.15rem; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
-      .window.is-lit .window__en { color: rgba(232,168,85,0.75); }
-      .window__badge {
-        font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase;
-        color: var(--amber); display: flex; align-items: center; gap: 0.35rem; flex-shrink: 0;
-      }
-      .window__dot { width: 6px; height: 6px; border-radius: 999px; background: var(--amber); animation: pulse 1.6s infinite; }
-      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+        .track-artist {
+            font-size: 11px;
+            color: #9ca3af;
+            margin-top: 2px;
+        }
 
-      .window__mid { position: relative; z-index: 1; }
-      .window__line { font-size: 0.85rem; color: #b9b7ae; }
-      .window.is-lit .window__line { color: #d9d3c2; }
-      .window__win { margin-top: 0.6rem; font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint); }
+        .play-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
 
-      .window__song {
-        position: relative; z-index: 1; display: flex; align-items: center; gap: 0.7rem;
-        padding-top: 0.9rem; border-top: 1px solid rgba(255,255,255,0.08);
-      }
-      .window__play {
-        flex-shrink: 0; width: 2rem; height: 2rem; border-radius: 999px;
-        border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center;
-        font-size: 0.72rem; color: var(--ink-dim); transition: all 0.2s ease;
-      }
-      .window.is-lit .window__play { border-color: var(--amber-line); color: var(--amber); }
-      .window__play:hover { background: rgba(255,255,255,0.06); }
-      .window__songtitle { font-size: 0.76rem; font-weight: 600; color: #e7e5de; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .window__songmood { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-faint); margin-top: 0.1rem; }
+        .play-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
 
-      /* ================= NOTES ================= */
-      .notes-section { border-top: 1px solid var(--line); }
-      .notes { margin-top: 3rem; display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
-      @media (min-width: 700px) { .notes { grid-template-columns: repeat(2, 1fr); } }
-      .note { background: var(--bg); padding: 1.75rem; }
-      .note h3 { font-family: var(--font-hindi); font-size: 1.35rem; color: #fbf9f4; }
-      .note__en { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin-top: 0.2rem; }
-      .note p { margin-top: 0.75rem; color: var(--ink-dim); font-size: 0.92rem; }
+        .time-display {
+            font-size: 11px;
+            font-family: monospace;
+            color: #9ca3af;
+        }
 
-      /* ================= CLOSING ================= */
-      .closing { border-top: 1px solid var(--line); text-align: center; }
-      .closing__title { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: clamp(1.6rem, 3.4vw, 2.4rem); color: #fbf9f4; max-width: 34rem; margin-inline: auto; }
-      .closing p.muted { margin-top: 1rem; max-width: 30rem; margin-inline: auto; }
+        /* Footer Info */
+        .footer-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.5);
+        }
 
-      /* ================= FOOTER ================= */
-      .footer { border-top: 1px solid var(--line); padding-block: 2.25rem; }
-      .footer__inner { display: flex; flex-direction: column; gap: 0.6rem; font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint); letter-spacing: 0.04em; }
-      @media (min-width: 640px) { .footer__inner { flex-direction: row; justify-content: space-between; } }
+        .action-icons {
+            display: flex;
+            gap: 16px;
+        }
 
-      @media (prefers-reduced-motion: reduce) {
-        * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
-      }
+        .icon-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            font-size: 14px;
+        }
     </style>
-  </head>
-  <body>
-    <div id="yt-audio-mount"></div>
+</head>
+<body>
 
-    <!-- ================= STICKY MINI PLAYER ================= -->
-    <div class="miniplayer" data-miniplayer>
-      <button class="miniplayer__btn" data-radio-toggle aria-label="Play office radio">▶</button>
-      <div class="miniplayer__meta">
-        <p class="miniplayer__song" data-radio-song>Corporate Majdur Radio</p>
-        <p class="miniplayer__mood" data-radio-mood>tap to play</p>
-      </div>
-      <div class="eq"><span></span><span></span><span></span><span></span></div>
-      <span class="miniplayer__clock mono">IST <span data-clock>--:--</span></span>
+    <div class="hero-container">
+        <!-- Top Status Bar -->
+        <div class="top-bar">
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                <span>1,142 on.shift</span>
+            </div>
+            <div class="top-right-info">
+                <div class="info-pill">AHMEDABAD</div>
+                <div class="info-pill">09:30 — 18:30</div>
+            </div>
+        </div>
+
+        <!-- Main Heading Text -->
+        <div class="center-content">
+            <h1 class="hindi-title">कॉर्पोरेट मज़दूर</h1>
+            <div class="english-subtitle">CORPORATE MAZDOOR • OVERTIME ALL HOURS</div>
+            <div class="meta-line">AARAV MEHTA | SENIOR BUSINESS ANALYST | STRATEGY & OPERATIONS</div>
+        </div>
+
+        <!-- Player Bar & Bottom Controls -->
+        <div class="bottom-section">
+            <div class="player-card">
+                <div class="album-art">CM</div>
+                <div class="track-info">
+                    <div class="track-title">Dusk Shift — ambient loop</div>
+                    <div class="track-artist">Corporate Mazdoor radio</div>
+                </div>
+                <button class="play-btn" id="playBtn" onclick="togglePlay()">
+                    <svg id="playIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5,3 19,12 5,21"></polygon>
+                    </svg>
+                </button>
+                <div class="time-display" id="timeDisplay">0:00 / 3:51</div>
+            </div>
+
+            <!-- Footer Bar -->
+            <div class="footer-bar">
+                <div>DESK 42</div>
+                <div class="action-icons">
+                    <button class="icon-btn">⛶</button>
+                    <button class="icon-btn">T</button>
+                    <button class="icon-btn">✎</button>
+                    <button class="icon-btn">💬</button>
+                </div>
+                <div>INDIA</div>
+            </div>
+        </div>
     </div>
 
-    <!-- ================= HERO ================= -->
-    <header class="hero">
-      <img class="hero__img" src="night-office.png" alt="A corporate office floor lit only by desk lamps late at night, seen through a glass facade" />
-      <div class="hero__scrim"></div>
-      <div class="hero__vignette"></div>
-
-      <div class="container hero__top">
-        <span class="hero__brand mono">CORPORATE MAJDUR RADIO</span>
-        <div class="hero__clockwrap">
-          <div class="hero__clock" data-clock>--:--</div>
-          <div class="hero__clocklabel">Asia/Kolkata</div>
-        </div>
-      </div>
-
-      <div class="container hero__body">
-        <p class="eyebrow hero__kicker">India ke office ka mood, gaano me</p>
-        <h1 class="hero__title">Jitni der jali<strong class="hindi">उतनी देर बजी</strong></h1>
-        <p class="hero__sub">Har floor par ek khidki roshan hai — kisi na kisi desk par kaam chal raha hai. Yeh radio usi khidki ka gaana bajata hai, jo IST clock ke hisaab se khud badalta rehta hai.</p>
-        <p class="hero__status mono" data-status>Current shift load ho rahi hai…</p>
-
-        <div class="hero__cta">
-          <button class="playbtn" data-radio-toggle-hero>
-            <span class="playbtn__circle" data-hero-icon>▶</span>
-            <span class="playbtn__text"><b>Radio Chalao</b><span>Audio only · auto shift-sync</span></span>
-          </button>
-          <span class="hero__scroll">↓ Scroll — floor ki khidkiyan dekho</span>
-        </div>
-      </div>
-    </header>
-
-    <!-- ================= MANIFESTO ================= -->
-    <section class="container section manifesto">
-      <div class="section__head">
-        <p class="eyebrow section__eyebrow">Office ka mood, gaano me</p>
-        <h2 class="section__title">Ek gaana, ek shift</h2>
-      </div>
-      <div class="manifesto__grid">
-        <p>Subah ki bheed bhaad wali cab me ek hi feeling hoti hai, deadline dopahar me doosri, aur raat 2 baje jab poora floor sunsaan ho aur bas ek hi desk ki light jal rahi ho, tab teesri.</p>
-        <p>Corporate Majdur Radio waisa hi gaana bajata hai jo us waqt sunna chahiye — na ki jo trending hai. Chaar mood, IST clock ke hisaab se rotate karte hain, bilkul waise hi jaise office ki khidkiyan raat bhar ek-ek karke bujhti hain.</p>
-      </div>
-    </section>
-
-    <!-- ================= FACADE / SHIFTS ================= -->
-    <section id="shifts" class="facade">
-      <div class="container section">
-        <div class="section__head">
-          <p class="eyebrow section__eyebrow">Chaar khidkiyan, ek imaarat</p>
-          <h2 class="section__title">Floor Ki Khidkiyan</h2>
-          <p class="section__lede">Jo khidki abhi roshan hai, wahi shift live hai — uska gaana radio me chal raha hoga.</p>
-        </div>
-        <div class="facade__grid" data-shifts></div>
-      </div>
-    </section>
-
-    <!-- ================= NOTES ================= -->
-    <section class="notes-section">
-      <div class="container section">
-        <div class="section__head">
-          <p class="eyebrow section__eyebrow">Floor ki kahaniyan</p>
-          <h2 class="section__title">Bina Naam Ke Notes</h2>
-        </div>
-        <div class="notes" data-notes></div>
-      </div>
-    </section>
-
-    <!-- ================= CLOSING ================= -->
-    <section class="container section closing">
-      <h2 class="closing__title">Kaam kabhi khatam nahi hota, bas khidki badal jati hai.</h2>
-      <p class="muted">Kisi bhi time wapas aao — floor ke mood ka gaana chal hi raha hoga.</p>
-    </section>
-
-    <footer class="footer">
-      <div class="container footer__inner">
-        <span>कॉर्पोरेट मजदूर रेडियो · Corporate Majdur Radio</span>
-        <span>Audio streamed via YouTube — rights remain with respective labels. Nothing hosted here.</span>
-      </div>
-    </footer>
+    <!-- Interactive JavaScript -->
+    <audio id="audioPlayer" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
     <script>
-      /* ============================================================
-         Data
-         ============================================================ */
-      const SHIFTS = [
-        {
-          hi: "सुबह की भीड़", en: "Subah Ki Bheed",
-          line: "Metro coach me crowd, ek hath rod par aur doosra Slack notifications par.",
-          window: "05:00–10:00 IST", from: 5, to: 10,
-          song: { title: "Zinda — Bhaag Milkha Bhaag", videoId: "fP6MNznzVcQ", mood: "Hustle Mode" },
-        },
-        {
-          hi: "डेडलाइन दोपहर", en: "Deadline Dopahar",
-          line: "12 browser tabs, 4 client calls, aur canteen ka thanda lunch.",
-          window: "10:00–18:00 IST", from: 10, to: 18,
-          song: { title: "Kar Har Maidaan Fateh — Sanju", videoId: "9iIX4PBplAY", mood: "Grind Mode" },
-        },
-        {
-          hi: "ओवरटाइम शाम", en: "Overtime Shaam",
-          line: '"Bas 5 min aur" — 6:40 PM ka jhooth jo 9 PM tak chalta hai.',
-          window: "18:00–22:00 IST", from: 18, to: 22,
-          song: { title: "Channa Mereya — Ae Dil Hai Mushkil", videoId: "284Ov7ysmfA", mood: "Burnout Mode" },
-        },
-        {
-          hi: "दो बजे का डेक", en: "Do Baje Ka Deck",
-          line: "Slide 41 of 60. Pure floor par andhera hai, bas ek hi desk light on hai.",
-          window: "22:00–05:00 IST", from: 22, to: 5,
-          song: { title: "Agar Tum Saath Ho — Tamasha", videoId: "sK7riqg2mr4", mood: "Lonely Deck Mode" },
-        },
-      ];
+        const audio = document.getElementById('audioPlayer');
+        const playIcon = document.getElementById('playIcon');
+        const timeDisplay = document.getElementById('timeDisplay');
+        let isPlaying = false;
 
-      const NOTES = [
-        { hi: "कुर्सी नंबर 42", en: "Chair No. 42", body: "Har floor par ek aisi chair hoti hai jise koi claim nahi karta par sab use karte hain. Armrest toota hai, par pass ka charging socket kaam karta hai." },
-        { hi: "चाय ब्रेक की राजनीति", en: "Chai Break Gossip", body: "10 minute ki chai break me official review se zyada decision ho jate hain." },
-        { hi: "अप्रेजल का मौसम", en: "Appraisal Season", body: "March se May tak har employee apne purane emails ka lawyer ban jata hai." },
-        { hi: "कैब का इंतज़ार", en: "Waiting For Cab", body: "Raat ko office lobby me cab ka wait din ka sabse honest hour hota hai." },
-      ];
-
-      /* ---------- helpers ---------- */
-      const istTime = () =>
-        new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date());
-
-      const currentShift = (hour) =>
-        SHIFTS.find((s) => (s.from < s.to ? hour >= s.from && hour < s.to : hour >= s.from || hour < s.to)) || SHIFTS[1];
-
-      function renderNotes() {
-        const host = document.querySelector("[data-notes]");
-        if (!host) return;
-        host.innerHTML = NOTES.map((n) => `
-          <article class="note">
-            <h3>${n.hi}</h3>
-            <p class="note__en">${n.en}</p>
-            <p>${n.body}</p>
-          </article>`).join("");
-      }
-
-      function renderShifts(activeEn) {
-        const host = document.querySelector("[data-shifts]");
-        if (!host) return;
-        host.innerHTML = SHIFTS.map((s) => {
-          const live = s.en === activeEn;
-          return `
-            <article class="window ${live ? "is-lit" : ""}">
-              <div class="window__top">
-                <div>
-                  <p class="window__hi">${s.hi}</p>
-                  <p class="window__en">${s.en}</p>
-                </div>
-                ${live ? '<span class="window__badge"><span class="window__dot"></span>LIVE</span>' : ""}
-              </div>
-              <div class="window__mid">
-                <p class="window__line">${s.line}</p>
-                <p class="window__win">${s.window}</p>
-              </div>
-              <div class="window__song">
-                <button class="window__play" data-song-play="${s.song.videoId}" data-song-title="${s.song.title}" data-song-mood="${s.song.mood}" aria-label="Play ${s.song.title}">▶</button>
-                <div>
-                  <p class="window__songtitle">${s.song.title}</p>
-                  <p class="window__songmood">${s.song.mood}</p>
-                </div>
-              </div>
-            </article>`;
-        }).join("");
-
-        document.querySelectorAll("[data-song-play]").forEach((btn) => {
-          btn.addEventListener("click", () => playVideo(btn.dataset.songPlay, btn.dataset.songTitle, btn.dataset.songMood));
-        });
-      }
-
-      let activeShift = null;
-
-      function tick() {
-        const time = istTime();
-        const hour = Number(time.slice(0, 2));
-        const shift = currentShift(hour);
-        activeShift = shift;
-
-        document.querySelectorAll("[data-clock]").forEach((el) => (el.textContent = time));
-
-        const status = document.querySelector("[data-status]");
-        if (status) status.textContent = `${shift.hi} chal rahi hai — ${shift.line}`;
-
-        renderShifts(shift.en);
-
-        if (!hasStartedRadio) {
-          const moodEl = document.querySelector("[data-radio-mood]");
-          if (moodEl) moodEl.textContent = `${shift.song.mood} · ${shift.window}`;
-          const songEl = document.querySelector("[data-radio-song]");
-          if (songEl) songEl.textContent = shift.song.title;
+        function togglePlay() {
+            if (isPlaying) {
+                audio.pause();
+                playIcon.innerHTML = '<polygon points="5,3 19,12 5,21"></polygon>';
+            } else {
+                audio.play();
+                playIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
+            }
+            isPlaying = !isPlaying;
         }
-      }
 
-      renderNotes();
-      tick();
-      setInterval(tick, 30000);
+        audio.ontimeupdate = function() {
+            let currentMin = Math.floor(audio.currentTime / 60);
+            let currentSec = Math.floor(audio.currentTime % 60);
+            if (currentSec < 10) currentSec = '0' + currentSec;
 
-      /* ---------- mini player reveal on scroll ---------- */
-      const miniplayer = document.querySelector("[data-miniplayer]");
-      const hero = document.querySelector(".hero");
-      const io = new IntersectionObserver(
-        ([entry]) => {
-          if (!miniplayer) return;
-          miniplayer.classList.toggle("is-visible", !entry.isIntersecting);
-        },
-        { rootMargin: "-80% 0px 0px 0px" }
-      );
-      if (hero) io.observe(hero);
+            let durationMin = Math.floor(audio.duration / 60) || 3;
+            let durationSec = Math.floor(audio.duration % 60) || 51;
+            if (durationSec < 10) durationSec = '0' + durationSec;
 
-      /* ============================================================
-         Audio-only YouTube player (hidden iframe via IFrame API)
-         ============================================================ */
-      let ytPlayer = null;
-      let ytReady = false;
-      let hasStartedRadio = false;
-      let pendingPlay = null;
-
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      document.head.appendChild(tag);
-
-      window.onYouTubeIframeAPIReady = function () {
-        ytPlayer = new YT.Player("yt-audio-mount", {
-          height: "1", width: "1", videoId: "",
-          playerVars: { autoplay: 0, controls: 0, playsinline: 1 },
-          events: {
-            onReady: () => {
-              ytReady = true;
-              if (pendingPlay) {
-                const p = pendingPlay;
-                pendingPlay = null;
-                playVideo(p.id, p.title, p.mood);
-              }
-            },
-            onStateChange: onPlayerStateChange,
-          },
-        });
-      };
-
-      function setBarState(playing) {
-        if (miniplayer) miniplayer.classList.toggle("is-playing", playing);
-        document.querySelectorAll("[data-radio-toggle]").forEach((btn) => (btn.textContent = playing ? "❚❚" : "▶"));
-        const heroIcon = document.querySelector("[data-hero-icon]");
-        if (heroIcon) heroIcon.textContent = playing ? "❚❚" : "▶";
-      }
-
-      function onPlayerStateChange(e) {
-        if (e.data === YT.PlayerState.PLAYING) setBarState(true);
-        if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) setBarState(false);
-        if (e.data === YT.PlayerState.ENDED && activeShift) {
-          playVideo(activeShift.song.videoId, activeShift.song.title, activeShift.song.mood);
-        }
-      }
-
-      function playVideo(videoId, title, mood) {
-        hasStartedRadio = true;
-        const songEl = document.querySelector("[data-radio-song]");
-        const moodEl = document.querySelector("[data-radio-mood]");
-        if (songEl) songEl.textContent = title;
-        if (moodEl) moodEl.textContent = mood;
-
-        if (!ytReady || !ytPlayer || !ytPlayer.loadVideoById) {
-          pendingPlay = { id: videoId, title, mood };
-          return;
-        }
-        ytPlayer.loadVideoById(videoId);
-      }
-
-      function toggleRadio() {
-        if (!hasStartedRadio) {
-          const shift = activeShift || SHIFTS[0];
-          playVideo(shift.song.videoId, shift.song.title, shift.song.mood);
-          return;
-        }
-        if (!ytReady || !ytPlayer) return;
-        const state = ytPlayer.getPlayerState ? ytPlayer.getPlayerState() : -1;
-        if (state === YT.PlayerState.PLAYING) ytPlayer.pauseVideo();
-        else ytPlayer.playVideo();
-      }
-
-      document.querySelectorAll("[data-radio-toggle], [data-radio-toggle-hero]").forEach((btn) => {
-        btn.addEventListener("click", toggleRadio);
-      });
+            timeDisplay.innerText = `${currentMin}:${currentSec} / ${durationMin}:${durationSec}`;
+        };
     </script>
-  </body>
+</body>
 </html>
