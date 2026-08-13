@@ -6,228 +6,77 @@
     <title>कॉर्पोरेट मज़दूर - Corporate Mazdoor Radio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { width: 100%; height: 100%; font-family: 'Space Grotesk', sans-serif; overflow: hidden; background-color: #0d0d11; color: #ffffff; }
 
-        body, html {
-            width: 100%;
-            height: 100%;
-            font-family: 'Space Grotesk', sans-serif;
-            overflow: hidden;
-            background-color: #0d0d11;
-            color: #ffffff;
-        }
-
-        /* Fullscreen Hero Background Container */
         .hero-container {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            background-image: linear-gradient(180deg, rgba(10, 10, 14, 0.4) 0%, rgba(10, 10, 14, 0.75) 100%), url('images/musicmajdur.png');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 24px 40px;
+            position: relative; width: 100vw; height: 100vh;
+            background-image: linear-gradient(180deg, rgba(10, 10, 14, 0.45) 0%, rgba(10, 10, 14, 0.8) 100%), url('images/musicmajdur.png');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: space-between; padding: 24px 40px;
         }
 
-        /* Top Navigation Bar */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            z-index: 10;
-        }
+        /* Top Bar */
+        .top-bar { display: flex; justify-content: space-between; align-items: center; width: 100%; z-index: 10; }
+        .status-badge { background: rgba(20, 20, 25, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.12); padding: 6px 14px; border-radius: 20px; font-size: 12px; display: flex; align-items: center; gap: 8px; font-weight: 500; }
+        .status-dot { width: 7px; height: 7px; background-color: #22c55e; border-radius: 50%; box-shadow: 0 0 8px #22c55e; }
+        .top-right-info { display: flex; gap: 10px; }
+        .info-pill { background: rgba(20, 20, 25, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.12); padding: 6px 16px; border-radius: 20px; font-size: 11px; letter-spacing: 1.5px; font-weight: 600; color: #d1d5db; }
 
-        .status-badge {
-            background: rgba(20, 20, 25, 0.65);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        /* Center Content */
+        .center-content { text-align: center; z-index: 10; margin-top: auto; margin-bottom: auto; display: flex; flex-direction: column; align-items: center; }
+        .hindi-title { font-family: 'Rozha One', serif; font-size: clamp(60px, 8.5vw, 120px); font-weight: 700; line-height: 0.95; text-shadow: 0 4px 25px rgba(0, 0, 0, 0.85); color: #ffffff; margin-bottom: 10px; }
+        .english-subtitle { font-size: clamp(11px, 1.2vw, 15px); letter-spacing: 6px; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); margin-bottom: 20px; font-weight: 500; }
+        .meta-line { font-size: 11px; letter-spacing: 3px; color: rgba(255, 255, 255, 0.6); text-transform: uppercase; margin-bottom: 28px; }
 
-        .status-dot {
-            width: 7px;
-            height: 7px;
-            background-color: #22c55e;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #22c55e;
+        /* CTA Button */
+        .cta-btn {
+            background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.25); color: #ffffff;
+            padding: 12px 28px; border-radius: 30px; font-size: 13px; font-weight: 600;
+            letter-spacing: 1.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+            transition: all 0.3s ease; box-shadow: 0 8px 20px rgba(0,0,0,0.4); cursor: pointer;
         }
+        .cta-btn:hover { background: rgba(255, 255, 255, 0.25); border-color: rgba(255, 255, 255, 0.5); transform: translateY(-2px); }
+        .cta-btn svg { transition: transform 0.3s ease; }
+        .cta-btn:hover svg { transform: translateX(4px); }
 
-        .top-right-info {
-            display: flex;
-            gap: 10px;
-        }
-
-        .info-pill {
-            background: rgba(20, 20, 25, 0.65);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-            color: #d1d5db;
-        }
-
-        /* Center Main Typography */
-        .center-content {
-            text-align: center;
-            z-index: 10;
-            margin-top: auto;
-            margin-bottom: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .hindi-title {
-            font-family: 'Rozha One', serif;
-            font-size: clamp(64px, 9vw, 130px);
-            font-weight: 700;
-            line-height: 0.95;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-            color: #ffffff;
-            margin-bottom: 8px;
-        }
-
-        .english-subtitle {
-            font-size: clamp(12px, 1.3vw, 16px);
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 24px;
-            font-weight: 500;
-        }
-
-        .meta-line {
-            font-size: 11px;
-            letter-spacing: 3px;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-        }
-
-        /* Bottom Floating Audio Player */
-        .bottom-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            width: 100%;
-            z-index: 10;
-        }
-
+        /* Player Bar */
+        .bottom-section { display: flex; flex-direction: column; align-items: center; gap: 18px; width: 100%; z-index: 10; }
         .player-card {
-            background: rgba(18, 18, 22, 0.75);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 50px;
-            padding: 8px 24px 8px 12px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            width: 100%;
-            max-width: 580px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: rgba(18, 18, 22, 0.82); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50px; padding: 10px 24px 10px 14px; display: flex; align-items: center; gap: 14px; width: 100%; max-width: 620px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
         }
 
-        .album-art {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: #2a2a35;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 700;
-            color: #9ca3af;
-        }
+        .album-art { width: 44px; height: 44px; border-radius: 50%; background: #2a2a35; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #9ca3af; border: 1px solid rgba(255, 255, 255, 0.15); flex-shrink: 0; }
+        .track-info { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .track-title { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .track-artist { font-size: 11px; color: #9ca3af; margin-top: 2px; }
 
-        .track-info {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
+        .controls-group { display: flex; align-items: center; gap: 8px; }
+        .ctrl-btn { background: transparent; border: none; color: #9ca3af; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: color 0.2s; padding: 4px; }
+        .ctrl-btn:hover { color: #ffffff; }
 
-        .track-title {
-            font-size: 13px;
-            font-weight: 600;
-        }
+        .play-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.18); border: 1px solid rgba(255, 255, 255, 0.25); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; }
+        .play-btn:hover { background: rgba(255, 255, 255, 0.35); transform: scale(1.05); }
 
-        .track-artist {
-            font-size: 11px;
-            color: #9ca3af;
-            margin-top: 2px;
-        }
+        .time-display { font-size: 11px; font-family: monospace; color: #9ca3af; min-width: 75px; text-align: right; }
 
-        .play-btn {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
+        /* Footer (INDIA removed) */
+        .footer-bar { display: flex; justify-content: space-between; align-items: center; width: 100%; font-size: 11px; letter-spacing: 2px; color: rgba(255, 255, 255, 0.5); }
+        .action-icons { display: flex; gap: 16px; }
+        .icon-btn { background: transparent; border: none; color: rgba(255, 255, 255, 0.6); cursor: pointer; font-size: 14px; }
 
-        .play-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-
-        .time-display {
-            font-size: 11px;
-            font-family: monospace;
-            color: #9ca3af;
-        }
-
-        /* Footer Info */
-        .footer-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            font-size: 11px;
-            letter-spacing: 2px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .action-icons {
-            display: flex;
-            gap: 16px;
-        }
-
-        .icon-btn {
-            background: transparent;
-            border: none;
-            color: rgba(255, 255, 255, 0.6);
-            cursor: pointer;
-            font-size: 14px;
-        }
+        #youtubePlayer { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
     </style>
 </head>
 <body>
 
     <div class="hero-container">
-        <!-- Top Status Bar -->
+        <!-- Top Bar -->
         <div class="top-bar">
             <div class="status-badge">
                 <span class="status-dot"></span>
@@ -235,34 +84,62 @@
             </div>
             <div class="top-right-info">
                 <div class="info-pill">AHMEDABAD</div>
-                <div class="info-pill">09:30 — 18:30</div>
+                <!-- Live Clock -->
+                <div class="info-pill" id="liveClock">00:00:00 AM</div>
             </div>
         </div>
 
-        <!-- Main Heading Text -->
+        <!-- Center Section -->
         <div class="center-content">
             <h1 class="hindi-title">कॉर्पोरेट मज़दूर</h1>
             <div class="english-subtitle">CORPORATE MAZDOOR • OVERTIME ALL HOURS</div>
             <div class="meta-line">AARAV MEHTA | SENIOR BUSINESS ANALYST | STRATEGY & OPERATIONS</div>
+
+            <!-- CTA Button -->
+            <a href="#story" class="cta-btn" onclick="openStoryModal(event)">
+                <span>मज़दूर की कहानी पढ़ें</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
         </div>
 
-        <!-- Player Bar & Bottom Controls -->
+        <!-- Player & Clean Footer -->
         <div class="bottom-section">
             <div class="player-card">
-                <div class="album-art">CM</div>
+                <div class="album-art" id="albumArt">YT</div>
                 <div class="track-info">
-                    <div class="track-title">Dusk Shift — ambient loop</div>
-                    <div class="track-artist">Corporate Mazdoor radio</div>
+                    <div class="track-title" id="trackTitle">YouTube Song Loading...</div>
+                    <div class="track-artist" id="trackArtist">Corporate Mazdoor Radio</div>
                 </div>
-                <button class="play-btn" id="playBtn" onclick="togglePlay()">
-                    <svg id="playIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="5,3 19,12 5,21"></polygon>
-                    </svg>
-                </button>
-                <div class="time-display" id="timeDisplay">0:00 / 3:51</div>
+
+                <div class="controls-group">
+                    <button class="ctrl-btn" onclick="prevSong()" title="Previous Song">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="19,20 9,12 19,4"></polygon>
+                            <line x1="5" y1="4" x2="5" y2="20" stroke="currentColor" stroke-width="2"></line>
+                        </svg>
+                    </button>
+
+                    <button class="play-btn" id="playBtn" onclick="togglePlay()">
+                        <svg id="playIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5,3 19,12 5,21"></polygon>
+                        </svg>
+                    </button>
+
+                    <button class="ctrl-btn" onclick="nextSong()" title="Next Song">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5,4 15,12 5,20"></polygon>
+                            <line x1="19" y1="4" x2="19" y2="20" stroke="currentColor" stroke-width="2"></line>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
             </div>
 
-            <!-- Footer Bar -->
+            <!-- Footer without INDIA -->
             <div class="footer-bar">
                 <div>DESK 42</div>
                 <div class="action-icons">
@@ -271,42 +148,112 @@
                     <button class="icon-btn">✎</button>
                     <button class="icon-btn">💬</button>
                 </div>
-                <div>INDIA</div>
             </div>
         </div>
     </div>
 
-    <!-- Interactive JavaScript -->
-    <audio id="audioPlayer" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+    <div id="youtubePlayer"></div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        const audio = document.getElementById('audioPlayer');
-        const playIcon = document.getElementById('playIcon');
-        const timeDisplay = document.getElementById('timeDisplay');
-        let isPlaying = false;
+        // Real-time Live Clock
+        function updateLiveClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 ? hours % 12 : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            document.getElementById('liveClock').innerText = `${hours}:${minutes}:${seconds} ${ampm}`;
+        }
+        setInterval(updateLiveClock, 1000);
+        updateLiveClock();
 
-        function togglePlay() {
-            if (isPlaying) {
-                audio.pause();
-                playIcon.innerHTML = '<polygon points="5,3 19,12 5,21"></polygon>';
-            } else {
-                audio.play();
-                playIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
-            }
-            isPlaying = !isPlaying;
+        // YouTube Playlist Config
+        const youtubePlaylist = [
+            { videoId: "jfKfPfyJRdk", title: "Lofi Hip Hop Beats — Relax / Study", artist: "Lofi Girl" },
+            { videoId: "5qap5aO4i9A", title: "Late Night Chill Vibes", artist: "Corporate Mazdoor Radio" },
+            { videoId: "DWcU19ZY440", title: "Deep Focus Coding Beats", artist: "Overtime Vibes" }
+        ];
+
+        let currentSongIndex = 0;
+        let ytPlayer = null;
+        let isPlaying = false;
+        let timerInterval = null;
+
+        function onYouTubeIframeAPIReady() {
+            ytPlayer = new YT.Player('youtubePlayer', {
+                height: '1', width: '1',
+                videoId: youtubePlaylist[currentSongIndex].videoId,
+                playerVars: { 'playsinline': 1, 'controls': 0, 'disablekb': 1 },
+                events: {
+                    'onReady': () => updateTrackUI(),
+                    'onStateChange': onPlayerStateChange
+                }
+            });
         }
 
-        audio.ontimeupdate = function() {
-            let currentMin = Math.floor(audio.currentTime / 60);
-            let currentSec = Math.floor(audio.currentTime % 60);
-            if (currentSec < 10) currentSec = '0' + currentSec;
+        function updateTrackUI() {
+            const currentSong = youtubePlaylist[currentSongIndex];
+            document.getElementById('trackTitle').innerText = currentSong.title;
+            document.getElementById('trackArtist').innerText = currentSong.artist;
+        }
 
-            let durationMin = Math.floor(audio.duration / 60) || 3;
-            let durationSec = Math.floor(audio.duration % 60) || 51;
-            if (durationSec < 10) durationSec = '0' + durationSec;
+        function togglePlay() {
+            if (!ytPlayer) return;
+            if (isPlaying) ytPlayer.pauseVideo();
+            else ytPlayer.playVideo();
+        }
 
-            timeDisplay.innerText = `${currentMin}:${currentSec} / ${durationMin}:${durationSec}`;
-        };
+        function onPlayerStateChange(event) {
+            const playIcon = document.getElementById('playIcon');
+            if (event.data == YT.PlayerState.PLAYING) {
+                isPlaying = true;
+                playIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
+                startProgressTimer();
+            } else {
+                isPlaying = false;
+                playIcon.innerHTML = '<polygon points="5,3 19,12 5,21"></polygon>';
+                stopProgressTimer();
+            }
+            if (event.data == YT.PlayerState.ENDED) nextSong();
+        }
+
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % youtubePlaylist.length;
+            updateTrackUI();
+            if (ytPlayer) ytPlayer.loadVideoById(youtubePlaylist[currentSongIndex].videoId);
+        }
+
+        function prevSong() {
+            currentSongIndex = (currentSongIndex - 1 + youtubePlaylist.length) % youtubePlaylist.length;
+            updateTrackUI();
+            if (ytPlayer) ytPlayer.loadVideoById(youtubePlaylist[currentSongIndex].videoId);
+        }
+
+        function startProgressTimer() {
+            stopProgressTimer();
+            timerInterval = setInterval(() => {
+                if (ytPlayer && ytPlayer.getCurrentTime) {
+                    const currentTime = ytPlayer.getCurrentTime() || 0;
+                    const duration = ytPlayer.getDuration() || 0;
+                    let cMin = Math.floor(currentTime / 60), cSec = Math.floor(currentTime % 60);
+                    if (cSec < 10) cSec = '0' + cSec;
+                    let dMin = Math.floor(duration / 60), dSec = Math.floor(duration % 60);
+                    if (dSec < 10) dSec = '0' + dSec;
+                    document.getElementById('timeDisplay').innerText = `${cMin}:${cSec} / ${dMin}:${dSec}`;
+                }
+            }, 1000);
+        }
+
+        function stopProgressTimer() { if (timerInterval) clearInterval(timerInterval); }
+
+        function openStoryModal(e) {
+            e.preventDefault();
+            alert("मज़दूर की कहानी: \\n\\n'सुबह 9:30 से शाम 6:30 तक... Corporate Mazdoor ki kahani!'");
+        }
     </script>
 </body>
 </html>
