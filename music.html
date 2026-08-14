@@ -50,6 +50,32 @@
             align-items: center;
             justify-content: flex-start;
         }
+
+        .clock-location-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+        }
+
+        .location-tag {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            padding-left: 4px;
+        }
+
+        .location-tag svg {
+            width: 13px;
+            height: 13px;
+            flex-shrink: 0;
+            stroke: currentColor;
+        }
         
         /* Time Clock (Bada aur Left Aligned) */
         .info-pill { 
@@ -263,6 +289,74 @@
 
         .time-display { font-size: 10px; font-family: 'Montserrat', monospace; color: #9ca3af; min-width: 65px; text-align: right; font-weight: 500; }
 
+        /* Volume Control */
+        .volume-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .volume-icon-btn {
+            background: transparent;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            flex-shrink: 0;
+            transition: color 0.2s;
+        }
+        .volume-icon-btn:hover { color: #ffffff; }
+
+        .volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 70px;
+            height: 4px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 0 4px rgba(0,0,0,0.5);
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 4px rgba(0,0,0,0.5);
+        }
+
+        .volume-slider::-webkit-slider-runnable-track {
+            height: 4px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #ffffff var(--vol, 100%), rgba(255,255,255,0.2) var(--vol, 100%));
+        }
+        .volume-slider::-moz-range-progress {
+            height: 4px;
+            border-radius: 4px;
+            background: #ffffff;
+        }
+
+        @media (max-width: 600px) {
+            .volume-slider { width: 50px; }
+        }
+
         /* Footer Info Section */
         .footer-info {
             display: flex;
@@ -316,16 +410,25 @@
     <div class="hero-container">
         <!-- Top Bar with Left Clock, Center Status, Right Songs & Memes -->
         <div class="top-bar">
-            <!-- Left: Bigger Live Clock -->
+            <!-- Left: Bigger Live Clock + Location -->
             <div class="top-left-info">
-                <div class="info-pill" id="liveClock">00:00:00 AM</div>
+                <div class="clock-location-group">
+                    <div class="info-pill" id="liveClock">00:00:00 AM</div>
+                    <div class="location-tag">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>India</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Center: Live Status Badge -->
             <div class="top-center-info">
                 <div class="status-badge">
                     <span class="status-dot"></span>
-                    <span><span id="listenerCount">945</span> on.shift</span>
+                    <span><span id="listenerCount">945</span> Live Listening</span>
                 </div>
             </div>
 
@@ -387,18 +490,21 @@
                 </div>
 
                 <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+
+                <div class="volume-group">
+                    <button class="volume-icon-btn" id="volumeIconBtn" onclick="toggleMute()" title="Mute/Unmute">
+                        <svg id="volumeIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3 9v6h4l5 5V4L7 9H3z"></path>
+                            <path d="M16.5 12c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.73 2.5-2.25 2.5-4.02z" fill="currentColor"></path>
+                            <path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" fill="currentColor"></path>
+                        </svg>
+                    </button>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="100" oninput="setVolume(this.value)">
+                </div>
             </div>
 
-            <!-- Footer Location & Instagram Section -->
+            <!-- Footer Instagram Section -->
             <div class="footer-info">
-                <div class="footer-item">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    <span>India</span>
-                </div>
-
                 <a href="https://instagram.com/corporate.majduur" target="_blank" rel="noopener noreferrer" class="footer-item">
                     <svg viewBox="0 0 24 24">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -430,26 +536,44 @@
         updateLiveClock();
 
         // Realistic Live Listener Counter Fluctuation
-        let activeListeners = 1142;
-        function updateListenerCount() {
-            const change = Math.floor(Math.random() * 7) - 3;
-            activeListeners = Math.max(1050, activeListeners + change);
-            
-            const countSpan = document.getElementById('listenerCount');
-            if (countSpan) {
-                countSpan.innerText = activeListeners.toLocaleString();
-            }
+        // Starts from the exact number shown in the HTML, so the first update never "jumps"
+        let activeListeners = Number(document.getElementById('listenerCount').innerText) || 945;
+        const MIN_LISTENERS = 900;
+        const MAX_LISTENERS = 980;
 
-            const nextInterval = Math.floor(Math.random() * 4000) + 3000;
+        function animateListenerCount(from, to) {
+            const countSpan = document.getElementById('listenerCount');
+            if (!countSpan) return;
+            const duration = 600; // ms
+            const startTime = performance.now();
+
+            function step(now) {
+                const progress = Math.min((now - startTime) / duration, 1);
+                const current = Math.round(from + (to - from) * progress);
+                countSpan.innerText = current.toLocaleString();
+                if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        function updateListenerCount() {
+            // Small, natural +/-1 to +/-2 change instead of big random swings
+            const change = Math.floor(Math.random() * 5) - 2;
+            const newCount = Math.min(MAX_LISTENERS, Math.max(MIN_LISTENERS, activeListeners + change));
+
+            animateListenerCount(activeListeners, newCount);
+            activeListeners = newCount;
+
+            const nextInterval = Math.floor(Math.random() * 3000) + 4000; // 4-7s
             setTimeout(updateListenerCount, nextInterval);
         }
-        setTimeout(updateListenerCount, 3000);
+        setTimeout(updateListenerCount, 4000);
 
         // YouTube Playlist Config
         const youtubePlaylist = [
-            { videoId: "V3vSJyHWFEw", title: "Lofi Hip Hop Beats — Relax / Study", artist: "Lofi Girl" },
-            { videoId: "5qap5aO4i9A", title: "Late Night Chill Vibes", artist: "Corporate Mazdoor Radio" },
-            { videoId: "DWcU19ZY440", title: "Deep Focus Coding Beats", artist: "Overtime Vibes" }
+            { videoId: "jfKfPfyJRdk", title: "Lofi Hip Hop Beats — Relax / Study", artist: "Lofi Girl" },
+            { videoId: "r0c1f6XxRQg", title: "Late Night Chill Vibes", artist: "Corporate Mazdoor Radio" },
+            { videoId: "LX2zshAgECQ", title: "Deep Focus Coding Beats", artist: "Overtime Vibes" }
         ];
 
         let currentSongIndex = 0;
@@ -459,6 +583,7 @@
         let timerInterval = null;
 
         updateTrackUI();
+        updateVolumeIcon(100, true);
 
         function updateTrackUI() {
             const currentSong = youtubePlaylist[currentSongIndex];
@@ -491,6 +616,7 @@
         function onPlayerReady(event) {
             updateTrackUI();
             event.target.mute();
+            event.target.setVolume(100);
             event.target.playVideo();
         }
 
@@ -546,6 +672,57 @@
             if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
                 ytPlayer.loadVideoById(youtubePlaylist[currentSongIndex].videoId);
                 if (!isMuted) ytPlayer.playVideo();
+            }
+        }
+
+        function setVolume(value) {
+            value = Number(value);
+            if (ytPlayer && typeof ytPlayer.setVolume === 'function') {
+                ytPlayer.setVolume(value);
+                if (value > 0 && isMuted) {
+                    ytPlayer.unMute();
+                    isMuted = false;
+                } else if (value == 0 && !isMuted) {
+                    ytPlayer.mute();
+                    isMuted = true;
+                }
+            }
+            const slider = document.getElementById('volumeSlider');
+            if (slider) {
+                slider.value = value;
+                slider.style.setProperty('--vol', value + '%');
+            }
+            updateVolumeIcon(value, isMuted);
+        }
+
+        function toggleMute() {
+            if (!ytPlayer || typeof ytPlayer.isMuted !== 'function') return;
+
+            if (isMuted) {
+                ytPlayer.unMute();
+                isMuted = false;
+                const slider = document.getElementById('volumeSlider');
+                const restoreVolume = slider && Number(slider.value) > 0 ? Number(slider.value) : 100;
+                ytPlayer.setVolume(restoreVolume);
+                if (slider) slider.value = restoreVolume;
+                updateVolumeIcon(restoreVolume, false);
+            } else {
+                ytPlayer.mute();
+                isMuted = true;
+                updateVolumeIcon(0, true);
+            }
+        }
+
+        function updateVolumeIcon(value, muted) {
+            const icon = document.getElementById('volumeIcon');
+            if (!icon) return;
+
+            if (muted || value == 0) {
+                icon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3z"></path><line x1="16" y1="9" x2="22" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line><line x1="22" y1="9" x2="16" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>';
+            } else if (value < 50) {
+                icon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3z"></path><path d="M16.5 12c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.73 2.5-2.25 2.5-4.02z"></path>';
+            } else {
+                icon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3z"></path><path d="M16.5 12c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.73 2.5-2.25 2.5-4.02z"></path><path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path>';
             }
         }
 
