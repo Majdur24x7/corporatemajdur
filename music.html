@@ -413,7 +413,6 @@
 
     <div id="youtubePlayer"></div>
 
-    <script async src="https://www.youtube.com/iframe_api"></script>
     <script>
         // Real-time Live Clock
         function updateLiveClock() {
@@ -448,7 +447,7 @@
 
         // YouTube Playlist Config
         const youtubePlaylist = [
-            { videoId: "jfKfPfyJRdk", title: "Lofi Hip Hop Beats — Relax / Study", artist: "Lofi Girl" },
+            { videoId: "V3vSJyHWFEw", title: "Lofi Hip Hop Beats — Relax / Study", artist: "Lofi Girl" },
             { videoId: "5qap5aO4i9A", title: "Late Night Chill Vibes", artist: "Corporate Mazdoor Radio" },
             { videoId: "DWcU19ZY440", title: "Deep Focus Coding Beats", artist: "Overtime Vibes" }
         ];
@@ -456,6 +455,7 @@
         let currentSongIndex = 0;
         let ytPlayer = null;
         let isPlaying = false;
+        let isMuted = true;   // starts muted so autoplay is allowed by the browser
         let timerInterval = null;
 
         updateTrackUI();
@@ -467,22 +467,54 @@
             document.getElementById('albumArtImg').src = `https://img.youtube.com/vi/${currentSong.videoId}/hqdefault.jpg`;
         }
 
+        // Define this BEFORE the iframe_api script loads (script is added at the end of this block)
         function onYouTubeIframeAPIReady() {
             ytPlayer = new YT.Player('youtubePlayer', {
                 height: '1', width: '1',
                 videoId: youtubePlaylist[currentSongIndex].videoId,
-                playerVars: { 'playsinline': 1, 'controls': 0, 'disablekb': 1 },
+                playerVars: {
+                    playsinline: 1,
+                    controls: 0,
+                    disablekb: 1,
+                    autoplay: 1,
+                    mute: 1,                      // required for autoplay to be allowed
+                    origin: window.location.origin
+                },
                 events: {
-                    'onReady': () => updateTrackUI(),
-                    'onStateChange': onPlayerStateChange
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange,
+                    'onError': onPlayerError
                 }
             });
         }
 
+        function onPlayerReady(event) {
+            updateTrackUI();
+            event.target.mute();
+            event.target.playVideo();
+        }
+
+        function onPlayerError(event) {
+            // Video not playable (embedding disabled / removed / region-blocked) -> skip to next
+            console.warn('YouTube playback error for video, skipping to next track. Code:', event.data);
+            nextSong();
+        }
+
         function togglePlay() {
-            if (!ytPlayer) return;
-            if (isPlaying) ytPlayer.pauseVideo();
-            else ytPlayer.playVideo();
+            if (!ytPlayer || typeof ytPlayer.playVideo !== 'function') return;
+
+            // First real click also unmutes the audio
+            if (isMuted) {
+                ytPlayer.unMute();
+                ytPlayer.setVolume(100);
+                isMuted = false;
+            }
+
+            if (isPlaying) {
+                ytPlayer.pauseVideo();
+            } else {
+                ytPlayer.playVideo();
+            }
         }
 
         function onPlayerStateChange(event) {
@@ -502,13 +534,19 @@
         function nextSong() {
             currentSongIndex = (currentSongIndex + 1) % youtubePlaylist.length;
             updateTrackUI();
-            if (ytPlayer) ytPlayer.loadVideoById(youtubePlaylist[currentSongIndex].videoId);
+            if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+                ytPlayer.loadVideoById(youtubePlaylist[currentSongIndex].videoId);
+                if (!isMuted) ytPlayer.playVideo();
+            }
         }
 
         function prevSong() {
             currentSongIndex = (currentSongIndex - 1 + youtubePlaylist.length) % youtubePlaylist.length;
             updateTrackUI();
-            if (ytPlayer) ytPlayer.loadVideoById(youtubePlaylist[currentSongIndex].videoId);
+            if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+                ytPlayer.loadVideoById(youtubePlaylist[currentSongIndex].videoId);
+                if (!isMuted) ytPlayer.playVideo();
+            }
         }
 
         function startProgressTimer() {
@@ -530,5 +568,7 @@
 
         function stopProgressTimer() { if (timerInterval) clearInterval(timerInterval); }
     </script>
+    <!-- Loaded at the end so onYouTubeIframeAPIReady is already defined above -->
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
