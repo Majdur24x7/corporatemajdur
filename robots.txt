@@ -1,23 +1,100 @@
 User-agent: *
 Allow: /
+
 Disallow: /admin/
 Disallow: /private/
 Disallow: /*.pdf$
 
 Crawl-delay: 1
 
-Sitemap: https://corporatemajdur.com/sitemap.xml
+Sitemap: https://www.corporatemajdur.com/sitemap.xml
 
-# Google specific
+
+# Google Search
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 0
 
-# Bing specific
+
+# Google AdSense
+User-agent: Mediapartners-Google
+Allow: /
+
+
+# Google AI / Gemini
+User-agent: Google-Extended
+Allow: /
+
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+
+# Microsoft / Bing / Copilot
 User-agent: Bingbot
 Allow: /
 
-# Block bad bots
+User-agent: bingbot
+Allow: /
+
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+
+# Common Crawl
+User-agent: CCBot
+Allow: /
+
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+
+# AI2
+User-agent: Ai2Bot
+Allow: /
+
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+
+# SEO crawlers blocked
 User-agent: AhrefsBot
 Disallow: /
 
