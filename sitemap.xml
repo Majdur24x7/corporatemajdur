@@ -15,4 +15,32 @@
         <priority>0.8</priority>
     </url>
     
+    <url>
+        <loc>https://corporatemajdur.com/story</loc>
+        <lastmod>2024-01-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>    
+
+    <url>
+        <loc>https://corporatemajdur.com/memes/hr</loc>
+        <lastmod>2024-01-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://corporatemajdur.com/memes/boss</loc>
+        <lastmod>2024-01-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://corporatemajdur.com/memes/salary</loc>
+        <lastmod>2024-01-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
 </urlset>
