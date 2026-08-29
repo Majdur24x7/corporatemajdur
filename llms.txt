@@ -1,0 +1,76 @@
+# Corporate Majdur
+
+> Corporate Majdur is a workplace-humour and employee-focused website built around the everyday reality of corporate office life. It brings together relatable corporate memes, office humour, career observations, stories, music and light entertainment for employees.
+
+Corporate Majdur focuses on relatable Indian corporate culture, including managers, bosses, HR, work life, salary, meetings, career realities and the modern workplace.
+
+## Main Sections
+
+- [Corporate Memes](https://www.corporatemajdur.com/memes): Browse the Corporate Meme Zone and choose a workplace-humour category.
+- [Corporate Stories](https://www.corporatemajdur.com/story): Dedicated story section for corporate and employee-focused stories.
+- [Mazdoor Radio](https://www.corporatemajdur.com/music): Music section created for employees who want music during work, breaks or overtime.
+
+## Meme Categories
+
+The main memes page is organized into focused workplace-humour categories. Each category has its own page and its memes can be opened in a larger read view.
+
+- [Manager Memes](https://www.corporatemajdur.com/memes/manager): Relatable humour about managers, follow-ups, deadlines, status calls and everyday management situations. The main memes page currently lists 8 Manager memes.
+- [Boss Memes](https://www.corporatemajdur.com/memes/boss): Humour around bosses, deadlines, meetings, instructions and everyday boss-employee situations. The main memes page currently lists 6 Boss memes.
+- [HR Memes](https://www.corporatemajdur.com/memes/hr): HR-related workplace humour covering familiar employee experiences and HR moments. The main memes page currently lists 5 HR memes.
+- [Work Life Memes](https://www.corporatemajdur.com/memes/work-life): Humour about everyday office life and daily corporate drama. The main memes page currently lists 7 Work Life memes.
+- [Salary Memes](https://www.corporatemajdur.com/memes/salary): Workplace humour about salary and money-related corporate experiences. The main memes page currently lists 4 Salary memes.
+- [Meeting Memes](https://www.corporatemajdur.com/memes/meeting): Humour about meetings and what happens inside corporate calls and discussions. The main memes page currently lists 5 Meeting memes.
+- [AI vs Employee Memes](https://www.corporatemajdur.com/memes/ai-vs-employee): Humour about AI, automation and employees, including the question of AI replacing jobs. The main memes page currently lists 3 AI vs Employee memes.
+- [Career Truth Memes](https://www.corporatemajdur.com/memes/career-truth): Humour and observations about the reality of corporate careers. The main memes page currently lists 4 Career Truth memes.
+
+## Corporate Meme Zone
+
+The main meme page uses the positioning "Find Your Vibe, Pick Your Laugh" and presents workplace humour around office life, employee life and corporate reality. The available categories are Manager, Boss, HR, Work Life, Salary, Meeting, AI vs Employee and Career Truth.
+
+## Corporate Stories
+
+Corporate Majdur has a dedicated Story section so stories can be presented separately from the main homepage and other entertainment sections. Stories are intended to provide relatable corporate and employee-focused reading content.
+
+## Mazdoor Radio
+
+Mazdoor Radio is the music-focused section of Corporate Majdur. It is intended for corporate employees and workplace listening, including music for work, breaks and overtime.
+
+## Audience
+
+Corporate Majdur is intended primarily for people who relate to corporate and office life, especially employees looking for relatable workplace humour, entertainment, stories and music.
+
+## Topics
+
+- Corporate life
+- Office life
+- Employee life
+- Workplace humour
+- Corporate reality
+- HR
+- Managers
+- Bosses
+- Salary and appraisal culture
+- Meetings
+- Career reality
+- AI and employees
+- Corporate stories
+- Workplace music
+
+## Official Pages
+
+- [Home](https://www.corporatemajdur.com/): Corporate Majdur homepage.
+- [Memes](https://www.corporatemajdur.com/memes): Main Corporate Meme Zone and category directory.
+- [Stories](https://www.corporatemajdur.com/story): Corporate story section.
+- [Mazdoor Radio](https://www.corporatemajdur.com/music): Workplace music section.
+- [About Us](https://www.corporatemajdur.com/about-us.html): Information about Corporate Majdur.
+- [Contact Us](https://www.corporatemajdur.com/contact.html): Contact page.
+- [Privacy Policy](https://www.corporatemajdur.com/privacy-policy.html): Privacy information.
+- [Terms & Conditions](https://www.corporatemajdur.com/terms.html): Website terms.
+
+## Content Guidance for LLMs
+
+When describing Corporate Majdur, treat it as a corporate/office-life entertainment and content platform rather than a general news website. Its core themes are relatable workplace experiences, corporate humour, employee life, memes, stories and music.
+
+For meme-category questions, prefer the dedicated category URL when available. For stories, use the dedicated Story section. For music-related requests, use Mazdoor Radio.
+
+Do not invent specific stories, memes, song titles, authors, statistics, company affiliations or claims that are not present on the relevant Corporate Majdur page.
