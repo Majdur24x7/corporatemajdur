@@ -32,27 +32,35 @@
             -webkit-text-fill-color: transparent;
         }
 
+
         .category-card {
-            background: linear-gradient(
-                145deg,
-                rgba(17, 24, 39, 0.95),
-                rgba(8, 15, 30, 0.95)
-            );
-
-            border: 1px solid rgba(96, 165, 250, 0.12);
-            transition: all 0.3s ease;
+            background: linear-gradient(145deg, rgba(17,24,39,.98), rgba(8,15,30,.98));
+            border: 1px solid rgba(96,165,250,.16);
+            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
         }
-
         .category-card:hover {
-            border-color: rgba(96, 165, 250, 0.4);
+            border-color: rgba(96,165,250,.55);
             transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-
-            background: linear-gradient(
-                145deg,
-                rgba(25, 35, 50, 0.98),
-                rgba(12, 20, 40, 0.98)
-            );
+            box-shadow: 0 12px 30px rgba(0,0,0,.38);
+        }
+        .category-image {
+            display:block;
+            width:100%;
+            aspect-ratio: 2.05 / 1;
+            object-fit:cover;
+            object-position:center;
+            background:#111827;
+        }
+        .category-content { padding: 16px 20px 20px; }
+        .category-title { font-size: 1.35rem; line-height:1.25; font-weight:800; margin:0 0 8px; }
+        .category-description { color:#9fc3df; font-size:1rem; line-height:1.45; margin:0 0 16px; }
+        .category-link { color:#38a5ff; font-size:1.1rem; font-weight:800; }
+        @media (max-width: 767px) {
+            .category-content { padding: 13px 14px 16px; }
+            .category-title { font-size:1.05rem; }
+            .category-description { font-size:.85rem; margin-bottom:12px; }
+            .category-link { font-size:.95rem; }
+            .category-image { aspect-ratio: 1.65 / 1; }
         }
 
         .meme-card {
@@ -241,223 +249,79 @@
 
         <main class="max-w-7xl mx-auto px-3 md:px-8 py-6 md:py-10">
 
-            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
 
-
-                <!-- CATEGORY 1 -->
-                <div
-                    onclick="window.location.href='/memes/manager'"
-                    class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8"
-                >
-
-                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">
-                        👔
+                <a href="/memes/manager" class="category-card rounded-2xl overflow-hidden flex flex-col">
+                    <img class="category-image" src="/assets/memes/manager.webp" alt="Corporate manager meme illustration" loading="lazy">
+                    <div class="category-content">
+                        <h2 class="category-title">Manager</h2>
+                        <p class="category-description">Apna manager kaisa hota hai...</p>
+                        <span class="category-link">8 Memes →</span>
                     </div>
+                </a>
 
-                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">
-                        Manager
-                    </h3>
-
-                    <p class="text-gray-400 text-sm mb-4">
-                        Apna manager kaisa hota hai...
-                    </p>
-
-                    <div class="mt-auto">
-                        <span class="text-blue-400 font-semibold">
-                            8 Memes →
-                        </span>
+                <a href="/memes/boss" class="category-card rounded-2xl overflow-hidden flex flex-col">
+                    <img class="category-image" src="/assets/memes/boss.webp" alt="Angry boss and employee meme illustration" loading="lazy">
+                    <div class="category-content">
+                        <h2 class="category-title">Boss</h2>
+                        <p class="category-description">Jab boss ko gussa aata hai...</p>
+                        <span class="category-link">6 Memes →</span>
                     </div>
+                </a>
 
-                </div>
-
-
-                <!-- CATEGORY 2 -->
-                <div
-                    onclick="window.location.href='/memes/boss'"
-                    class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8"
-                >
-
-                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">
-                        😤
+                <a href="/memes/hr" class="category-card rounded-2xl overflow-hidden flex flex-col">
+                    <img class="category-image" src="/assets/memes/hr.webp" alt="HR and employee meme illustration" loading="lazy">
+                    <div class="category-content">
+                        <h2 class="category-title">HR</h2>
+                        <p class="category-description">HR ke interesting moments...</p>
+                        <span class="category-link">5 Memes →</span>
                     </div>
+                </a>
 
-                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">
-                        Boss
-                    </h3>
-
-                    <p class="text-gray-400 text-sm mb-4">
-                        Jab boss ko gussa aata hai...
-                    </p>
-
-                    <div class="mt-auto">
-                        <span class="text-blue-400 font-semibold">
-                            6 Memes →
-                        </span>
+                <a href="/memes/work-life" class="category-card rounded-2xl overflow-hidden flex flex-col">
+                    <img class="category-image" src="/assets/memes/work-life.webp" alt="Tired employee at office meme illustration" loading="lazy">
+                    <div class="category-content">
+                        <h2 class="category-title">Work Life</h2>
+                        <p class="category-description">Office ka daily drama...</p>
+                        <span class="category-link">7 Memes →</span>
                     </div>
+                </a>
 
-                </div>
-
-
-                <!-- CATEGORY 3 -->
-                <div
-                    onclick="window.location.href='/memes/hr'"
-                    class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8"
-                >
-
-                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">
-                        📋
+                <a href="/memes/salary" class="category-card rounded-2xl overflow-hidden flex flex-col">
+                    <img class="category-image" src="/assets/memes/salary.webp" alt="Employee celebrating salary meme illustration" loading="lazy">
+                    <div class="category-content">
+                        <h2 class="category-title">Salary</h2>
+                        <p class="category-description">Paise ki baatein...</p>
+                        <span class="category-link">4 Memes →</span>
                     </div>
+                </a>
 
-                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">
-                        HR
-                    </h3>
-
-                    <p class="text-gray-400 text-sm mb-4">
-                        HR ke interesting moments...
-                    </p>
-
-                    <div class="mt-auto">
-                        <span class="text-blue-400 font-semibold">
-                            5 Memes →
-                        </span>
+                <a href="/memes/meeting" class="category-card rounded-2xl overflow-hidden flex flex-col">
+                    <img class="category-image" src="/assets/memes/meeting.webp" alt="Bored employee in a meeting meme illustration" loading="lazy">
+                    <div class="category-content">
+                        <h2 class="category-title">Meeting</h2>
+                        <p class="category-description">Meeting ke andar kya hota hai...</p>
+                        <span class="category-link">5 Memes →</span>
                     </div>
+                </a>
 
-                </div>
-
-
-                <!-- CATEGORY 4 -->
-                <div
-                    onclick="window.location.href='/memes/work-life'"
-                    class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8"
-                >
-
-                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">
-                        ⏰
+                <a href="/memes/ai-vs-employee" class="category-card rounded-2xl overflow-hidden flex flex-col">
+                    <img class="category-image" src="/assets/memes/ai-vs-employee.webp" alt="AI robot beside an office employee meme illustration" loading="lazy">
+                    <div class="category-content">
+                        <h2 class="category-title">AI vs Employee</h2>
+                        <p class="category-description">AI replace job</p>
+                        <span class="category-link">3 Memes →</span>
                     </div>
+                </a>
 
-                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">
-                        Work Life
-                    </h3>
-
-                    <p class="text-gray-400 text-sm mb-4">
-                        Office ka daily drama...
-                    </p>
-
-                    <div class="mt-auto">
-                        <span class="text-blue-400 font-semibold">
-                            7 Memes →
-                        </span>
+                <a href="/memes/career-truth" class="category-card rounded-2xl overflow-hidden flex flex-col">
+                    <img class="category-image" src="/assets/memes/career-truth.webp" alt="Employee thinking about career growth meme illustration" loading="lazy">
+                    <div class="category-content">
+                        <h2 class="category-title">Career Truth</h2>
+                        <p class="category-description">Career ki asli baatein...</p>
+                        <span class="category-link">4 Memes →</span>
                     </div>
-
-                </div>
-
-
-                <!-- CATEGORY 5 -->
-                <div
-                    onclick="window.location.href='/memes/salary'"
-                    class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8"
-                >
-
-                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">
-                        💰
-                    </div>
-
-                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">
-                        Salary
-                    </h3>
-
-                    <p class="text-gray-400 text-sm mb-4">
-                        Paise ki baatein...
-                    </p>
-
-                    <div class="mt-auto">
-                        <span class="text-blue-400 font-semibold">
-                            4 Memes →
-                        </span>
-                    </div>
-
-                </div>
-
-
-                <!-- CATEGORY 6 -->
-                <div
-                    onclick="window.location.href='/memes/meeting'"
-                    class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8"
-                >
-
-                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">
-                        📞
-                    </div>
-
-                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">
-                        Meeting
-                    </h3>
-
-                    <p class="text-gray-400 text-sm mb-4">
-                        Meeting ke andar kya hota hai...
-                    </p>
-
-                    <div class="mt-auto">
-                        <span class="text-blue-400 font-semibold">
-                            5 Memes →
-                        </span>
-                    </div>
-
-                </div>
-
-
-                <!-- CATEGORY 7 -->
-                <div
-                    onclick="window.location.href='/memes/ai-vs-employee'"
-                    class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8"
-                >
-
-                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">
-                        🤖
-                    </div>
-
-                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">
-                        AI vs Employee
-                    </h3>
-
-                    <p class="text-gray-400 text-sm mb-4">
-                        AI replace job
-                    </p>
-
-                    <div class="mt-auto">
-                        <span class="text-blue-400 font-semibold">
-                            3 Memes →
-                        </span>
-                    </div>
-
-                </div>
-
-
-                <!-- CATEGORY 8 -->
-                <div
-                    onclick="window.location.href='/memes/career-truth'"
-                    class="category-card rounded-2xl overflow-hidden flex flex-col cursor-pointer p-5 md:p-8"
-                >
-
-                    <div class="category-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-3xl mb-5">
-                        💼
-                    </div>
-
-                    <h3 class="font-bold text-xl md:text-2xl text-white mb-2">
-                        Career Truth
-                    </h3>
-
-                    <p class="text-gray-400 text-sm mb-4">
-                        Career ki asli baatein...
-                    </p>
-
-                    <div class="mt-auto">
-                        <span class="text-blue-400 font-semibold">
-                            4 Memes →
-                        </span>
-                    </div>
-
-                </div>
+                </a>
 
             </div>
 
