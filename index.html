@@ -215,6 +215,21 @@
             border-radius: 16px !important;
             background: #fff;
         }
+        .reel-open-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 12px;
+            margin-top: auto;
+            color: #f9a8d4;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            border-top: 1px solid rgba(51, 65, 85, .9);
+            background: #0f172a;
+        }
+        .reel-open-link:hover { color: #fff; background: #1e293b; }
         .reel-placeholder {
             min-height: 310px;
             display: flex;
@@ -715,7 +730,7 @@ class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 roun
 
 
 
-    <!-- ADDED: SCROLLABLE INSTAGRAM REELS. Replace each PASTE_REEL_URL_* with a public Instagram Reel URL. -->
+    <!-- FIXED: SCROLLABLE INSTAGRAM POSTS/REELS -->
     <section id="instagram-reels" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 relative z-10">
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6 text-left">
             <div>
@@ -725,47 +740,53 @@ class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 roun
             </div>
             <a href="https://www.instagram.com/corporate.majduur/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 text-sm font-bold text-pink-400 hover:text-pink-300 transition"><i class="fa-brands fa-instagram"></i> Follow on Instagram</a>
         </div>
-        <div class="reels-scroll" aria-label="Scrollable Instagram Reels">
+        <div class="reels-scroll" aria-label="Horizontally scrollable Instagram posts">
             <article class="reel-card">
-                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DeHxgZZJGYR/" data-instgrm-version="14" style="background:#fff;"></blockquote>
-                <div class="reel-placeholder"><i class="fa-brands fa-instagram text-4xl text-pink-400"></i><p class="text-sm font-bold text-white">Add your first Reel</p><p class="text-xs text-slate-400">Replace PASTE_REEL_URL_1_HERE with a public Reel URL in the HTML.</p><a href="https://www.instagram.com/corporate.majduur/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-pink-400 underline">Visit Instagram</a></div>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DeHxgZZJGYR/" data-instgrm-version="14"></blockquote>
+                <a class="reel-open-link" href="https://www.instagram.com/p/DeHxgZZJGYR/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram par dekhein ↗</a>
             </article>
             <article class="reel-card">
-                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DdBUByesXa4/" data-instgrm-version="14" style="background:#fff;"></blockquote>
-                <div class="reel-placeholder"><i class="fa-brands fa-instagram text-4xl text-pink-400"></i><p class="text-sm font-bold text-white">Add another Reel</p><p class="text-xs text-slate-400">Replace PASTE_REEL_URL_2_HERE with a public Reel URL in the HTML.</p><a href="https://www.instagram.com/corporate.majduur/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-pink-400 underline">Visit Instagram</a></div>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DdBUByesXa4/" data-instgrm-version="14"></blockquote>
+                <a class="reel-open-link" href="https://www.instagram.com/p/DdBUByesXa4/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram par dekhein ↗</a>
             </article>
             <article class="reel-card">
-                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DbZ1HjcM_zC/" data-instgrm-version="14" style="background:#fff;"></blockquote>
-                <div class="reel-placeholder"><i class="fa-brands fa-instagram text-4xl text-pink-400"></i><p class="text-sm font-bold text-white">Add another Reel</p><p class="text-xs text-slate-400">Replace PASTE_REEL_URL_3_HERE with a public Reel URL in the HTML.</p><a href="https://www.instagram.com/corporate.majduur/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-pink-400 underline">Visit Instagram</a></div>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DbZ1HjcM_zC/" data-instgrm-version="14"></blockquote>
+                <a class="reel-open-link" href="https://www.instagram.com/p/DbZ1HjcM_zC/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram par dekhein ↗</a>
             </article>
             <article class="reel-card">
-                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DbIWooKJ7Mq/" data-instgrm-version="14" style="background:#fff;"></blockquote>
-                <div class="reel-placeholder"><i class="fa-brands fa-instagram text-4xl text-pink-400"></i><p class="text-sm font-bold text-white">Add another Reel</p><p class="text-xs text-slate-400">Replace PASTE_REEL_URL_4_HERE with a public Reel URL in the HTML.</p><a href="https://www.instagram.com/corporate.majduur/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-pink-400 underline">Visit Instagram</a></div>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DbIWooKJ7Mq/" data-instgrm-version="14"></blockquote>
+                <a class="reel-open-link" href="https://www.instagram.com/p/DbIWooKJ7Mq/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram par dekhein ↗</a>
             </article>
             <article class="reel-card">
-                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DbmfqR7Bc4Q/" data-instgrm-version="14" style="background:#fff;"></blockquote>
-                <div class="reel-placeholder"><i class="fa-brands fa-instagram text-4xl text-pink-400"></i><p class="text-sm font-bold text-white">Add another Reel</p><p class="text-xs text-slate-400">Replace PASTE_REEL_URL_4_HERE with a public Reel URL in the HTML.</p><a href="https://www.instagram.com/corporate.majduur/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-pink-400 underline">Visit Instagram</a></div>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DbmfqR7Bc4Q/" data-instgrm-version="14"></blockquote>
+                <a class="reel-open-link" href="https://www.instagram.com/p/DbmfqR7Bc4Q/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram par dekhein ↗</a>
             </article>
         </div>
-        <p class="text-[11px] text-slate-500 mt-2">Tip: Instagram embeds need public Reel URLs and may not load when visitors use strict tracking protection or if Instagram is unavailable.</p>
+        <p class="text-[11px] text-slate-500 mt-3">Agar Instagram preview load na ho, card ke neeche “Instagram par dekhein” par click karein. Instagram embeds public posts aur browser permissions par depend karte hain.</p>
     </section>
-    <script async src="https://www.instagram.com/embed.js"></script>
     <script>
-        // Keep placeholders visible until a real public Reel URL is added.
-        // Once a URL is supplied, hide its placeholder and ask Instagram to render the embed.
-        window.addEventListener('load', function () {
-            document.querySelectorAll('#instagram-reels .reel-card').forEach(function (card) {
-                var embed = card.querySelector('blockquote.instagram-media');
-                var placeholder = card.querySelector('.reel-placeholder');
-                var permalink = embed ? (embed.getAttribute('data-instgrm-permalink') || '') : '';
-                var hasRealUrl = /^https?:\/\/(www\.)?instagram\.com\/(reel|p|tv)\//i.test(permalink);
-                if (embed) embed.style.display = hasRealUrl ? 'block' : 'none';
-                if (placeholder) placeholder.style.display = hasRealUrl ? 'none' : 'flex';
-            });
-            if (window.instgrm && window.instgrm.Embeds) window.instgrm.Embeds.process();
-        });
+        // Load Instagram's embed script reliably, then process all embeds.
+        (function () {
+            function processInstagramEmbeds() {
+                if (window.instgrm && window.instgrm.Embeds) {
+                    window.instgrm.Embeds.process();
+                }
+            }
+            var existing = document.querySelector('script[src="https://www.instagram.com/embed.js"]');
+            if (existing) {
+                existing.addEventListener('load', processInstagramEmbeds, { once: true });
+                processInstagramEmbeds();
+            } else {
+                var script = document.createElement('script');
+                script.src = 'https://www.instagram.com/embed.js';
+                script.async = true;
+                script.onload = processInstagramEmbeds;
+                document.body.appendChild(script);
+            }
+            window.addEventListener('load', processInstagramEmbeds, { once: true });
+        })();
     </script>
-    <!-- END ADDED: SCROLLABLE INSTAGRAM REELS -->
+    <!-- END FIXED: SCROLLABLE INSTAGRAM POSTS/REELS -->
 
     <!-- Footer -->
     <footer class="footer">
