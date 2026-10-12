@@ -171,6 +171,66 @@
     text-decoration: underline;
 }
 
+
+
+        /* Added: responsive meme category cards */
+        .category-card {
+            background: linear-gradient(145deg, rgba(15, 23, 42, .96), rgba(2, 6, 23, .94));
+            border: 1px solid rgba(51, 65, 85, .85);
+            transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+        }
+        .category-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(16, 185, 129, .6);
+            box-shadow: 0 12px 28px rgba(16, 185, 129, .08);
+        }
+        /* Added: horizontally scrollable Instagram Reels shelf */
+        .reels-scroll {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 8px 2px 18px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #475569 #0b0f19;
+        }
+        .reel-card {
+            flex: 0 0 250px;
+            width: 250px;
+            min-height: 310px;
+            scroll-snap-align: start;
+            border: 1px solid rgba(51, 65, 85, .9);
+            border-radius: 18px;
+            background: linear-gradient(160deg, #111827, #020617);
+            overflow: hidden;
+        }
+        .reel-card blockquote.instagram-media {
+            margin: 0 !important;
+            min-width: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            border: 0 !important;
+            border-radius: 16px !important;
+            background: #fff;
+        }
+        .reel-placeholder {
+            min-height: 310px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 24px;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(236,72,153,.22), transparent 58%), #0f172a;
+        }
+        @media (max-width: 640px) {
+            .reel-card { flex-basis: 78vw; width: 78vw; }
+            .reel-placeholder { min-height: 280px; }
+        }
+
     </style>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RMS4345C6K"></script>
@@ -398,6 +458,41 @@ document.addEventListener('click', (e) => {
         </div>
     </section>
 
+
+
+    <!-- ADDED: MEME CATEGORIES -->
+    <section id="meme-categories" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 relative z-10">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-7 text-left">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-[.2em] text-emerald-400 mb-2">Made for Indian office life</p>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Explore <span class="text-emerald-400">Corporate Memes</span></h2>
+                <p class="text-sm text-slate-400 mt-2 max-w-2xl">Boss ke deadlines se lekar salary day tak—apni daily office life se match karne wali meme category choose karo.</p>
+            </div>
+            <a href="/memes" class="inline-flex items-center justify-center gap-2 text-sm font-bold text-emerald-400 hover:text-emerald-300 transition">View all memes <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 text-left">
+            <a href="/memes/boss" class="category-card rounded-2xl p-4 sm:p-5 block">
+                <span class="text-2xl" aria-hidden="true">👔</span><h3 class="font-bold text-white mt-3">Boss Memes</h3><p class="text-xs sm:text-sm text-slate-400 mt-1">Deadlines, micromanagement aur boss ke legendary messages.</p><span class="inline-block text-xs font-bold text-emerald-400 mt-4">Explore memes →</span>
+            </a>
+            <a href="/memes/manager" class="category-card rounded-2xl p-4 sm:p-5 block">
+                <span class="text-2xl" aria-hidden="true">🧑‍💼</span><h3 class="font-bold text-white mt-3">Manager Memes</h3><p class="text-xs sm:text-sm text-slate-400 mt-1">Follow-ups, meetings aur “quick call” moments.</p><span class="inline-block text-xs font-bold text-emerald-400 mt-4">Explore memes →</span>
+            </a>
+            <a href="/memes/hr" class="category-card rounded-2xl p-4 sm:p-5 block">
+                <span class="text-2xl" aria-hidden="true">📋</span><h3 class="font-bold text-white mt-3">HR Memes</h3><p class="text-xs sm:text-sm text-slate-400 mt-1">Appraisals, policies aur HR ke office classics.</p><span class="inline-block text-xs font-bold text-emerald-400 mt-4">Explore memes →</span>
+            </a>
+            <a href="/memes/salary" class="category-card rounded-2xl p-4 sm:p-5 block">
+                <span class="text-2xl" aria-hidden="true">💸</span><h3 class="font-bold text-white mt-3">Salary Memes</h3><p class="text-xs sm:text-sm text-slate-400 mt-1">Salary credit hone se month-end tak ka safar.</p><span class="inline-block text-xs font-bold text-emerald-400 mt-4">Explore memes →</span>
+            </a>
+            <a href="/memes/monday" class="category-card rounded-2xl p-4 sm:p-5 block">
+                <span class="text-2xl" aria-hidden="true">😵‍💫</span><h3 class="font-bold text-white mt-3">Monday Memes</h3><p class="text-xs sm:text-sm text-slate-400 mt-1">Weekend khatam aur alarm ki dardnaak reality.</p><span class="inline-block text-xs font-bold text-emerald-400 mt-4">Explore memes →</span>
+            </a>
+            <a href="/memes" class="category-card rounded-2xl p-4 sm:p-5 block">
+                <span class="text-2xl" aria-hidden="true">😂</span><h3 class="font-bold text-white mt-3">All Office Memes</h3><p class="text-xs sm:text-sm text-slate-400 mt-1">Indian corporate life ke aur relatable moments.</p><span class="inline-block text-xs font-bold text-emerald-400 mt-4">Browse all →</span>
+            </a>
+        </div>
+    </section>
+    <!-- END ADDED: MEME CATEGORIES -->
+
     <!-- GAMES SECTION -->
     <section id="games-section" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 relative z-10">
         <div class="text-center mb-10">
@@ -617,6 +712,56 @@ class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 roun
             </div>
         </div>
     </section>
+
+
+
+    <!-- ADDED: SCROLLABLE INSTAGRAM REELS. Replace each PASTE_REEL_URL_* with a public Instagram Reel URL. -->
+    <section id="instagram-reels" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 relative z-10">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6 text-left">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-[.2em] text-pink-400 mb-2">From our Instagram</p>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Corporate Majdur <span class="text-pink-400">Reels</span></h2>
+                <p class="text-sm text-slate-400 mt-2">Office humour, relatable moments aur corporate life ke short videos. Swipe horizontally to explore.</p>
+            </div>
+            <a href="https://www.instagram.com/corporate.majduur/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 text-sm font-bold text-pink-400 hover:text-pink-300 transition"><i class="fa-brands fa-instagram"></i> Follow on Instagram</a>
+        </div>
+        <div class="reels-scroll" aria-label="Scrollable Instagram Reels">
+            <article class="reel-card">
+                <blockquote class="instagram-media" data-instgrm-permalink="PASTE_REEL_URL_1_HERE" data-instgrm-version="14" style="background:#fff;"></blockquote>
+                <div class="reel-placeholder"><i class="fa-brands fa-instagram text-4xl text-pink-400"></i><p class="text-sm font-bold text-white">Add your first Reel</p><p class="text-xs text-slate-400">Replace PASTE_REEL_URL_1_HERE with a public Reel URL in the HTML.</p><a href="https://www.instagram.com/corporate.majduur/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-pink-400 underline">Visit Instagram</a></div>
+            </article>
+            <article class="reel-card">
+                <blockquote class="instagram-media" data-instgrm-permalink="PASTE_REEL_URL_2_HERE" data-instgrm-version="14" style="background:#fff;"></blockquote>
+                <div class="reel-placeholder"><i class="fa-brands fa-instagram text-4xl text-pink-400"></i><p class="text-sm font-bold text-white">Add another Reel</p><p class="text-xs text-slate-400">Replace PASTE_REEL_URL_2_HERE with a public Reel URL in the HTML.</p><a href="https://www.instagram.com/corporate.majduur/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-pink-400 underline">Visit Instagram</a></div>
+            </article>
+            <article class="reel-card">
+                <blockquote class="instagram-media" data-instgrm-permalink="PASTE_REEL_URL_3_HERE" data-instgrm-version="14" style="background:#fff;"></blockquote>
+                <div class="reel-placeholder"><i class="fa-brands fa-instagram text-4xl text-pink-400"></i><p class="text-sm font-bold text-white">Add another Reel</p><p class="text-xs text-slate-400">Replace PASTE_REEL_URL_3_HERE with a public Reel URL in the HTML.</p><a href="https://www.instagram.com/corporate.majduur/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-pink-400 underline">Visit Instagram</a></div>
+            </article>
+            <article class="reel-card">
+                <blockquote class="instagram-media" data-instgrm-permalink="PASTE_REEL_URL_4_HERE" data-instgrm-version="14" style="background:#fff;"></blockquote>
+                <div class="reel-placeholder"><i class="fa-brands fa-instagram text-4xl text-pink-400"></i><p class="text-sm font-bold text-white">Add another Reel</p><p class="text-xs text-slate-400">Replace PASTE_REEL_URL_4_HERE with a public Reel URL in the HTML.</p><a href="https://www.instagram.com/corporate.majduur/" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-pink-400 underline">Visit Instagram</a></div>
+            </article>
+        </div>
+        <p class="text-[11px] text-slate-500 mt-2">Tip: Instagram embeds need public Reel URLs and may not load when visitors use strict tracking protection or if Instagram is unavailable.</p>
+    </section>
+    <script async src="https://www.instagram.com/embed.js"></script>
+    <script>
+        // Keep placeholders visible until a real public Reel URL is added.
+        // Once a URL is supplied, hide its placeholder and ask Instagram to render the embed.
+        window.addEventListener('load', function () {
+            document.querySelectorAll('#instagram-reels .reel-card').forEach(function (card) {
+                var embed = card.querySelector('blockquote.instagram-media');
+                var placeholder = card.querySelector('.reel-placeholder');
+                var permalink = embed ? (embed.getAttribute('data-instgrm-permalink') || '') : '';
+                var hasRealUrl = /^https?:\/\/(www\.)?instagram\.com\/(reel|p|tv)\//i.test(permalink);
+                if (embed) embed.style.display = hasRealUrl ? 'block' : 'none';
+                if (placeholder) placeholder.style.display = hasRealUrl ? 'none' : 'flex';
+            });
+            if (window.instgrm && window.instgrm.Embeds) window.instgrm.Embeds.process();
+        });
+    </script>
+    <!-- END ADDED: SCROLLABLE INSTAGRAM REELS -->
 
     <!-- Footer -->
     <footer class="footer">
@@ -967,5 +1112,12 @@ function spinWheel() {
 </script>
 
     
+    <script>
+        // Added: populate copyright year without changing existing game logic.
+        (function () {
+            var yearElement = document.getElementById('year');
+            if (yearElement) yearElement.textContent = new Date().getFullYear();
+        })();
+    </script>
 </body>
 </html>
