@@ -232,15 +232,21 @@
         .reel-open-link:hover { color: #fff; background: #1e293b; }
         .reel-placeholder {
             min-height: 310px;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 12px;
             padding: 24px;
+            color: #e2e8f0;
             text-align: center;
             background: radial-gradient(circle at top, rgba(236,72,153,.22), transparent 58%), #0f172a;
         }
+        .reel-placeholder > i { font-size: 32px; color: #f472b6; }
+        .reel-placeholder > strong { font-size: 16px; color: #fff; }
+        .reel-placeholder > span { font-size: 12px; line-height: 1.5; color: #94a3b8; }
+        .reel-placeholder .reel-open-link { width: 100%; border: 1px solid rgba(51,65,85,.9); border-radius: 10px; margin-top: 8px; }
         @media (max-width: 640px) {
             .reel-card { flex-basis: 78vw; width: 78vw; }
             .reel-placeholder { min-height: 280px; }
@@ -742,50 +748,48 @@ class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-5 py-2.5 roun
         </div>
         <div class="reels-scroll" aria-label="Horizontally scrollable Instagram posts">
             <article class="reel-card">
-                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DeHxgZZJGYR/" data-instgrm-version="14"></blockquote>
-                <a class="reel-open-link" href="https://www.instagram.com/p/DeHxgZZJGYR/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram par dekhein ↗</a>
+                <div class="reel-placeholder">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                    <strong>Corporate Majdur</strong>
+                    <span>Office humour &amp; relatable corporate moments</span>
+                    <a class="reel-open-link" href="https://www.instagram.com/p/DeHxgZZJGYR/" target="_blank" rel="noopener noreferrer">Instagram par dekhein ↗</a>
+                </div>
             </article>
             <article class="reel-card">
-                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DdBUByesXa4/" data-instgrm-version="14"></blockquote>
-                <a class="reel-open-link" href="https://www.instagram.com/p/DdBUByesXa4/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram par dekhein ↗</a>
+                <div class="reel-placeholder">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                    <strong>Corporate Majdur</strong>
+                    <span>Office humour &amp; relatable corporate moments</span>
+                    <a class="reel-open-link" href="https://www.instagram.com/p/DdBUByesXa4/" target="_blank" rel="noopener noreferrer">Instagram par dekhein ↗</a>
+                </div>
             </article>
             <article class="reel-card">
-                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DbZ1HjcM_zC/" data-instgrm-version="14"></blockquote>
-                <a class="reel-open-link" href="https://www.instagram.com/p/DbZ1HjcM_zC/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram par dekhein ↗</a>
+                <div class="reel-placeholder">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                    <strong>Corporate Majdur</strong>
+                    <span>Office humour &amp; relatable corporate moments</span>
+                    <a class="reel-open-link" href="https://www.instagram.com/p/DbZ1HjcM_zC/" target="_blank" rel="noopener noreferrer">Instagram par dekhein ↗</a>
+                </div>
             </article>
             <article class="reel-card">
-                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DbIWooKJ7Mq/" data-instgrm-version="14"></blockquote>
-                <a class="reel-open-link" href="https://www.instagram.com/p/DbIWooKJ7Mq/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram par dekhein ↗</a>
+                <div class="reel-placeholder">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                    <strong>Corporate Majdur</strong>
+                    <span>Office humour &amp; relatable corporate moments</span>
+                    <a class="reel-open-link" href="https://www.instagram.com/p/DbIWooKJ7Mq/" target="_blank" rel="noopener noreferrer">Instagram par dekhein ↗</a>
+                </div>
             </article>
             <article class="reel-card">
-                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DbmfqR7Bc4Q/" data-instgrm-version="14"></blockquote>
-                <a class="reel-open-link" href="https://www.instagram.com/p/DbmfqR7Bc4Q/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i> Instagram par dekhein ↗</a>
+                <div class="reel-placeholder">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                    <strong>Corporate Majdur</strong>
+                    <span>Office humour &amp; relatable corporate moments</span>
+                    <a class="reel-open-link" href="https://www.instagram.com/p/DbmfqR7Bc4Q/" target="_blank" rel="noopener noreferrer">Instagram par dekhein ↗</a>
+                </div>
             </article>
         </div>
         <p class="text-[11px] text-slate-500 mt-3">Agar Instagram preview load na ho, card ke neeche “Instagram par dekhein” par click karein. Instagram embeds public posts aur browser permissions par depend karte hain.</p>
     </section>
-    <script>
-        // Load Instagram's embed script reliably, then process all embeds.
-        (function () {
-            function processInstagramEmbeds() {
-                if (window.instgrm && window.instgrm.Embeds) {
-                    window.instgrm.Embeds.process();
-                }
-            }
-            var existing = document.querySelector('script[src="https://www.instagram.com/embed.js"]');
-            if (existing) {
-                existing.addEventListener('load', processInstagramEmbeds, { once: true });
-                processInstagramEmbeds();
-            } else {
-                var script = document.createElement('script');
-                script.src = 'https://www.instagram.com/embed.js';
-                script.async = true;
-                script.onload = processInstagramEmbeds;
-                document.body.appendChild(script);
-            }
-            window.addEventListener('load', processInstagramEmbeds, { once: true });
-        })();
-    </script>
     <!-- END FIXED: SCROLLABLE INSTAGRAM POSTS/REELS -->
 
     <!-- Footer -->
