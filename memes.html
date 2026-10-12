@@ -169,9 +169,6 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2307304322759348"
      crossorigin="anonymous"></script>
 
-    <script async src="https://pagead.googlesyndication.com/pagead/js?client=ca-pub-2307304322759348"
-        crossorigin="anonymous"></script>
-
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RMS4345C6K"></script>
     <script>
@@ -640,7 +637,7 @@
 
                         <a
                             href="#"
-                            onclick="shareTo('WhatsApp')"
+                            onclick="shareTo(event, 'WhatsApp')"
                             class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors"
                         >
                             💬 WhatsApp
@@ -649,7 +646,7 @@
 
                         <a
                             href="#"
-                            onclick="shareTo('Twitter/X')"
+                            onclick="shareTo(event, 'Twitter/X')"
                             class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors"
                         >
                             🐦 Twitter / X
@@ -658,7 +655,7 @@
 
                         <a
                             href="#"
-                            onclick="shareTo('LinkedIn')"
+                            onclick="shareTo(event, 'LinkedIn')"
                             class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors"
                         >
                             💼 LinkedIn
@@ -667,7 +664,7 @@
 
                         <a
                             href="#"
-                            onclick="copyLink()"
+                            onclick="copyLink(event)"
                             class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors border-t border-gray-800"
                         >
                             🔗 Copy Link
@@ -1040,6 +1037,7 @@
             document.getElementById('modalTitle').innerText = title;
 
             document.getElementById('memeModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
 
             document.getElementById('shareDropdown').classList.add('hidden');
         }
@@ -1048,6 +1046,7 @@
         function closeModal() {
 
             document.getElementById('memeModal').classList.add('hidden');
+            document.body.style.overflow = '';
 
             document.getElementById('shareDropdown').classList.add('hidden');
         }
@@ -1064,17 +1063,65 @@
         }
 
 
-        function shareTo(platform) {
-
-            alert('Shared to ' + platform + '!');
-
-            document.getElementById('shareDropdown').classList.add('hidden');
+        function getShareText() {
+            const memeText = document.getElementById('modalTitle').innerText.trim();
+            return memeText ? memeText + '\n' + window.location.href : window.location.href;
         }
 
+        function shareTo(event, platform) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
 
-        function copyLink() {
+            const text = getShareText();
+            const encodedText = encodeURIComponent(text);
+            const encodedUrl = encodeURIComponent(window.location.href);
+            let shareUrl = '';
 
-            alert('Meme link copied to clipboard!');
+            if (platform === 'WhatsApp') {
+                shareUrl = 'https://wa.me/?text=' + encodedText;
+            } else if (platform === 'Twitter/X') {
+                shareUrl = 'https://twitter.com/intent/tweet?text=' + encodedText;
+            } else if (platform === 'LinkedIn') {
+                shareUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodedUrl;
+            }
+
+            document.getElementById('shareDropdown').classList.add('hidden');
+
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'noopener,noreferrer');
+            }
+        }
+
+        async function copyLink(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            const textToCopy = getShareText();
+
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(textToCopy);
+                } else {
+                    const temporaryInput = document.createElement('textarea');
+                    temporaryInput.value = textToCopy;
+                    temporaryInput.setAttribute('readonly', '');
+                    temporaryInput.style.position = 'fixed';
+                    temporaryInput.style.opacity = '0';
+                    document.body.appendChild(temporaryInput);
+                    temporaryInput.select();
+                    const copied = document.execCommand('copy');
+                    temporaryInput.remove();
+                    if (!copied) throw new Error('Copy command failed');
+                }
+
+                alert('Meme text and page link copied!');
+            } catch (error) {
+                alert('Copy nahi ho paya. Please manually copy the meme text.');
+            }
 
             document.getElementById('shareDropdown').classList.add('hidden');
         }
@@ -1088,6 +1135,12 @@
         }
 
 
+
+        // Keep the footer year current.
+        const yearElement = document.getElementById('year');
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+        }
 
         // =====================================================
         // WINDOW CLICK
