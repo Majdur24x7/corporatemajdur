@@ -430,12 +430,14 @@
                 card.setAttribute("aria-label", `Read story ${index + 1}`);
 
                 card.innerHTML = `
-                    <div class="p-4 sm:p-5">
-                        <div class="story-artwork ${story.image || story.imageUrl || story.image_url || story.imageURL ? '' : 'is-placeholder'} bg-gradient-to-br ${glow}">
-                            ${(story.image || story.imageUrl || story.image_url || story.imageURL)
-                                ? `<img src="${escapeHTML(story.image || story.imageUrl || story.image_url || story.imageURL)}" alt="${escapeHTML(tag.replace(/^#/, ''))} story" loading="lazy" onerror="this.remove(); this.parentElement.classList.add('is-placeholder');">`
-                                : ''}
-                        </div>
+                    <div class="story-artwork ${story.image || story.imageUrl || story.image_url || story.imageURL || story.ImageURL || story.imageurl ? '' : 'is-placeholder'} bg-gradient-to-br ${glow}">
+                     ${(() => {
+                     const imageUrl = story.image || story.imageUrl || story.image_url || story.imageURL || story.ImageURL || story.imageurl || '';
+                     return imageUrl
+                    ? `<img src="${escapeHTML(String(imageUrl).trim())}" alt="${escapeHTML(tag.replace(/^#/, ''))} story" loading="lazy" onerror="this.remove(); this.parentElement.classList.add('is-placeholder');">`
+                       : '';
+                       })()}
+                   </div>
 
                         <span class="inline-block text-xs font-semibold bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-md">
                             ${escapeHTML(tag)}
