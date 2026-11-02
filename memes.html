@@ -171,7 +171,38 @@
         .footer-links span {
             color: #4b5563;
         }
-        
+
+
+        /* SEO and helpful context sections - separate from category grid */
+        .cm-seo-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 24px;
+            color: #cbd5e1;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .cm-seo-content h2 {
+            color: #f8fafc;
+            font-size: clamp(1.35rem, 2.8vw, 1.9rem);
+            font-weight: 800;
+            line-height: 1.4;
+            margin: 0 0 14px;
+        }
+        .cm-seo-content h3 {
+            color: #93c5fd;
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            font-weight: 700;
+            line-height: 1.5;
+            margin: 24px 0 8px;
+        }
+        .cm-seo-content p {
+            margin: 0 0 16px;
+        }
+        @media (max-width: 767px) {
+            .cm-seo-content { padding: 24px 16px; font-size: 15px; }
+        }
+
     </style>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2307304322759348"
@@ -249,6 +280,13 @@
 
         <main class="max-w-7xl mx-auto px-3 md:px-8 py-6 md:py-10">
 
+            <!-- Helpful category introduction: added without changing the existing grid -->
+            <section class="cm-seo-content" aria-labelledby="cm-category-intro-title">
+                <h2 id="cm-category-intro-title">Explore the Funny Side of Corporate Life</h2>
+                <p>Corporate Majdur brings together relatable corporate memes and office humour inspired by everyday working life. From unexpected meetings and tight deadlines to manager conversations, salary-day excitement and workplace routines, these categories explore the moments many employees recognise.</p>
+                <p>Choose a category below to browse humour about bosses, managers, HR, salary, meetings, work life, career realities and the changing role of AI at work. Whether you are taking a quick break or sharing a laugh with colleagues, explore the side of office life that feels familiar to you.</p>
+            </section>
+
             <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
 
                 <a href="/memes/manager" class="category-card rounded-2xl overflow-hidden flex flex-col">
@@ -324,6 +362,30 @@
                 </a>
 
             </div>
+
+
+
+
+            <!-- Helpful workplace context: placed after the original category grid -->
+            <section class="cm-seo-content" aria-labelledby="cm-workplace-context-title">
+                <h2 id="cm-workplace-context-title">Everyday Office Life Through Corporate Humour</h2>
+                <p>Workplaces bring people together around projects, deadlines, meetings and shared responsibilities. Those everyday experiences can also create funny, familiar moments. Corporate humour gives employees a light-hearted way to recognise these situations and share a laugh about the working day.</p>
+
+                <h3>Boss and Manager Memes</h3>
+                <p>Explore relatable situations involving leadership, task assignments, deadlines, feedback and the everyday conversations between managers and their teams.</p>
+
+                <h3>HR and Salary Memes</h3>
+                <p>From recruitment and workplace policies to salary credits, appraisals and monthly expenses, these categories look at familiar employee experiences with a humorous perspective.</p>
+
+                <h3>Work Life and Meeting Memes</h3>
+                <p>Office routines, long discussions, calendar invitations and the effort to balance work with personal time are common parts of professional life. These memes focus on the everyday moments employees often recognise.</p>
+
+                <h3>AI vs Employee and Career Truth</h3>
+                <p>Technology and changing career expectations continue to influence modern workplaces. This category explores those changes and the questions they raise through relatable workplace humour.</p>
+
+                <h2>Find More Relatable Workplace Moments</h2>
+                <p>Browse the categories above to discover office humour that matches your experience. Corporate Majdur brings together memes and workplace stories around the everyday realities of corporate life.</p>
+            </section>
 
 
             <!-- ================================================= -->
