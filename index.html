@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-2307304322759348">
     
-    <title>Corporate Majdur | India's Employee Community</title>
+    <title>Corporate Majdur – Original Corporate Memes & Office Humour</title>
 
-    <meta name="description" content="Corporate Majdur is an Indian employee community for corporate memes, office humour, chai-break games, music and relatable 9-to-5 entertainment.">
+    <meta name="description" content="Enjoy relatable corporate memes, boss jokes, salary humour, HR moments and office-life stories. Corporate Majdur brings the funny side of Indian workplace life together.">
     <meta name="keywords" content="corporate memes, office memes, HR memes, salary memes, boss memes, toxic boss, layoff memes, promotion memes, Indian corporate humor">
     <meta name="author" content="Corporate Majdur">
 
@@ -19,16 +18,16 @@
     <link rel="canonical" href="https://corporatemajdur.com/">
     
     <!-- Open Graph (Social Media) -->
-    <meta property="og:title" content="Corporate Memes | Office Jokes & HR Humor">
-    <meta property="og:description" content="Hilarious corporate memes and office jokes. Best platform for Indian corporate employees!">
+    <meta property="og:title" content="Corporate Majdur – Corporate Memes & Office Humour">
+    <meta property="og:description" content="Relatable boss, salary, HR and office-life memes for Indian corporate employees.">
     <meta property="og:image" content="https://corporatemajdur.com/logo.png">
     <meta property="og:url" content="https://corporatemajdur.com/">
     <meta property="og:type" content="website">
     
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Corporate Memes | Corporate Majdur">
-    <meta name="twitter:description" content="Funniest corporate memes & office jokes!">
+    <meta name="twitter:title" content="Corporate Majdur – Corporate Memes & Office Humour">
+    <meta name="twitter:description" content="Relatable boss, salary, HR and office-life memes for Indian corporate employees.">
     <meta name="twitter:image" content="https://corporatemajdur.com/logo.png">
     
     <!-- Mobile -->
@@ -43,7 +42,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&family=Orbitron:wght=600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
         body {
             font-family: 'Montserrat', sans-serif;
             scroll-behavior: smooth;
@@ -355,11 +354,7 @@ function showStoriesByTag(tag) {
         grid.appendChild(card);
     });
 
-    // Grid tak scroll bhi ho jayega
-    grid.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+    // Keep the visitor in place; do not force-scroll the page after filtering.
 }
 
 // Close modal when clicking outside
@@ -380,21 +375,19 @@ document.addEventListener('click', (e) => {
     <!-- Header Navigation -->
     <header class="w-full max-w-7xl mx-auto px-4 md:px-6 py-4 flex flex-col gap-4 sm:flex-row justify-between items-center relative z-20">
     
-    <a href="#" class="flex items-center gap-3 group">
-        <!-- Logo Image Implementation: Height 10 (40px) rakhi hai aur width auto -->
+    <a href="/" aria-label="Corporate Majdur homepage" class="flex items-center gap-3 group">
         <div class="h-10 flex items-center justify-center overflow-hidden bg-transparent">
-            <img src="images/logo.png" alt="Corporate Majdur Logo" class="h-full w-auto object-contain">
+            <img src="/images/logo.png" alt="Corporate Majdur logo" width="160" height="40" class="h-full w-auto object-contain">
         </div>
-    <div class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center">
-        <button onclick="window.location.href='memes.html'" class="flex-1 sm:flex-none text-center px-4 py-2.5 text-xs sm:text-sm font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl shadow-md hover:opacity-90 transition">
-            <i class="fa-solid fa-face-laugh mr-1"></i> Corporate Memes inside
-        </button>
     </a>
-
-        <a href="/story" class="flex-1 sm:flex-none text-center px-4 py-2.5 text-xs sm:text-sm font-semibold bg-slate-800/80 border border-slate-700/60 hover:border-emerald-500/50 text-slate-200 hover:text-emerald-400 rounded-xl transition backdrop-blur-sm">
-            <i class="fa-solid fa-book-open mr-1"></i> See Stories
+    <nav aria-label="Main navigation" class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center">
+        <a href="/memes" class="flex-1 sm:flex-none text-center px-4 py-2.5 text-xs sm:text-sm font-bold bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl shadow-md hover:opacity-90 transition">
+            <i class="fa-solid fa-face-laugh mr-1" aria-hidden="true"></i> Explore Memes
         </a>
-    </div>
+        <a href="/story" class="flex-1 sm:flex-none text-center px-4 py-2.5 text-xs sm:text-sm font-semibold bg-slate-800/80 border border-slate-700/60 hover:border-emerald-500/50 text-slate-200 hover:text-emerald-400 rounded-xl transition backdrop-blur-sm">
+            <i class="fa-solid fa-book-open mr-1" aria-hidden="true"></i> Corporate Stories
+        </a>
+    </nav>
 </header>
 
     <!-- Main Content -->
@@ -447,6 +440,52 @@ document.addEventListener('click', (e) => {
 
 
    
+<!-- ORIGINAL HOMEPAGE INTRODUCTION + MEME DISCOVERY SECTIONS -->
+<section id="about-corporate-majdur" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-10 relative z-10">
+  <div class="max-w-4xl mx-auto text-center">
+    <p class="text-xs font-bold uppercase tracking-[.2em] text-emerald-400 mb-3">A little humour for the 9-to-5 life</p>
+    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-4">Welcome to <span class="text-emerald-400">Corporate Majdur</span></h2>
+    <p class="text-sm sm:text-base text-slate-300 leading-7">
+      Corporate Majdur is a place for people who know the daily office-life struggle: last-minute deadlines, “quick” meetings, salary-day excitement, appraisal season and messages from the boss after work. Explore relatable corporate memes, share a laugh with your colleagues and enjoy funny stories inspired by everyday workplace moments. Our focus is office humour made for the Indian corporate experience.
+    </p>
+  </div>
+</section>
+
+<section id="trending-memes" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-10 border-t border-slate-900 relative z-10">
+  <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6 text-left">
+    <div>
+      <p class="text-xs font-bold uppercase tracking-[.2em] text-emerald-400 mb-2">Popular office situations</p>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Trending <span class="text-emerald-400">Meme Categories</span></h2>
+      <p class="text-sm text-slate-400 mt-2 max-w-2xl">Browse the corporate moments everyone knows—from boss follow-ups to salary-day plans.</p>
+    </div>
+    <a href="/memes" class="inline-flex items-center gap-2 text-sm font-bold text-emerald-400 hover:text-emerald-300">Explore all memes →</a>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+    <a href="/memes/boss" class="category-card rounded-2xl p-4 block"><span class="text-2xl" aria-hidden="true">👔</span><h3 class="font-bold text-white mt-3">Boss Memes</h3><p class="text-xs text-slate-400 mt-1">Deadlines, follow-ups and boss messages.</p></a>
+    <a href="/memes/manager" class="category-card rounded-2xl p-4 block"><span class="text-2xl" aria-hidden="true">🧑‍💼</span><h3 class="font-bold text-white mt-3">Manager Memes</h3><p class="text-xs text-slate-400 mt-1">Quick calls that are never quick.</p></a>
+    <a href="/memes/salary" class="category-card rounded-2xl p-4 block"><span class="text-2xl" aria-hidden="true">💸</span><h3 class="font-bold text-white mt-3">Salary Memes</h3><p class="text-xs text-slate-400 mt-1">Salary day to month-end reality.</p></a>
+    <a href="/memes/hr" class="category-card rounded-2xl p-4 block"><span class="text-2xl" aria-hidden="true">📋</span><h3 class="font-bold text-white mt-3">HR Memes</h3><p class="text-xs text-slate-400 mt-1">Policies, appraisals and office classics.</p></a>
+  </div>
+</section>
+
+<section id="latest-memes" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-10 border-t border-slate-900 relative z-10">
+  <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6 text-left">
+    <div>
+      <p class="text-xs font-bold uppercase tracking-[.2em] text-cyan-400 mb-2">Fresh office humour</p>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Latest <span class="text-cyan-400">Memes</span></h2>
+      <p class="text-sm text-slate-400 mt-2 max-w-2xl">Find the newest additions to the meme collection. Open the meme library to browse the current posts.</p>
+    </div>
+    <a href="/memes" class="inline-flex items-center gap-2 text-sm font-bold text-cyan-400 hover:text-cyan-300">View latest collection →</a>
+  </div>
+  <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-5 sm:p-6">
+    <h3 class="font-bold text-white mb-2">New memes, familiar office struggles</h3>
+    <p class="text-sm text-slate-300 leading-7">Whether it is a Monday morning meeting, a pending appraisal, an urgent task at 5:59 PM or the long wait for payday, explore the meme collection for relatable moments from working life.</p>
+    <a href="/memes" class="inline-flex mt-4 text-sm font-bold text-emerald-400 hover:text-emerald-300">Browse memes →</a>
+  </div>
+  <!-- Note: This section currently links to the meme library. Add real meme image/card records here to show individual latest posts on the homepage. -->
+</section>
+<!-- END ORIGINAL HOMEPAGE INTRODUCTION + MEME DISCOVERY SECTIONS -->
+
 <!-- CORPORATE MAJDUR MIXED EXPERIENCE BANNER -->
 <section class="w-full max-w-6xl mx-auto px-4 md:px-6 pt-2 pb-10 relative z-10">
     <div class="overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/50">
@@ -490,7 +529,7 @@ document.addEventListener('click', (e) => {
                 <span class="text-2xl" aria-hidden="true">💸</span><h3 class="font-bold text-white mt-3">Salary Memes</h3><p class="text-xs sm:text-sm text-slate-400 mt-1">Salary credit hone se month-end tak ka safar.</p><span class="inline-block text-xs font-bold text-emerald-400 mt-4">Explore memes →</span>
             </a>
             <a href="/memes/Meeting" class="category-card rounded-2xl p-4 sm:p-5 block">
-                <span class="text-2xl" aria-hidden="true">😵‍💫</span><h3 class="font-bold text-white mt-3">Meeting Memes</h3><p class="text-xs sm:text-sm text-slate-400 mt-1">Weekend khatam aur alarm ki dardnaak reality.</p><span class="inline-block text-xs font-bold text-emerald-400 mt-4">Explore memes →</span>
+                <span class="text-2xl" aria-hidden="true">😵‍💫</span><h3 class="font-bold text-white mt-3">Meeting Memes</h3><p class="text-xs sm:text-sm text-slate-400 mt-1">Long calls, calendar overload aur meeting-room chaos.</p><span class="inline-block text-xs font-bold text-emerald-400 mt-4">Explore memes →</span>
             </a>
             <a href="/memes" class="category-card rounded-2xl p-4 sm:p-5 block">
                 <span class="text-2xl" aria-hidden="true">😂</span><h3 class="font-bold text-white mt-3">All Office Memes</h3><p class="text-xs sm:text-sm text-slate-400 mt-1">Indian corporate life ke aur relatable moments.</p><span class="inline-block text-xs font-bold text-emerald-400 mt-4">Browse all →</span>
@@ -498,6 +537,50 @@ document.addEventListener('click', (e) => {
         </div>
     </section>
     <!-- END ADDED: MEME CATEGORIES -->
+    <!-- HOMEPAGE CONTENT: ORIGINAL CORPORATE HUMOUR CONTEXT -->
+    <section id="office-humour" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-10 border-t border-slate-900 relative z-10">
+        <div class="max-w-4xl mx-auto text-left">
+            <p class="text-xs font-bold uppercase tracking-[.2em] text-emerald-400 mb-2">The funny side of work</p>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-4">Corporate Memes for Everyday Office Life</h2>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                Corporate Majdur is a place for people who know the everyday reality of working life:
+                last-minute meetings, “quick” manager calls, salary-day excitement, appraisal season,
+                office politics and the countdown to Friday. Our corporate humour and meme collections
+                are made to capture those familiar moments in a light-hearted way.
+            </p>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+                Browse by the situation you relate to most. Boss memes cover deadlines and unexpected
+                instructions; manager memes focus on follow-ups and meetings; HR memes bring a humorous
+                take on policies and appraisals; and salary memes follow the journey from payday to month-end.
+                Explore the categories to find office jokes that match your workday.
+            </p>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                Corporate Majdur also features workplace stories and break-time entertainment for a quick
+                laugh. The content is intended for humour and entertainment, and is not a substitute for
+                professional workplace or employment advice.
+            </p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-7">
+            <a href="/memes/boss" class="category-card rounded-xl p-4 text-left">
+                <h3 class="font-bold text-white">Boss & Deadline Humour</h3>
+                <p class="text-xs text-slate-400 mt-2">Relatable jokes about deadlines, feedback and boss messages.</p>
+            </a>
+            <a href="/memes/manager" class="category-card rounded-xl p-4 text-left">
+                <h3 class="font-bold text-white">Meetings & Follow-ups</h3>
+                <p class="text-xs text-slate-400 mt-2">The never-ending “quick call” and status update moments.</p>
+            </a>
+            <a href="/memes/hr" class="category-card rounded-xl p-4 text-left">
+                <h3 class="font-bold text-white">HR & Appraisal Season</h3>
+                <p class="text-xs text-slate-400 mt-2">Office policies, appraisals and employee-life humour.</p>
+            </a>
+            <a href="/memes/salary" class="category-card rounded-xl p-4 text-left">
+                <h3 class="font-bold text-white">Salary & Month-end</h3>
+                <p class="text-xs text-slate-400 mt-2">Payday happiness and the familiar month-end struggle.</p>
+            </a>
+        </div>
+    </section>
+    <!-- END HOMEPAGE CONTENT -->
+
 
     <!-- GAMES SECTION -->
     <section id="games-section" class="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 border-t border-slate-900 relative z-10">
